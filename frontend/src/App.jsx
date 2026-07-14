@@ -3,6 +3,7 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { TOKEN_KEY } from './utils/apiClient.js'
 import Navbar from './components/common/Navbar.jsx'
 import Footer from './components/common/Footer.jsx'
+import ChatBot from './components/chatbot/ChatBot.jsx'
 
 import Home from './pages/home/Home.jsx'
 import NotFound from './pages/NotFound.jsx'
@@ -139,6 +140,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <ChatBot />
     </div>
   )
 }
