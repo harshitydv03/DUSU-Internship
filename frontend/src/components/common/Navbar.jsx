@@ -59,9 +59,15 @@ export default function Navbar() {
                     <ul className="dropdown">
                       {item.children.map((child) => (
                         <li key={child.to}>
-                          <Link to={child.to} onClick={closeAll}>
-                            {child.label}
-                          </Link>
+                          {child.external ? (
+                            <a href={child.to} target="_blank" rel="noopener noreferrer" onClick={closeAll}>
+                              {child.label} ↗
+                            </a>
+                          ) : (
+                            <Link to={child.to} onClick={closeAll}>
+                              {child.label}
+                            </Link>
+                          )}
                         </li>
                       ))}
                     </ul>
