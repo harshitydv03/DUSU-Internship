@@ -13,6 +13,35 @@ export const SITE = {
 
 export const NAV_MENU = [
   {
+    label: 'Student Services',
+    to: '/services',
+    children: [
+      { label: 'Scholarships',              to: '/services/scholarships' },
+      { label: 'Opportunities',            to: '/services/opportunities' },
+      { label: 'Downloads & Forms',        to: '/services/downloads' },
+      { label: 'Hostel / PG Information',  to: '/services/hostel-pg' },
+      { label: 'Health Services (WUS)',    to: '/services/health' },
+      { label: 'Samarth DU Portal',        to: 'https://samarth.uod.ac.in/', external: true },
+      { label: 'Sports Complex',           to: '/services/facilities/sports-complex' },
+      { label: 'WUS Health Centre',        to: '/services/facilities/wus' },
+      { label: 'Polo Ground',             to: '/services/facilities/polo-ground' },
+      { label: 'DUCC',                    to: '/services/facilities/ducc' },
+      { label: 'Banks & Post Office',     to: '/services/facilities/banks-post' },
+    ],
+  },
+  {
+    label: 'Student Help',
+    to: '/help',
+    children: [
+      { label: 'Help Centre',              to: '/help' },
+      { label: 'Raise Query / Grievance', to: '/help/raise-query' },
+      { label: 'Track My Query',          to: '/help/track-query' },
+      { label: 'FAQs & Knowledge Base',   to: '/help/faqs' },
+      { label: 'Helplines & Emergency',   to: '/help/helplines' },
+      { label: 'Anti-Ragging & Safety',   to: '/help/anti-ragging' },
+    ],
+  },
+  {
     label: 'About DUSU',
     to: '/about',
     children: [
@@ -41,35 +70,6 @@ export const NAV_MENU = [
       { label: 'Colleges & Departments',    to: '/colleges' },
       { label: 'Prerana Bhawan',            to: '/campuses/prerana-bhawan' },
       { label: 'DUSU Office',              to: '/campuses/dusu-office' },
-    ],
-  },
-  {
-    label: 'Student Services',
-    to: '/services',
-    children: [
-      { label: 'Scholarships',              to: '/services/scholarships' },
-      { label: 'Opportunities',            to: '/services/opportunities' },
-      { label: 'Downloads & Forms',        to: '/services/downloads' },
-      { label: 'Hostel / PG Information',  to: '/services/hostel-pg' },
-      { label: 'Health Services (WUS)',    to: '/services/health' },
-      { label: 'Samarth DU Portal',        to: 'https://samarth.uod.ac.in/', external: true },
-      { label: 'Sports Complex',           to: '/services/facilities/sports-complex' },
-      { label: 'WUS Health Centre',        to: '/services/facilities/wus' },
-      { label: 'Polo Ground',             to: '/services/facilities/polo-ground' },
-      { label: 'DUCC',                    to: '/services/facilities/ducc' },
-      { label: 'Banks & Post Office',     to: '/services/facilities/banks-post' },
-    ],
-  },
-  {
-    label: 'Student Help',
-    to: '/help',
-    children: [
-      { label: 'Help Centre',              to: '/help' },
-      { label: 'Raise Query / Grievance', to: '/help/raise-query' },
-      { label: 'Track My Query',          to: '/help/track-query' },
-      { label: 'FAQs & Knowledge Base',   to: '/help/faqs' },
-      { label: 'Helplines & Emergency',   to: '/help/helplines' },
-      { label: 'Anti-Ragging & Safety',   to: '/help/anti-ragging' },
     ],
   },
   { label: 'Contact', to: '/contact' },
