@@ -1,5 +1,6 @@
 import PageHeader from '../../components/common/PageHeader.jsx'
 import ContactForm from '../../components/contact/ContactForm.jsx'
+import Icon from '../../components/Icon.jsx'
 import { SITE } from '../../utils/constants.js'
 
 export default function ContactReachUs() {
@@ -14,12 +15,12 @@ export default function ContactReachUs() {
         <div className="container grid-2" style={{ alignItems: 'start' }}>
           <div>
             <div className="card" style={{ marginBottom: 18 }}>
-              <div className="card-icon">📍</div>
+              <div className="card-icon"><Icon name="MapPin" /></div>
               <h3>DUSU Office</h3>
               <p>{SITE.address}</p>
             </div>
             <div className="card" style={{ marginBottom: 18 }}>
-              <div className="card-icon">✉️</div>
+              <div className="card-icon"><Icon name="Mail" /></div>
               <h3>Email</h3>
               <p>
                 <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
@@ -28,7 +29,7 @@ export default function ContactReachUs() {
               </p>
             </div>
             <div className="card">
-              <div className="card-icon">🕘</div>
+              <div className="card-icon"><Icon name="Clock" /></div>
               <h3>Office hours</h3>
               <p>Monday – Friday, 10:00 AM – 5:00 PM (working days of the University)</p>
             </div>

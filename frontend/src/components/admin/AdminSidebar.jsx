@@ -1,12 +1,13 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { TOKEN_KEY } from '../../utils/apiClient.js'
+import Icon from '../Icon.jsx'
 
 const LINKS = [
-  { to: '/admin', label: '📊 Dashboard', end: true },
-  { to: '/admin/content', label: '📝 Content Management' },
-  { to: '/admin/queries', label: '📋 Query Management' },
-  { to: '/admin/users', label: '👥 Users & Roles' },
-  { to: '/admin/settings', label: '⚙️ Settings & Audit Log' },
+  { to: '/admin', icon: 'BarChart', label: 'Dashboard', end: true },
+  { to: '/admin/content', icon: 'FileText', label: 'Content Management' },
+  { to: '/admin/queries', icon: 'Clipboard', label: 'Query Management' },
+  { to: '/admin/users', icon: 'Users', label: 'Users & Roles' },
+  { to: '/admin/settings', icon: 'Settings', label: 'Settings & Audit Log' },
 ]
 
 export default function AdminSidebar() {
@@ -24,7 +25,9 @@ export default function AdminSidebar() {
       <h3>Admin Panel</h3>
       {LINKS.map((l) => (
         <NavLink key={l.to} to={l.to} end={l.end}>
-          {l.label}
+          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+            <Icon name={l.icon} size={16} /> {l.label}
+          </span>
         </NavLink>
       ))}
       <div style={{ borderTop: '1px solid var(--line)', marginTop: 12, paddingTop: 12 }}>

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import AboutSection from '../../components/about-dusu/AboutSection.jsx'
+import Icon from '../../components/Icon.jsx'
 
 export default function AboutDUSU() {
   return (
@@ -33,19 +34,19 @@ export default function AboutDUSU() {
       <section className="section">
         <div className="container grid-3">
           <Link to="/about/history" className="card">
-            <div className="card-icon">📜</div>
+            <div className="card-icon"><Icon name="FileText" /></div>
             <h3>History &amp; Mandate</h3>
             <p>Seven decades of student representation at DU.</p>
             <span className="card-link">Read more →</span>
           </Link>
           <Link to="/about/structure" className="card">
-            <div className="card-icon">🏛️</div>
+            <div className="card-icon"><Icon name="Bank" /></div>
             <h3>Structure &amp; Constitution</h3>
             <p>How the union is organised and governed.</p>
             <span className="card-link">Read more →</span>
           </Link>
           <Link to="/about/elections" className="card">
-            <div className="card-icon">🗳️</div>
+            <div className="card-icon"><Icon name="Ballot" /></div>
             <h3>Elections</h3>
             <p>How office bearers are elected every year.</p>
             <span className="card-link">Read more →</span>

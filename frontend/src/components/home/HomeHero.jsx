@@ -16,7 +16,7 @@ export default function HomeHero() {
           <Link to="/help/raise-query" className="btn btn-gold">
             Raise a Grievance
           </Link>
-          <Link to="/services" className="btn btn-outline-light">
+          <Link to="/services" className="btn btn-outline-light text-primary">
             Explore Student Services
           </Link>
         </div>
