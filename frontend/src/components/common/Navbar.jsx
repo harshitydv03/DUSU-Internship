@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { NAV_MENU } from '../../utils/constants.js'
+import duLogo from '../../assets/du-logo.png'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -31,7 +32,7 @@ export default function Navbar() {
       <header className="navbar">
         <div className="container navbar-inner">
           <Link to="/" className="brand" onClick={closeAll}>
-            <span className="brand-crest">DUSU</span>
+            <img src={duLogo} alt="Delhi University logo" className="brand-crest" />
             <span>
               <span className="brand-name">Delhi University<br />Students&apos; Union</span>
             </span>
