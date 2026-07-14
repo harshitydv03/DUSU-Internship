@@ -34,6 +34,7 @@ import NewsNotices from './pages/news-notices/NewsNotices.jsx'
 import Resources from './pages/resources/Resources.jsx'
 import WorkMilestones from './pages/work-milestones/WorkMilestones.jsx'
 import ContactReachUs from './pages/contact/ContactReachUs.jsx'
+import CollegesDepartments from './pages/colleges/CollegesDepartments.jsx'
 
 import AdminLogin from './pages/admin/AdminLogin.jsx'
 import AdminDashboardAnalytics from './pages/admin/AdminDashboardAnalytics.jsx'
@@ -91,6 +92,7 @@ export default function App() {
           <Route path="/resources" element={<Resources />} />
           <Route path="/milestones" element={<WorkMilestones />} />
           <Route path="/contact" element={<ContactReachUs />} />
+          <Route path="/colleges" element={<CollegesDepartments />} />
 
           <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<RequireAdmin><AdminDashboardAnalytics /></RequireAdmin>} />

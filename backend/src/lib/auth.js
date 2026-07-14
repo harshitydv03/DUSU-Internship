@@ -2,8 +2,8 @@
 // hashing, all from node:crypto. Set JWT_SECRET and ADMIN_PASSWORD in
 // production — defaults below are for local development only.
 import crypto from 'node:crypto'
+import mongoose from 'mongoose'
 import { Router } from 'express'
-import { db } from '../config/db.js'
 
 const SECRET = process.env.JWT_SECRET || 'dusu-dev-secret-change-in-production'
 const TOKEN_HOURS = 12
@@ -50,26 +50,36 @@ const checkPassword = (pw, stored) => {
 }
 
 // Admins live outside RESOURCES on purpose — no public CRUD API for them.
-db.exec(`CREATE TABLE IF NOT EXISTS admins (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  username TEXT UNIQUE NOT NULL,
-  password TEXT NOT NULL,
-  role TEXT NOT NULL DEFAULT 'admin'
-)`)
-if (db.prepare('SELECT COUNT(*) AS n FROM admins').get().n === 0) {
-  db.prepare('INSERT INTO admins (username, password) VALUES (?, ?)').run(
-    process.env.ADMIN_USER || 'admin',
-    hashPassword(process.env.ADMIN_PASSWORD || 'dusu@2026'),
-  )
+const adminSchema = new mongoose.Schema({
+  username: { type: String, unique: true, required: true },
+  password: { type: String, required: true },
+  role:     { type: String, default: 'admin' },
+})
+export const Admin = mongoose.model('Admin', adminSchema, 'admins')
+
+// Called from connectDB() after the connection is established.
+export async function seedAdmin() {
+  const count = await Admin.countDocuments()
+  if (count === 0) {
+    await Admin.create({
+      username: process.env.ADMIN_USER || 'admin',
+      password: hashPassword(process.env.ADMIN_PASSWORD || 'dusu@2026'),
+    })
+    console.log('  seeded default admin account')
+  }
 }
 
 export const authRouter = Router()
 
-authRouter.post('/login', (req, res) => {
-  const { username, password } = req.body || {}
-  const admin = db.prepare('SELECT * FROM admins WHERE username = ?').get(username)
-  if (!admin || !checkPassword(String(password ?? ''), admin.password)) {
-    return res.status(401).json({ error: 'Invalid username or password' })
+authRouter.post('/login', async (req, res) => {
+  try {
+    const { username, password } = req.body || {}
+    const admin = await Admin.findOne({ username })
+    if (!admin || !checkPassword(String(password ?? ''), admin.password)) {
+      return res.status(401).json({ error: 'Invalid username or password' })
+    }
+    res.json({ token: sign({ username: admin.username, role: admin.role }), username: admin.username })
+  } catch (err) {
+    res.status(500).json({ error: err.message })
   }
-  res.json({ token: sign({ username: admin.username, role: admin.role }), username: admin.username })
 })

@@ -1,0 +1,55 @@
+# ============================================================
+#  DUSU Internship — Project Requirements
+#  This is a Node.js / React project (not Python).
+#  Python's pip install will NOT work here.
+#  Install Node dependencies with:  npm install
+# ============================================================
+
+
+# ------------------------------------------------------------
+#  RUNTIME (must be installed on your machine)
+# ------------------------------------------------------------
+node >= 20.0.0           # Tested on v24.14.0  (https://nodejs.org)
+npm  >= 9.0.0            # Tested on v11.9.0   (bundled with Node)
+mongodb >= 6.0           # Local: install MongoDB Community Edition
+                         # OR run via Docker:
+                         #   docker run -d -p 27017:27017 --name mongo-dusu mongo:7
+
+
+# ------------------------------------------------------------
+#  BACKEND  (backend/package.json)
+#  Install with:  cd backend && npm install
+# ------------------------------------------------------------
+express@^4.19.2          # HTTP server / REST API framework
+mongoose@^9.7.4          # MongoDB ODM (object-document mapper)
+cors@^2.8.5              # Cross-Origin Resource Sharing middleware
+
+
+# ------------------------------------------------------------
+#  FRONTEND  (frontend/package.json)
+#  Install with:  cd frontend && npm install
+# ------------------------------------------------------------
+react@^18.3.1            # UI library
+react-dom@^18.3.1        # React DOM renderer
+react-router-dom@^6.26.0 # Client-side routing
+
+# -- Dev dependencies (build tooling, not needed in production) --
+vite@^5.4.8              # Frontend bundler / dev server
+@vitejs/plugin-react@^4.3.1  # Vite plugin for React / JSX
+
+
+# ------------------------------------------------------------
+#  ENVIRONMENT VARIABLES  (create a .env file in /backend)
+#  Copy .env.example → .env and fill in your values
+# ------------------------------------------------------------
+# MONGODB_URI   = mongodb://localhost:27017/dusu   (default; change for Atlas)
+# JWT_SECRET    = <your-secret-key>
+# PORT          = 5000                              (default)
+
+
+# ------------------------------------------------------------
+#  QUICK START
+# ------------------------------------------------------------
+# 1. Start MongoDB (local or Docker — see above)
+# 2. cd backend  && npm install && npm run dev     → http://localhost:5000/api
+# 3. cd frontend && npm install && npm run dev     → http://localhost:5173

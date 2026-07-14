@@ -1,39 +1,59 @@
-import { db } from '../config/db.js'
+import { getModel } from '../config/db.js'
 
-const parse = (row) => row && { id: row.id, createdAt: row.created_at, ...JSON.parse(row.data) }
+// Maps a Mongoose document to the flat shape the API returns.
+// _id (ObjectId) → id (string), created_at preserved, data fields spread.
+const parse = (doc) =>
+  doc && { id: doc._id.toString(), createdAt: doc.created_at, ...doc.data }
 
-// Generic data access for one table. Filters map query params to JSON fields:
-// list({ status: 'Submitted' }) → WHERE json_extract(data,'$.status') = 'Submitted'
+// Generic async data access for one collection.
+// Filters map query params to top-level fields inside `data`:
+//   list({ status: 'Submitted' }) → find({ 'data.status': 'Submitted' })
 export function store(table) {
+  const Model = getModel(table)
   return {
-    list(filters = {}) {
-      const keys = Object.keys(filters).filter((k) => /^\w+$/.test(k))
-      const where = keys.length
-        ? 'WHERE ' + keys.map((k) => `json_extract(data, '$.${k}') = ?`).join(' AND ')
-        : ''
-      return db
-        .prepare(`SELECT * FROM ${table} ${where} ORDER BY id DESC`)
-        .all(...keys.map((k) => filters[k]))
-        .map(parse)
+    async list(filters = {}) {
+      const query = {}
+      for (const [k, v] of Object.entries(filters)) {
+        if (/^\w+$/.test(k)) query[`data.${k}`] = v
+      }
+      // Colleges are sorted alphabetically by name; everything else by insertion order (newest first).
+      const sortField = table === 'colleges' ? { 'data.name': 1 } : { _id: -1 }
+      const docs = await Model.find(query).sort(sortField)
+      return docs.map(parse)
     },
-    get(id) {
-      return parse(db.prepare(`SELECT * FROM ${table} WHERE id = ?`).get(id))
+
+    async get(id) {
+      try {
+        return parse(await Model.findById(id))
+      } catch {
+        return null // invalid ObjectId format → treat as not found
+      }
     },
-    create(doc) {
-      const { lastInsertRowid } = db
-        .prepare(`INSERT INTO ${table} (data) VALUES (?)`)
-        .run(JSON.stringify(doc))
-      return this.get(lastInsertRowid)
+
+    async create(doc) {
+      const saved = await new Model({ data: doc }).save()
+      return parse(saved)
     },
-    update(id, patch) {
-      const current = this.get(id)
+
+    async update(id, patch) {
+      const current = await this.get(id)
       if (!current) return null
       const { id: _, createdAt: __, ...merged } = { ...current, ...patch }
-      db.prepare(`UPDATE ${table} SET data = ? WHERE id = ?`).run(JSON.stringify(merged), id)
-      return this.get(id)
+      const updated = await Model.findByIdAndUpdate(
+        id,
+        { $set: { data: merged } },
+        { new: true },
+      )
+      return parse(updated)
     },
-    remove(id) {
-      return db.prepare(`DELETE FROM ${table} WHERE id = ?`).run(id).changes > 0
+
+    async remove(id) {
+      try {
+        const result = await Model.findByIdAndDelete(id)
+        return result !== null
+      } catch {
+        return false
+      }
     },
   }
 }

@@ -62,6 +62,7 @@ export const NAV_MENU = [
       { label: 'Gallery', to: '/gallery' },
       { label: 'Resources', to: '/resources' },
       { label: 'Work & Milestones', to: '/milestones' },
+      { label: 'Colleges & Departments', to: '/colleges' },
     ],
   },
   { label: 'Contact', to: '/contact' },

@@ -1,29 +1,46 @@
-// SQLite via Node's built-in driver — no database server or native module
-// needed. Swap to better-sqlite3/Postgres later by changing only this file
-// and lib/store.js.
-import { DatabaseSync } from 'node:sqlite'
-import { fileURLToPath } from 'node:url'
+// MongoDB via Mongoose. Swap to Atlas later by changing only MONGODB_URI in
+// your .env — no code changes needed.
+import mongoose from 'mongoose'
 import { SEED } from './seed.js'
+import { seedAdmin } from '../lib/auth.js'
 
-// Every table is a small document store: JSON in, JSON out. Add a name here
-// (and optionally seed data in seed.js) to get a full CRUD API for it.
+// Every collection is a generic document store: plain JS object in, plain JS
+// object out. Add a name here (and optionally seed data in seed.js) to get a
+// full CRUD API for it — exactly one line to add a new section.
 export const RESOURCES = [
   'notices', 'events', 'queries', 'team', 'scholarships', 'opportunities',
   'downloads', 'resources', 'milestones', 'faqs', 'gallery', 'contact',
+  'colleges',
 ]
 
-export const db = new DatabaseSync(fileURLToPath(new URL('../../dusu.db', import.meta.url)))
-db.exec('PRAGMA journal_mode = WAL') // fast concurrent reads
+// Generic schema: stores any JSON document. No per-resource schema needed —
+// adding a field never requires a migration.
+const docSchema = new mongoose.Schema(
+  { data: { type: mongoose.Schema.Types.Mixed, required: true } },
+  { timestamps: { createdAt: 'created_at', updatedAt: false } },
+)
 
-for (const table of RESOURCES) {
-  db.exec(`CREATE TABLE IF NOT EXISTS ${table} (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    data TEXT NOT NULL,
-    created_at TEXT NOT NULL DEFAULT (strftime('%Y-%m-%dT%H:%M:%fZ','now'))
-  )`)
-  const { n } = db.prepare(`SELECT COUNT(*) AS n FROM ${table}`).get()
-  if (n === 0 && SEED[table]) {
-    const insert = db.prepare(`INSERT INTO ${table} (data) VALUES (?)`)
-    for (const doc of SEED[table]) insert.run(JSON.stringify(doc))
+// Cache compiled models so repeated calls to getModel() don't re-compile.
+const _models = {}
+export function getModel(name) {
+  if (!_models[name]) _models[name] = mongoose.model(name, docSchema, name)
+  return _models[name]
+}
+
+export async function connectDB() {
+  const uri = process.env.MONGODB_URI || 'mongodb://localhost:27017/dusu'
+  await mongoose.connect(uri)
+  console.log(`MongoDB connected → ${uri}`)
+
+  // Seed any empty collection on first run.
+  for (const table of RESOURCES) {
+    const Model = getModel(table)
+    const count = await Model.countDocuments()
+    if (count === 0 && SEED[table]) {
+      await Model.insertMany(SEED[table].map((doc) => ({ data: doc })))
+      console.log(`  seeded ${SEED[table].length} document(s) into '${table}'`)
+    }
   }
+
+  await seedAdmin()
 }

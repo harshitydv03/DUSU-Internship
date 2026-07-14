@@ -1,5 +1,9 @@
-// Initial content, loaded once when a table is empty. Mirrors the frontend's
-// sample data — edit or manage through the admin panel / API afterwards.
+// Initial content, loaded once when a collection is empty.
+import { createRequire } from 'module'
+const _require = createRequire(import.meta.url)
+const COLLEGES = _require('../../../colleges.json')
+
+
 export const SEED = {
   notices: [
     { date: '2026-07-10', tag: 'Notice', title: 'Volunteers invited for the Student Grievance Cell', body: 'Applications are open for student volunteers to assist the grievance redressal desk for the 2026–27 session.' },
@@ -42,4 +46,5 @@ export const SEED = {
     { name: 'National Scholarship Portal', url: 'https://scholarships.gov.in/', desc: 'Central and state scholarship applications' },
     { name: 'UGC Anti-Ragging Portal', url: 'https://antiragging.in/', desc: 'File anti-ragging complaints and affidavits' },
   ],
+  colleges: COLLEGES,
 }
