@@ -73,6 +73,22 @@ export default function QueryTracker() {
               </div>
             ))}
           </div>
+
+          {result.replies?.length > 0 && (
+            <div style={{ marginTop: 28 }}>
+              <h3 style={{ fontFamily: 'var(--font-body)', fontSize: '1rem', marginBottom: 4 }}>
+                Replies from the DUSU team
+              </h3>
+              {result.replies.map((r, i) => (
+                <div className="reply-bubble" key={i}>
+                  {r.message}
+                  <div className="reply-meta">
+                    — DUSU team, {new Date(r.at).toLocaleDateString('en-IN', { day: 'numeric', month: 'long', year: 'numeric' })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

@@ -30,14 +30,16 @@ fallback for grievances).
   Student Services (scholarships, opportunities, downloads), Events, Gallery,
   News & Notices, Resources, Work & Milestones, Contact
 - **Full grievance loop**: form posts to the API and gets a reference ID;
-  admins update the status from the admin panel; students track it live
+  admins update the status and **reply to students** from the admin panel;
+  students see status + team replies in Track My Query
+- **Admin login** at `/admin/login` (dev credentials: `admin` / `dusu@2026`);
+  all content writes require authentication
 - REST API with CRUD for every section (`/api/notices`, `/api/events`,
   `/api/queries`, …) backed by SQLite — see `backend/README.md`
 - Admin panel with live stats and query management
 
 ## Next up
 
-- Authentication for the admin panel (JWT middleware in `backend/src/server.js`)
 - Move remaining page content (notices, events, team) from
   `frontend/src/utils/constants.js` to the API
 - File uploads for Gallery and Downloads sections

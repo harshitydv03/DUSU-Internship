@@ -44,8 +44,27 @@ GET    /api/health             health check
 `POST /api/queries` additionally generates a `refId` and sets
 `status: "Submitted"` — update status later with `PUT /api/queries/:id`.
 
+## Auth
+
+Reads are public. All writes require a logged-in admin, **except**
+`POST /api/queries` and `POST /api/contact` (students must be able to file
+them). Tokens are HMAC-signed (`src/lib/auth.js`, zero dependencies).
+
+```
+POST /api/auth/login                { "username": "...", "password": "..." }
+                                    → { "token": "...", "username": "..." }
+POST /api/queries/:id/replies      (auth) { "message": "..." } — reply to a student
+```
+
+Send the token as `Authorization: Bearer <token>` (the frontend does this
+automatically after logging in at `/admin/login`).
+
+**Default dev credentials:** `admin` / `dusu@2026` — change them by setting
+`ADMIN_USER` / `ADMIN_PASSWORD` env vars before first run, and always set
+`JWT_SECRET` in production.
+
 ## Future work
 
-- Auth for admin routes (JWT middleware slots into `server.js`)
 - Swap storage by editing only `db.js`/`store.js` (e.g. Postgres, MongoDB)
 - Per-resource validation via the `onCreate` hook in `resource()`
+- Multiple admin accounts + roles (table and `role` claim already exist)
