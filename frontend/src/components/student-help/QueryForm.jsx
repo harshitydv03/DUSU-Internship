@@ -1,10 +1,10 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import apiClient from '../../utils/apiClient.js'
 import { QUERY_CATEGORIES, QUERY_STORAGE_KEY } from '../../utils/constants.js'
 
-// Queries are stored in the browser (localStorage) until the backend
-// /api/student-help endpoints are live; the form then only needs to switch
-// to apiClient.post().
+// Submits to the backend API; falls back to localStorage when it is offline
+// so students never lose a filed grievance.
 export default function QueryForm() {
   const [submitted, setSubmitted] = useState(null)
   const [form, setForm] = useState({
@@ -18,13 +18,18 @@ export default function QueryForm() {
 
   const update = (e) => setForm({ ...form, [e.target.name]: e.target.value })
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    const refId = `DUSU-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`
-    const record = { ...form, refId, status: 'Submitted', createdAt: new Date().toISOString() }
-    const existing = JSON.parse(localStorage.getItem(QUERY_STORAGE_KEY) || '[]')
-    localStorage.setItem(QUERY_STORAGE_KEY, JSON.stringify([...existing, record]))
-    setSubmitted(refId)
+    try {
+      const saved = await apiClient.post('/queries', form)
+      setSubmitted(saved.refId)
+    } catch {
+      const refId = `DUSU-${new Date().getFullYear()}-${String(Date.now()).slice(-6)}`
+      const record = { ...form, refId, status: 'Submitted', createdAt: new Date().toISOString() }
+      const existing = JSON.parse(localStorage.getItem(QUERY_STORAGE_KEY) || '[]')
+      localStorage.setItem(QUERY_STORAGE_KEY, JSON.stringify([...existing, record]))
+      setSubmitted(refId)
+    }
   }
 
   if (submitted) {

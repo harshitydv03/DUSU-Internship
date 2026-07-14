@@ -8,7 +8,7 @@ export default function AdminDashboardAnalytics() {
       <div>
         <h1 style={{ marginBottom: 6 }}>Dashboard</h1>
         <p style={{ color: 'var(--muted)', marginBottom: 26 }}>
-          Overview of portal activity. Live metrics will appear once the backend API is connected.
+          Overview of portal activity, live from the backend API.
         </p>
         <AdminStats />
         <div className="alert" style={{ marginTop: 30, background: 'var(--accent-soft)', border: '1px solid #eeddb5', color: '#8a6414' }}>

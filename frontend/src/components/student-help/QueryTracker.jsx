@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import apiClient from '../../utils/apiClient.js'
 import { QUERY_STORAGE_KEY } from '../../utils/constants.js'
 
 const STAGES = ['Submitted', 'Under Review', 'In Progress', 'Resolved']
@@ -8,11 +9,21 @@ export default function QueryTracker() {
   const [result, setResult] = useState(null)
   const [notFound, setNotFound] = useState(false)
 
-  const search = (e) => {
+  const search = async (e) => {
     e.preventDefault()
-    const all = JSON.parse(localStorage.getItem(QUERY_STORAGE_KEY) || '[]')
-    const match = all.find((q) => q.refId.toLowerCase() === refId.trim().toLowerCase())
-    setResult(match || null)
+    const wanted = refId.trim()
+    let match = null
+    try {
+      const found = await apiClient.get(`/queries?refId=${encodeURIComponent(wanted)}`)
+      match = found[0] || null
+    } catch {
+      // backend offline — check queries saved in this browser
+    }
+    if (!match) {
+      const all = JSON.parse(localStorage.getItem(QUERY_STORAGE_KEY) || '[]')
+      match = all.find((q) => q.refId.toLowerCase() === wanted.toLowerCase()) || null
+    }
+    setResult(match)
     setNotFound(!match)
   }
 
@@ -38,8 +49,8 @@ export default function QueryTracker() {
 
       {notFound && (
         <div className="alert alert-error" style={{ marginTop: 20 }}>
-          No query found with that reference ID on this device. Queries are currently stored in
-          the browser they were submitted from.
+          No query found with that reference ID. Check for typos — the format is
+          DUSU-YYYY-XXXXXX.
         </div>
       )}
 

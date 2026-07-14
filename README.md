@@ -6,17 +6,22 @@ grievances, scholarships, events, helplines, news and an admin panel.
 ## Project structure
 
 ```
-frontend/   React + Vite single-page app (working — run instructions below)
-backend/    Node.js/Express API skeleton (to be implemented)
+frontend/   React + Vite single-page app
+backend/    Express + SQLite API (Node 22+, zero external services)
 ```
 
-## Run the frontend
+## Run it
 
 ```bash
-cd frontend
-npm install
-npm run dev        # opens on http://localhost:5173
+# terminal 1 — API on http://localhost:5000
+cd backend && npm install && npm run dev
+
+# terminal 2 — site on http://localhost:5173
+cd frontend && npm install && npm run dev
 ```
+
+The frontend works even without the backend (sample data + localStorage
+fallback for grievances).
 
 ## What works today
 
@@ -24,16 +29,18 @@ npm run dev        # opens on http://localhost:5173
   Student Help (grievance form + tracker, FAQs, helplines, anti-ragging),
   Student Services (scholarships, opportunities, downloads), Events, Gallery,
   News & Notices, Resources, Work & Milestones, Contact
-- Grievance form issues a reference ID and the tracker shows its status
-  (stored in the browser's localStorage until the backend is connected)
-- Admin panel UI preview (dashboard, content/query/user management, audit log)
+- **Full grievance loop**: form posts to the API and gets a reference ID;
+  admins update the status from the admin panel; students track it live
+- REST API with CRUD for every section (`/api/notices`, `/api/events`,
+  `/api/queries`, …) backed by SQLite — see `backend/README.md`
+- Admin panel with live stats and query management
 
 ## Next up
 
-- Implement the Express backend (`backend/src`) — models, controllers and
-  routes are stubbed out per section
-- Replace sample data in `frontend/src/utils/constants.js` with API data
-- Add authentication for the admin panel
+- Authentication for the admin panel (JWT middleware in `backend/src/server.js`)
+- Move remaining page content (notices, events, team) from
+  `frontend/src/utils/constants.js` to the API
+- File uploads for Gallery and Downloads sections
 
 ## Team notes
 

@@ -1,0 +1,5 @@
+node_modules
+dusu.db
+dusu.db-*
+.env
+*.log
