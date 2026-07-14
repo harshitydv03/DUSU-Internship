@@ -1,5 +1,6 @@
 import AdminSidebar from '../../components/admin/AdminSidebar.jsx'
 import AdminStats from '../../components/admin/AdminStats.jsx'
+import Icon from '../../components/Icon.jsx'
 
 export default function AdminDashboardAnalytics() {
   return (
@@ -12,8 +13,7 @@ export default function AdminDashboardAnalytics() {
         </p>
         <AdminStats />
         <div className="alert" style={{ marginTop: 30, background: 'var(--accent-soft)', border: '1px solid #eeddb5', color: '#8a6414' }}>
-          🔒 Authentication is not set up yet — this panel is a UI preview. Login and role-based
-          access will be added along with the backend.
+          <span style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}><Icon name="Lock" /> Authentication is not set up yet — this panel is a UI preview. Login and role-based access will be added along with the backend.</span>
         </div>
       </div>
     </div>

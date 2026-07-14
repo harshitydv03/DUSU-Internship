@@ -2,12 +2,12 @@ import PageHeader from '../../components/common/PageHeader.jsx'
 import ServiceCard from '../../components/student-services/ServiceCard.jsx'
 
 const SERVICES = [
-  { icon: '🎓', title: 'Scholarships', desc: 'Fee waivers, merit awards and government schemes with application links.', to: '/services/scholarships' },
-  { icon: '🚀', title: 'Opportunities', desc: 'Volunteering, internships and leadership roles within the union.', to: '/services/opportunities' },
-  { icon: '📥', title: 'Downloads & Forms', desc: 'Grievance forms, affidavits, templates and how-to guides.', to: '/services/downloads' },
-  { icon: '📚', title: 'Resources', desc: 'Official DU portals, scholarship sites and student tools.', to: '/resources' },
-  { icon: '📋', title: 'Grievance Redressal', desc: 'A trackable process for academic and administrative complaints.', to: '/help/raise-query' },
-  { icon: '📞', title: 'Helplines', desc: 'Emergency and support numbers for every situation.', to: '/help/helplines' },
+  { icon: 'GraduationCap', title: 'Scholarships', desc: 'Fee waivers, merit awards and government schemes with application links.', to: '/services/scholarships' },
+  { icon: 'Rocket', title: 'Opportunities', desc: 'Volunteering, internships and leadership roles within the union.', to: '/services/opportunities' },
+  { icon: 'Download', title: 'Downloads & Forms', desc: 'Grievance forms, affidavits, templates and how-to guides.', to: '/services/downloads' },
+  { icon: 'BookOpen', title: 'Resources', desc: 'Official DU portals, scholarship sites and student tools.', to: '/resources' },
+  { icon: 'Clipboard', title: 'Grievance Redressal', desc: 'A trackable process for academic and administrative complaints.', to: '/help/raise-query' },
+  { icon: 'Phone', title: 'Helplines', desc: 'Emergency and support numbers for every situation.', to: '/help/helplines' },
 ]
 
 export default function StudentServices() {

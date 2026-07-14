@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import PageHeader from '../../components/common/PageHeader.jsx'
+import Icon from '../../components/Icon.jsx'
 
 export default function AntiRaggingSafetySOS() {
   return (
@@ -23,7 +24,7 @@ export default function AntiRaggingSafetySOS() {
 
           <div className="grid-3" style={{ marginTop: 40 }}>
             <div className="card">
-              <div className="card-icon">⚖️</div>
+              <div className="card-icon"><Icon name="Scale" /></div>
               <h3>Know your rights</h3>
               <p>
                 Ragging in any form — physical, verbal, or online — is punishable with suspension,
@@ -31,7 +32,7 @@ export default function AntiRaggingSafetySOS() {
               </p>
             </div>
             <div className="card">
-              <div className="card-icon">📝</div>
+              <div className="card-icon"><Icon name="FileText" /></div>
               <h3>File a complaint</h3>
               <p>
                 Complaints can be filed anonymously at antiragging.in or through the DUSU
@@ -39,7 +40,7 @@ export default function AntiRaggingSafetySOS() {
               </p>
             </div>
             <div className="card">
-              <div className="card-icon">🤝</div>
+              <div className="card-icon"><Icon name="Handshake" /></div>
               <h3>DUSU stands with you</h3>
               <p>
                 The union escorts complainants to authorities, follows up with anti-ragging

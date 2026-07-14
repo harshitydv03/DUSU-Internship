@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { NAV_MENU } from '../../utils/constants.js'
+import Icon from '../Icon.jsx'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -16,7 +17,7 @@ export default function Navbar() {
       <div className="topbar">
         <div className="container">
           <span>
-            🛡️ Anti-Ragging Helpline: <a href="tel:18001805522">1800-180-5522</a> · Emergency:{' '}
+            <Icon name="ShieldAlert" size={14} /> Anti-Ragging Helpline: <a href="tel:18001805522">1800-180-5522</a> · Emergency:{' '}
             <a href="tel:112">112</a>
           </span>
           <span>

@@ -72,13 +72,13 @@ export const HELPLINES = [
     name: 'UGC Anti-Ragging Helpline',
     number: '1800-180-5522',
     note: '24×7 toll-free national helpline (helpline@antiragging.in)',
-    icon: '🛡️',
+    icon: 'ShieldAlert',
   },
-  { name: 'National Emergency Number', number: '112', note: 'Police / fire / medical emergency', icon: '🚨' },
-  { name: 'Women Helpline', number: '181', note: 'All-India women helpline', icon: '👩' },
-  { name: 'Ambulance', number: '102', note: 'Medical assistance', icon: '🚑' },
-  { name: 'Student Mental Health (Tele-MANAS)', number: '14416', note: 'Govt. of India mental health support', icon: '💬' },
-  { name: 'DUSU Help Desk', number: '+91-11-XXXX-XXXX', note: 'Sample — replace with the official DUSU desk number', icon: '🎓' },
+  { name: 'National Emergency Number', number: '112', note: 'Police / fire / medical emergency', icon: 'AlertCircle' },
+  { name: 'Women Helpline', number: '181', note: 'All-India women helpline', icon: 'User' },
+  { name: 'Ambulance', number: '102', note: 'Medical assistance', icon: 'Phone' },
+  { name: 'Student Mental Health (Tele-MANAS)', number: '14416', note: 'Govt. of India mental health support', icon: 'MessageCircle' },
+  { name: 'DUSU Help Desk', number: '+91-11-XXXX-XXXX', note: 'Sample — replace with the official DUSU desk number', icon: 'GraduationCap' },
 ]
 
 // ---- Sample content below (replace via admin panel / backend later) ----
@@ -122,7 +122,7 @@ export const SAMPLE_EVENTS = [
     venue: 'Conference Centre, North Campus',
     desc: 'Campus tours, society stalls and help desks for the incoming batch.',
     gradient: 'linear-gradient(135deg,#7c1d2e,#b0553f)',
-    icon: '🎉',
+    icon: 'Star',
   },
   {
     id: 2,
@@ -131,7 +131,7 @@ export const SAMPLE_EVENTS = [
     venue: 'University Stadium',
     desc: 'Annual donation camp in association with the Red Cross Society.',
     gradient: 'linear-gradient(135deg,#8f1f1f,#d9763a)',
-    icon: '🩸',
+    icon: 'Droplet',
   },
   {
     id: 3,
@@ -140,7 +140,7 @@ export const SAMPLE_EVENTS = [
     venue: 'Arts Faculty Auditorium',
     desc: 'Teams from 40+ colleges compete for the DUSU rolling trophy.',
     gradient: 'linear-gradient(135deg,#5a1421,#9a3d63)',
-    icon: '🎤',
+    icon: 'Mic',
   },
   {
     id: 4,
@@ -149,7 +149,7 @@ export const SAMPLE_EVENTS = [
     venue: 'SRCC Grounds',
     desc: 'Counselling sessions, exam-prep workshops and university stalls.',
     gradient: 'linear-gradient(135deg,#1d4c7c,#3a8fd9)',
-    icon: '💼',
+    icon: 'Briefcase',
   },
 ]
 
@@ -215,10 +215,10 @@ export const SCHOLARSHIPS = [
 ]
 
 export const OPPORTUNITIES = [
-  { title: 'DUSU Web & Design Team', type: 'Volunteering', desc: 'Students with web, design or content skills can join the team maintaining this portal.', icon: '💻' },
-  { title: 'Campus Ambassador Programme', type: 'Leadership', desc: 'Represent DUSU in your college and coordinate campaigns and camps.', icon: '📣' },
-  { title: 'Grievance Cell Internship', type: 'Internship', desc: 'Assist the redressal desk, learn case handling and university procedure.', icon: '📋' },
-  { title: 'Event Management Crew', type: 'Volunteering', desc: 'Help organise fests, debates, donation drives and sports meets.', icon: '🎪' },
+  { title: 'DUSU Web & Design Team', type: 'Volunteering', desc: 'Students with web, design or content skills can join the team maintaining this portal.', icon: 'Laptop' },
+  { title: 'Campus Ambassador Programme', type: 'Leadership', desc: 'Represent DUSU in your college and coordinate campaigns and camps.', icon: 'Megaphone' },
+  { title: 'Grievance Cell Internship', type: 'Internship', desc: 'Assist the redressal desk, learn case handling and university procedure.', icon: 'Clipboard' },
+  { title: 'Event Management Crew', type: 'Volunteering', desc: 'Help organise fests, debates, donation drives and sports meets.', icon: 'Calendar' },
 ]
 
 export const DOWNLOAD_FORMS = [
@@ -230,12 +230,12 @@ export const DOWNLOAD_FORMS = [
 ]
 
 export const RESOURCES = [
-  { name: 'University of Delhi — Official Website', url: 'https://www.du.ac.in/', desc: 'Notifications, academic calendar and official circulars', icon: '🏛️' },
-  { name: 'DU Admissions Portal', url: 'https://admission.uod.ac.in/', desc: 'UG and PG admissions through CSAS', icon: '📝' },
-  { name: 'School of Open Learning (SOL)', url: 'https://sol.du.ac.in/', desc: 'Distance and open learning programmes', icon: '📚' },
-  { name: 'National Scholarship Portal', url: 'https://scholarships.gov.in/', desc: 'Central and state scholarship applications', icon: '🎓' },
-  { name: 'UGC Anti-Ragging Portal', url: 'https://antiragging.in/', desc: 'File anti-ragging complaints and affidavits', icon: '🛡️' },
-  { name: 'DigiLocker', url: 'https://www.digilocker.gov.in/', desc: 'Digital marksheets and certificates', icon: '🗂️' },
+  { name: 'University of Delhi — Official Website', url: 'https://www.du.ac.in/', desc: 'Notifications, academic calendar and official circulars', icon: 'Bank' },
+  { name: 'DU Admissions Portal', url: 'https://admission.uod.ac.in/', desc: 'UG and PG admissions through CSAS', icon: 'FileText' },
+  { name: 'School of Open Learning (SOL)', url: 'https://sol.du.ac.in/', desc: 'Distance and open learning programmes', icon: 'BookOpen' },
+  { name: 'National Scholarship Portal', url: 'https://scholarships.gov.in/', desc: 'Central and state scholarship applications', icon: 'GraduationCap' },
+  { name: 'UGC Anti-Ragging Portal', url: 'https://antiragging.in/', desc: 'File anti-ragging complaints and affidavits', icon: 'ShieldAlert' },
+  { name: 'DigiLocker', url: 'https://www.digilocker.gov.in/', desc: 'Digital marksheets and certificates', icon: 'Folder' },
 ]
 
 export const MILESTONES = [
@@ -247,14 +247,14 @@ export const MILESTONES = [
 ]
 
 export const GALLERY_ITEMS = [
-  { caption: 'Freshers Orientation 2025', gradient: 'linear-gradient(135deg,#7c1d2e,#b0553f)', icon: '🎉' },
-  { caption: 'Blood Donation Camp', gradient: 'linear-gradient(135deg,#8f1f1f,#d9763a)', icon: '🩸' },
-  { caption: 'Inter-College Sports Meet', gradient: 'linear-gradient(135deg,#1d5c7c,#3aa8d9)', icon: '🏆' },
-  { caption: 'Tree Plantation Drive', gradient: 'linear-gradient(135deg,#1d7c40,#7cb95a)', icon: '🌱' },
-  { caption: 'Debate Championship Finals', gradient: 'linear-gradient(135deg,#5a1421,#9a3d63)', icon: '🎤' },
-  { caption: 'Winter Book Donation', gradient: 'linear-gradient(135deg,#7c5a1d,#d9a53a)', icon: '📚' },
-  { caption: 'Republic Day at North Campus', gradient: 'linear-gradient(135deg,#284b8f,#d97a3a)', icon: '🇮🇳' },
-  { caption: 'Cultural Fest Night', gradient: 'linear-gradient(135deg,#4b1d7c,#a53ad9)', icon: '🎭' },
+  { caption: 'Freshers Orientation 2025', gradient: 'linear-gradient(135deg,#7c1d2e,#b0553f)', icon: 'Star' },
+  { caption: 'Blood Donation Camp', gradient: 'linear-gradient(135deg,#8f1f1f,#d9763a)', icon: 'Droplet' },
+  { caption: 'Inter-College Sports Meet', gradient: 'linear-gradient(135deg,#1d5c7c,#3aa8d9)', icon: 'Trophy' },
+  { caption: 'Tree Plantation Drive', gradient: 'linear-gradient(135deg,#1d7c40,#7cb95a)', icon: 'Leaf' },
+  { caption: 'Debate Championship Finals', gradient: 'linear-gradient(135deg,#5a1421,#9a3d63)', icon: 'Mic' },
+  { caption: 'Winter Book Donation', gradient: 'linear-gradient(135deg,#7c5a1d,#d9a53a)', icon: 'BookOpen' },
+  { caption: 'Republic Day at North Campus', gradient: 'linear-gradient(135deg,#284b8f,#d97a3a)', icon: 'Flag' },
+  { caption: 'Cultural Fest Night', gradient: 'linear-gradient(135deg,#4b1d7c,#a53ad9)', icon: 'Theater' },
 ]
 
 export const QUERY_CATEGORIES = [

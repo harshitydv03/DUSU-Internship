@@ -1,3 +1,5 @@
+import Icon from '../Icon.jsx'
+
 const fmt = (iso) =>
   new Date(iso).toLocaleDateString('en-IN', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' })
 
@@ -17,12 +19,12 @@ export default function EventCalendarView({ events }) {
             {list.map((e) => (
               <article className="event-card" key={e.id} style={{ display: 'flex' }}>
                 <div className="event-banner" style={{ background: e.gradient, width: 96, height: 'auto', flexShrink: 0 }}>
-                  {e.icon}
+                  <Icon name={e.icon} size={28} />
                 </div>
                 <div className="event-body">
                   <span className="event-meta">{fmt(e.date)}</span>
                   <h3>{e.title}</h3>
-                  <p className="event-meta">📍 {e.venue}</p>
+                  <p className="event-meta"><Icon name="MapPin" size={12} /> {e.venue}</p>
                   <p className="event-meta" style={{ marginTop: 6 }}>{e.desc}</p>
                 </div>
               </article>
