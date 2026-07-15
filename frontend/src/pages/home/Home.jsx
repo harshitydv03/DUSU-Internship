@@ -66,7 +66,7 @@ export default function Home() {
           <div className="section-head">
             <span className="eyebrow">Campus life</span>
             <h2>Upcoming events</h2>
-            <div className="hand-drawn-divider w-48 mt-2"></div>
+            <div class="hand-drawn-divider w-48 mt-2"></div>
           </div>
           <div className="grid-4">
             {SAMPLE_EVENTS.map((e) => (
