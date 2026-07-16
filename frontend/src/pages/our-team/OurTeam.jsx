@@ -9,7 +9,7 @@ export default function OurTeam() {
       <PageHeader
         crumb="Our Team"
         title="Meet Your Union"
-        lede="The elected office bearers and college representatives working for you this session."
+        lede="The elected office bearers working for you this session."
       />
       <section className="section">
         <div className="container">
@@ -23,12 +23,9 @@ export default function OurTeam() {
               <TeamCard member={m} key={m.role} />
             ))}
           </div>
-          <div style={{ marginTop: 28, display: 'flex', gap: 14, flexWrap: 'wrap' }}>
+          <div style={{ marginTop: 28 }}>
             <Link to="/team/office-bearers" className="btn btn-primary">
               Office bearer profiles
-            </Link>
-            <Link to="/team/college-representatives" className="btn btn-outline">
-              College representatives
             </Link>
           </div>
         </div>

@@ -1,3 +1,8 @@
+import presidentImg from '../assets/president.jpeg'
+import vicepresidentImg from '../assets/vicepresident.jpeg'
+import secretaryImg from '../assets/secretary.jpeg'
+import jointsecImg from '../assets/jointsec.jpeg'
+
 // Central place for site-wide data. Replace the sample entries with real
 // content from the DUSU office / backend API as it becomes available.
 
@@ -59,7 +64,6 @@ export const NAV_MENU = [
     to: '/team/office-bearers',
     children: [
       { label: 'Office Bearers',            to: '/team/office-bearers' },
-      { label: 'College Representatives',   to: '/team/college-representatives' },
       { label: 'Staff Advisors',            to: '/team/staff-advisors' },
     ],
   },
@@ -162,10 +166,54 @@ export const SAMPLE_EVENTS = [
 ]
 
 export const OFFICE_BEARERS = [
-  { role: 'President', name: 'To be updated', college: 'University of Delhi', initials: 'P' },
-  { role: 'Vice President', name: 'To be updated', college: 'University of Delhi', initials: 'VP' },
-  { role: 'Secretary', name: 'To be updated', college: 'University of Delhi', initials: 'S' },
-  { role: 'Joint Secretary', name: 'To be updated', college: 'University of Delhi', initials: 'JS' },
+  {
+    role: 'President',
+    name: 'Aryan Maan',
+    college: 'University of Delhi',
+    initials: 'AM',
+    image: presidentImg,
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/aryanmaan' },
+      { platform: 'twitter', url: 'https://x.com/aryanmaan09' },
+      { platform: 'facebook', url: 'https://facebook.com/aryanmaan11' }
+    ]
+  },
+  {
+    role: 'Vice President',
+    name: 'Rahul Jhansla',
+    college: 'University of Delhi',
+    initials: 'RJ',
+    image: vicepresidentImg,
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/rahuljhansla.delhiuniversity' },
+      { platform: 'twitter', url: 'https://x.com/rahuljhanslaa' },
+      { platform: 'facebook', url: 'https://facebook.com/rahuljhanslaofficial' },
+      { platform: 'website', url: 'https://rahuljhansla.in' }
+    ]
+  },
+  {
+    role: 'Secretary',
+    name: 'Kunal Choudhary',
+    college: 'University of Delhi',
+    initials: 'KC',
+    image: secretaryImg,
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/kunalchoudhary05' },
+      { platform: 'twitter', url: 'https://x.com/kunalchoudhry05' },
+      { platform: 'facebook', url: 'https://facebook.com/kuunal.chaudhary.2025' }
+    ]
+  },
+  {
+    role: 'Joint Secretary',
+    name: 'Deepika Jha',
+    college: 'University of Delhi',
+    initials: 'DJ',
+    image: jointsecImg,
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/deepika.jhaa' },
+      { platform: 'threads', url: 'https://threads.net/@deepika.jhaa' }
+    ]
+  }
 ]
 
 export const FAQS = [

@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import { OPPORTUNITIES } from '../../utils/constants.js'
+import Icon from '../../components/Icon.jsx'
 
 export default function Opportunities() {
   return (
@@ -15,7 +16,9 @@ export default function Opportunities() {
           <div className="grid-2">
             {OPPORTUNITIES.map((o) => (
               <div className="card" key={o.title}>
-                <div className="card-icon">{o.icon}</div>
+                <div className="card-icon">
+                  <Icon name={o.icon} size={20} />
+                </div>
                 <span className="badge">{o.type}</span>
                 <h3>{o.title}</h3>
                 <p>{o.desc}</p>
