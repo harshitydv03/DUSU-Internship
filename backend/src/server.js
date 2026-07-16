@@ -1,3 +1,13 @@
+import { createRequire } from 'module'
+import { fileURLToPath } from 'url'
+import path from 'path'
+
+// Load .env.local from the monorepo root (two directories above src/)
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const _require = createRequire(import.meta.url)
+const { config } = _require('dotenv')
+config({ path: path.resolve(__dirname, '../..', '.env.local'), override: true })
+
 import express from 'express'
 import cors from 'cors'
 import { RESOURCES, connectDB } from './config/db.js'
