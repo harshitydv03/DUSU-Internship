@@ -2,6 +2,8 @@
 import { createRequire } from 'module'
 const _require = createRequire(import.meta.url)
 const COLLEGES = _require('../../../colleges.json')
+const HOSTELS = _require('../../../hostel.json')
+
 
 
 export const SEED = {
@@ -47,4 +49,5 @@ export const SEED = {
     { name: 'UGC Anti-Ragging Portal', url: 'https://antiragging.in/', desc: 'File anti-ragging complaints and affidavits' },
   ],
   colleges: COLLEGES,
+  hostels: HOSTELS,
 }

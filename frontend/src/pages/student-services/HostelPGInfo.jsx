@@ -1,6 +1,6 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import PageHeader from '../../components/common/PageHeader.jsx'
-import { HOSTELS } from '../../utils/hostels.js'
+import apiClient from '../../utils/apiClient.js'
 
 const CAMPUS_TABS = ['All', 'North', 'South', 'Off Campus']
 const TYPE_TABS = ['All', 'Boys', 'Girls']
@@ -124,31 +124,42 @@ function HostelDetail({ selected }) {
 }
 
 export default function HostelPGInfo() {
-  const [selected, setSelected] = useState(HOSTELS[0] || null)
+  const [hostels, setHostels] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
+  const [selected, setSelected] = useState(null)
   const [campusFilter, setCampusFilter] = useState('All')
   const [typeFilter, setTypeFilter] = useState('All')
 
-  // Normalise lists and map filters
-  const normalisedHostels = useMemo(() => {
-    return HOSTELS.map(h => ({
-      ...h,
-      campus: normaliseCampus(h.campus)
-    }))
+  useEffect(() => {
+    apiClient.get('/hostels')
+      .then((data) => {
+        // Normalise list on load
+        const normalised = data.map(h => ({
+          ...h,
+          campus: normaliseCampus(h.campus)
+        }))
+        setHostels(normalised)
+        if (normalised.length > 0) {
+          setSelected(normalised[0])
+        }
+      })
+      .catch((err) => setError(err.message))
+      .finally(() => setLoading(false))
   }, [])
 
   // Combined filtering
   const filtered = useMemo(() => {
-    return normalisedHostels.filter(h => {
+    return hostels.filter(h => {
       const matchCampus = campusFilter === 'All' || h.campus === campusFilter
       const matchType = typeFilter === 'All' || h.type === typeFilter
       return matchCampus && matchType
     })
-  }, [normalisedHostels, campusFilter, typeFilter])
+  }, [hostels, campusFilter, typeFilter])
 
   const handleCampusChange = (tab) => {
     setCampusFilter(tab)
-    // Deselect if not present in new list, pick first from new list as default
-    const nextList = normalisedHostels.filter(h => {
+    const nextList = hostels.filter(h => {
       const matchCampus = tab === 'All' || h.campus === tab
       const matchType = typeFilter === 'All' || h.type === typeFilter
       return matchCampus && matchType
@@ -158,7 +169,7 @@ export default function HostelPGInfo() {
 
   const handleTypeChange = (typeVal) => {
     setTypeFilter(typeVal)
-    const nextList = normalisedHostels.filter(h => {
+    const nextList = hostels.filter(h => {
       const matchCampus = campusFilter === 'All' || h.campus === campusFilter
       const matchType = typeVal === 'All' || h.type === typeVal
       return matchCampus && matchType
@@ -176,78 +187,85 @@ export default function HostelPGInfo() {
       <section className="section">
         <div className="container">
 
-          {/* ── Filters row ── */}
-          <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 28, alignItems: 'center' }}>
-            {/* Campus Tabs */}
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
-              {CAMPUS_TABS.map((tab) => {
-                const isActive = campusFilter === tab
-                return (
-                  <button
-                    key={tab}
-                    onClick={() => handleCampusChange(tab)}
-                    style={{
-                      padding: '6px 16px',
-                      borderRadius: 20,
-                      border: '1.5px solid var(--border)',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                      fontSize: '0.82rem',
-                      background: isActive ? 'var(--accent)' : 'var(--surface)',
-                      color: isActive ? '#fff' : 'var(--text)',
-                      transition: 'background 0.15s, color 0.15s',
-                    }}
-                  >
-                    {tab === 'All' ? 'All Campuses' : tab}
-                  </button>
-                )
-              })}
-            </div>
+          {loading && <p style={{ color: 'var(--muted)' }}>Loading hostels…</p>}
+          {error && <p style={{ color: '#c0392b' }}>Error: {error}</p>}
 
-            {/* Gender Filters */}
-            <div style={{ display: 'flex', gap: 8, borderLeft: '1px solid var(--border)', paddingLeft: 24 }}>
-              {TYPE_TABS.map((t) => {
-                const isActive = typeFilter === t
-                return (
-                  <button
-                    key={t}
-                    onClick={() => handleTypeChange(t)}
-                    style={{
-                      padding: '6px 16px',
-                      borderRadius: 8,
-                      border: isActive ? '1.5px solid var(--accent)' : '1.5px solid var(--border)',
-                      cursor: 'pointer',
-                      fontWeight: 600,
-                      fontSize: '0.82rem',
-                      background: isActive ? 'var(--accent-faint, rgba(124,29,46,0.08))' : 'var(--surface)',
-                      color: isActive ? 'var(--accent)' : 'var(--text)',
-                      transition: 'border 0.15s, color 0.15s',
-                    }}
-                  >
-                    {t === 'All' ? 'All Genders' : t}
-                  </button>
-                )
-              })}
-            </div>
-          </div>
+          {!loading && !error && (
+            <>
+              {/* ── Filters row ── */}
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 28, alignItems: 'center' }}>
+                {/* Campus Tabs */}
+                <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+                  {CAMPUS_TABS.map((tab) => {
+                    const isActive = campusFilter === tab
+                    return (
+                      <button
+                        key={tab}
+                        onClick={() => handleCampusChange(tab)}
+                        style={{
+                          padding: '6px 16px',
+                          borderRadius: 20,
+                          border: '1.5px solid var(--border)',
+                          cursor: 'pointer',
+                          fontWeight: 600,
+                          fontSize: '0.82rem',
+                          background: isActive ? 'var(--accent)' : 'var(--surface)',
+                          color: isActive ? '#fff' : 'var(--text)',
+                          transition: 'background 0.15s, color 0.15s',
+                        }}
+                      >
+                        {tab === 'All' ? 'All Campuses' : tab}
+                      </button>
+                    )
+                  })}
+                </div>
 
-          {/* ── Split Panel Layout ── */}
-          <div style={{ display: 'flex', gap: 0, alignItems: 'stretch', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', minHeight: 520, background: 'var(--surface)', boxShadow: '0 2px 16px rgba(0,0,0,0.07)' }}>
-            
-            {/* List Sidebar */}
-            <div style={{ width: 310, flexShrink: 0, borderRight: '1px solid var(--border)', overflowY: 'auto', maxHeight: 620 }}>
-              <AlphaList
-                items={filtered}
-                selectedId={selected?.slug}
-                onSelect={setSelected}
-              />
-            </div>
+                {/* Gender Filters */}
+                <div style={{ display: 'flex', gap: 8, borderLeft: '1px solid var(--border)', paddingLeft: 24 }}>
+                  {TYPE_TABS.map((t) => {
+                    const isActive = typeFilter === t
+                    return (
+                      <button
+                        key={t}
+                        onClick={() => handleTypeChange(t)}
+                        style={{
+                          padding: '6px 16px',
+                          borderRadius: 8,
+                          border: isActive ? '1.5px solid var(--accent)' : '1.5px solid var(--border)',
+                          cursor: 'pointer',
+                          fontWeight: 600,
+                          fontSize: '0.82rem',
+                          background: isActive ? 'var(--accent-faint, rgba(124,29,46,0.08))' : 'var(--surface)',
+                          color: isActive ? 'var(--accent)' : 'var(--text)',
+                          transition: 'border 0.15s, color 0.15s',
+                        }}
+                      >
+                        {t === 'All' ? 'All Genders' : t}
+                      </button>
+                    )
+                  })}
+                </div>
+              </div>
 
-            {/* Right details context */}
-            <div style={{ flex: 1, padding: '2rem 2.2rem', overflowY: 'auto', maxHeight: 620 }}>
-              <HostelDetail selected={selected} />
-            </div>
-          </div>
+              {/* ── Split Panel Layout ── */}
+              <div style={{ display: 'flex', gap: 0, alignItems: 'stretch', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', minHeight: 520, background: 'var(--surface)', boxShadow: '0 2px 16px rgba(0,0,0,0.07)' }}>
+                
+                {/* List Sidebar */}
+                <div style={{ width: 310, flexShrink: 0, borderRight: '1px solid var(--border)', overflowY: 'auto', maxHeight: 620 }}>
+                  <AlphaList
+                    items={filtered}
+                    selectedId={selected?.slug}
+                    onSelect={setSelected}
+                  />
+                </div>
+
+                {/* Right details context */}
+                <div style={{ flex: 1, padding: '2rem 2.2rem', overflowY: 'auto', maxHeight: 620 }}>
+                  <HostelDetail selected={selected} />
+                </div>
+              </div>
+            </>
+          )}
 
           {/* PG disclaimer footer banner */}
           <div style={{ marginTop: '2.5rem', padding: '1.4rem', border: '1px solid var(--border)', borderRadius: 12, background: 'var(--bg, #fbfbfd)' }}>
