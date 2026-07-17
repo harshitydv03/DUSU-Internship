@@ -22,6 +22,7 @@ export const NAV_MENU = [
     to: '/about',
     children: [
       { label: 'Mission & Vision', to: '/about/mission' },
+      { label: 'History & Initiatives', to: '/about/history' },
       { label: 'Mandate / Constitution', to: '/about/structure' },
       { label: "President's Message", to: '/about/presidents-message' },
       { label: 'Handbook', to: '/about/handbook' },
