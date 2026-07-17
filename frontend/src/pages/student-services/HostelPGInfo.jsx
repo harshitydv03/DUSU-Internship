@@ -72,16 +72,13 @@ function HostelDetail({ selected }) {
 
   return (
     <>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
-        <span style={{ fontSize: '2.2rem' }}>{selected.icon || '🏠'}</span>
-        <div>
-          <span style={{ display: 'inline-block', padding: '2px 8px', borderRadius: 4, background: selected.type === 'Girls' ? '#fde2e4' : '#e2effd', color: selected.type === 'Girls' ? '#c9184a' : '#005f73', fontWeight: 700, fontSize: '0.72rem', textTransform: 'uppercase', marginBottom: 4 }}>
-            {selected.type}
-          </span>
-          <h2 style={{ margin: 0, fontSize: '1.45rem', fontWeight: 800, color: 'var(--heading)', lineHeight: 1.2 }}>
-            {selected.name}
-          </h2>
-        </div>
+      <div style={{ marginBottom: 16 }}>
+        <span style={{ display: 'inline-block', padding: '2px 8px', borderRadius: 4, background: selected.type === 'Girls' ? '#fde2e4' : '#e2effd', color: selected.type === 'Girls' ? '#c9184a' : '#005f73', fontWeight: 700, fontSize: '0.72rem', textTransform: 'uppercase', marginBottom: 4 }}>
+          {selected.type}
+        </span>
+        <h2 style={{ margin: 0, fontSize: '1.45rem', fontWeight: 800, color: 'var(--heading)', lineHeight: 1.2 }}>
+          {selected.name}
+        </h2>
       </div>
 
       <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: 20 }}>
