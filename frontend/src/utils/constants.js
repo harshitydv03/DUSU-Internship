@@ -39,7 +39,7 @@ export const NAV_MENU = [
       { label: 'Downloads & Forms', to: '/services/downloads' },
       { label: 'Hostel / PG Information', to: '/services/hostel-pg' },
       { label: 'Health Services (WUS)', to: '/services/health' },
-      { label: 'Samarth DU Portal', to: 'https://samarth.uod.ac.in/', external: true },
+      { label: 'Samarth DU Portal', to: 'https://slc.uod.ac.in/', external: true },
       { label: 'Sports Complex', to: '/services/facilities/sports-complex' },
       { label: 'WUS Health Centre', to: '/services/facilities/wus' },
       { label: 'Polo Ground', to: '/services/facilities/polo-ground' },
