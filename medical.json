@@ -1,0 +1,69 @@
+{
+  "about": "The World University Service (W.U.S.) Health Centre is a premier health scheme pioneered at the University of Delhi in 1955. Over nearly seven decades, the network has grown to include four key medical units distributed strategically across Delhi to ensure swift medical accessibility. The nodal facility operates from the North Campus, while specialized auxiliary units are functional in the South Campus, East Delhi, and West Delhi regions.",
+  "nodalOperations": "The North Campus Nodal Centre provides primary healthcare services 24 hours a day, 7 days a week (excluding public holidays and Sundays, when standard OPD operations are suspended but emergency support remains accessible).",
+  "locations": [
+    {
+      "name": "North Campus (Nodal Centre)",
+      "address": "Chhatra Marg, University of Delhi, Delhi - 110007",
+      "hours": "24 hours a day, 7 days a week (Emergency care)",
+      "contact": "+91-11-2766-7011"
+    },
+    {
+      "name": "South Campus Unit",
+      "address": "Benito Juarez Road, South Campus, New Delhi - 110021",
+      "hours": "Mon – Sat: 8:00 AM – 8:00 PM",
+      "contact": "+91-11-2755-XXXX"
+    },
+    {
+      "name": "East Delhi Unit",
+      "address": "DU East Campus Area, Delhi",
+      "hours": "Standard OPD timings apply",
+      "contact": "+91-11-2755-XXXX"
+    },
+    {
+      "name": "West Delhi Unit",
+      "address": "DU West Campus Area, Delhi",
+      "hours": "Standard OPD timings apply",
+      "contact": "+91-11-2755-XXXX"
+    }
+  ],
+  "staffEligibility": "Enrollment is mandatory for all permanent University employees residing within an 8 kilometer radius of the North or South Campus Health Centres. Wholly dependent parents, unmarried sisters, minor brothers, widowed daughters, unemployed daughters/sons (under conditions) are covered.",
+  "staffSlabs": [
+    { "level": "Level 1 to 5", "monthly": "250 Rupees", "life": "30,000 Rupees" },
+    { "level": "Level 6", "monthly": "450 Rupees", "life": "54,000 Rupees" },
+    { "level": "Level 7 to 11", "monthly": "650 Rupees", "life": "78,000 Rupees" },
+    { "level": "Level 12 and above", "monthly": "1,000 Rupees", "life": "1,20,000 Rupees" }
+  ],
+  "studentEnrollment": {
+    "ugPgContribution": "120 Rupees per academic session",
+    "researchContribution": "240 Rupees per academic session",
+    "benefits": [
+      "Outpatient Department (OPD) Consultations: Daily OPD access with general duty medical officers across all units.",
+      "Specialist Referral and Care: Access to visiting specialists including dentists, dermatologists, psychiatrists, eye specialists, and sports physiotherapists.",
+      "Free Basic Medicines: Supply of essential acute drugs (3-5 days) and chronic medications (up to 30 days) under medical supervision.",
+      "Diagnostic Support: Subsidized or nil rates for basic blood, urine, and stool testing at campus labs.",
+      "Mental Health Support: Face-to-face appointments and hotlines with licensed counselors and psychologists."
+    ]
+  },
+  "specialties": [
+    { "name": "Ophthalmology and ENT", "domain": "Eye care diagnostics and ear, nose, and throat treatment" },
+    { "name": "Pediatrics", "domain": "Comprehensive child healthcare services and early intervention" },
+    { "name": "Gynecology and Pulmonology", "domain": "Maternal-child health and respiratory wellness" },
+    { "name": "Comprehensive Dental Care", "domain": "Routine cleanings, extractions, and minor dental procedures" },
+    { "name": "Alternative Medicine", "domain": "Professional consultations with Ayurvedic physicians at North Campus" }
+  ],
+  "diagnostics": [
+    { "name": "Pathology Lab", "desc": "Capable of performing CBC, LFT, KFT, blood sugar profiling, thyroid, Dengue NS1, and Widal assays" },
+    { "name": "X-Ray Facilities", "desc": "Full-scale functioning X-ray infrastructure at the North Campus centre" },
+    { "name": "Physiotherapy", "desc": "Managed by qualified physiotherapists for rehab, joint health, and post-op care" }
+  ],
+  "whatToExpect": [
+    { "title": "Simple, Automatic Enrollment", "desc": "Health contribution of 120 Rs is integrated right into your admission fee; no extra paperwork is required." },
+    { "title": "Getting Your Health Booklet", "desc": "Present fee receipts and college ID at W.U.S. Health Centre or admin office to get your booklet." },
+    { "title": "Immediate Access to 24/7 Nodal Care", "desc": "Primary/emergency care at Chhatra Marg clinic 24 hours a day, 7 days a week." },
+    { "title": "Zero-Cost Consultations and Medicines", "desc": "Free generic medicine pharmacy dispensary on campus as prescribed by campus doctors." },
+    { "title": "Visiting Specialists", "desc": "Dentists, dermatologists, ophthalmologists, and sports physiotherapists scheduled throughout the week." },
+    { "title": "Subsidized Lab Diagnostics", "desc": "Pathology profiling and assays executed at near-zero or heavily subsidized student rates." },
+    { "title": "Mind and Wellness Support", "desc": "Confidential mental health guidance, licensed counseling, and telecounseling hotlines." }
+  ]
+}
