@@ -189,6 +189,60 @@ export default function HostelPGInfo() {
 
           {!loading && !error && (
             <>
+              {/* ── PG Accommodation Quick Link Card ── */}
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '16px 24px',
+                background: 'linear-gradient(135deg, rgba(230,175,46,0.08) 0%, rgba(124,29,46,0.04) 100%)',
+                borderLeft: '4px solid var(--accent, #7c1d2e)',
+                borderRadius: '8px',
+                marginBottom: '28px',
+                gap: '20px',
+                flexWrap: 'wrap',
+                boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+              }}>
+                <div style={{ flex: '1', minWidth: '280px' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', fontWeight: 800, color: 'var(--accent, #7c1d2e)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
+                    💡 Private PG & Off-Campus Accommodation
+                  </span>
+                  <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 750, color: 'var(--heading)', marginBottom: '4px' }}>
+                    Looking for a Paying Guest (PG) near Campus?
+                  </h3>
+                  <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text)', lineHeight: '1.45' }}>
+                    Didn't receive a university hostel allotment? Check out verified PG resources and register on the official Delhi University Student Union PG Accommodation Portal.
+                  </p>
+                </div>
+                <a
+                  href=""
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: '6px',
+                    padding: '9px 18px',
+                    background: 'var(--accent, #7c1d2e)',
+                    color: '#fff',
+                    borderRadius: '30px',
+                    fontWeight: 600,
+                    fontSize: '0.85rem',
+                    textDecoration: 'none',
+                    transition: 'all 0.15s',
+                    boxShadow: '0 2px 8px rgba(124,29,46,0.2)'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.opacity = '0.9';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.opacity = '1';
+                  }}
+                >
+                  🔗 Visit DU PG Portal
+                </a>
+              </div>
+
               {/* ── Filters row ── */}
               <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', marginBottom: 28, alignItems: 'center' }}>
                 {/* Campus Tabs */}
@@ -246,7 +300,7 @@ export default function HostelPGInfo() {
 
               {/* ── Split Panel Layout ── */}
               <div style={{ display: 'flex', gap: 0, alignItems: 'stretch', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', minHeight: 520, background: 'var(--surface)', boxShadow: '0 2px 16px rgba(0,0,0,0.07)' }}>
-                
+
                 {/* List Sidebar */}
                 <div style={{ width: 310, flexShrink: 0, borderRight: '1px solid var(--border)', overflowY: 'auto', maxHeight: 620 }}>
                   <AlphaList
@@ -264,21 +318,69 @@ export default function HostelPGInfo() {
             </>
           )}
 
-          {/* PG disclaimer footer banner */}
-          <div style={{ marginTop: '2.5rem', padding: '1.4rem', border: '1px solid var(--border)', borderRadius: 12, background: 'var(--bg, #fbfbfd)' }}>
-            <h2 style={{ fontSize: '1.1rem', margin: '0 0 6px', color: 'var(--heading)' }}>PG / Off-Campus Accommodation</h2>
-            <p style={{ margin: '0 0 16px', fontSize: '0.88rem', color: 'var(--text)', lineHeight: 1.6 }}>
-              Students who do not get hostel allotment often seek Paying Guest (PG) accommodation in areas such as Kamla Nagar, Hudson Lane, GTB Nagar, and Hauz Khas. DUSU recommends verifying safety, rent agreements, and landlord credentials before signing up.
-            </p>
-            <a
-              href="https://accommodation.uod.ac.in"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn btn-gold"
-              style={{ display: 'inline-flex', padding: '8px 18px', fontSize: '0.85rem' }}
-            >
-              🔗 DU Accommodation Portal
-            </a>
+          {/* PG Safety Verification Guide */}
+          <div style={{ marginTop: '3rem', padding: '2rem', border: '1px solid var(--border)', borderRadius: 12, background: 'var(--surface)', boxShadow: '0 4px 18px rgba(0,0,0,0.03)' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
+              <span style={{ fontSize: '1.6rem' }}>🛡️</span>
+              <div>
+                <h3 style={{ fontSize: '1.15rem', margin: 0, fontWeight: 800, color: 'var(--heading)' }}>PG & Off-Campus Accommodation Checklist</h3>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--muted)' }}>Essential tips and safety guidelines recommended by DUSU for private rentals</p>
+              </div>
+            </div>
+
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', marginBottom: '20px' }}>
+              <div style={{ padding: '14px', borderRadius: '8px', background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border)' }}>
+                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>🔒</span> Security Checks
+                </h4>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text)', lineHeight: '1.45' }}>
+                  Verify safety locks, CCTV cameras, active security guards, and neighborhood lighting.
+                </p>
+              </div>
+
+              <div style={{ padding: '14px', borderRadius: '8px', background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border)' }}>
+                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>📝</span> Agreement Checks
+                </h4>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text)', lineHeight: '1.45' }}>
+                  Read terms on tenancy duration, refund policy of deposits, and payment details carefully.
+                </p>
+              </div>
+
+              <div style={{ padding: '14px', borderRadius: '8px', background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border)' }}>
+                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span>👤</span> Landlord Verification
+                </h4>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text)', lineHeight: '1.45' }}>
+                  Choose properties recommended by DUSU cells or listed officially by the university.
+                </p>
+              </div>
+            </div>
+
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border)' }}>
+              <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text)' }}>
+                For queries or assistance regarding campus-area rentals, contact the DUSU Student Helpdesk.
+              </p>
+              <a
+                href="https://accommodation.uod.ac.in"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  padding: '7px 15px',
+                  background: 'var(--accent)',
+                  color: '#fff',
+                  borderRadius: '30px',
+                  fontWeight: 600,
+                  fontSize: '0.78rem',
+                  textDecoration: 'none',
+                }}
+              >
+                🔗 Visit DU PG Portal
+              </a>
+            </div>
           </div>
 
         </div>

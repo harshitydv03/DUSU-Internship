@@ -3,6 +3,8 @@ import { createRequire } from 'module'
 const _require = createRequire(import.meta.url)
 const COLLEGES = _require('../../../colleges.json')
 const HOSTELS = _require('../../../hostel.json')
+const DEPARTMENTS = _require('../../../departments.json')
+
 
 
 
@@ -50,4 +52,5 @@ export const SEED = {
   ],
   colleges: COLLEGES,
   hostels: HOSTELS,
+  departments: DEPARTMENTS,
 }

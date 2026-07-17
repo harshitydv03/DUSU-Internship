@@ -1,7 +1,6 @@
 import { useState, useEffect, useMemo } from 'react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import apiClient from '../../utils/apiClient.js'
-import { DEPARTMENTS } from '../../utils/departments.js'
 
 // Tabs for colleges: North / South / Off Campus (East+West+Central merged)
 // Plus a separate Departments tab
@@ -178,6 +177,7 @@ function AlphaList({ items, selectedId, onSelect }) {
 /* ── Main page ────────────────────────────────────────────────── */
 export default function CollegesDepartments() {
   const [colleges, setColleges]         = useState([])
+  const [departments, setDepartments]   = useState([])
   const [loading, setLoading]           = useState(true)
   const [error, setError]               = useState(null)
   const [activeTab, setActiveTab]       = useState('All')         // college campus tab or 'Departments'
@@ -185,12 +185,18 @@ export default function CollegesDepartments() {
   const [selectedDept, setSelectedDept]       = useState(null)
 
   useEffect(() => {
-    apiClient.get('/colleges')
-      .then((data) => {
+    Promise.all([
+      apiClient.get('/colleges'),
+      apiClient.get('/departments')
+    ])
+      .then(([collegesData, deptsData]) => {
         // Normalise East/West → Off Campus on load
-        const normalised = data.map((c) => ({ ...c, campus: normaliseCampus(c.campus) }))
+        const normalised = collegesData.map((c) => ({ ...c, campus: normaliseCampus(c.campus) }))
         setColleges(normalised)
         if (normalised.length > 0) setSelectedCollege(normalised[0])
+
+        setDepartments(deptsData)
+        if (deptsData.length > 0) setSelectedDept(deptsData[0])
       })
       .catch((err) => setError(err.message))
       .finally(() => setLoading(false))
@@ -205,7 +211,7 @@ export default function CollegesDepartments() {
   )
 
   // Dept sub-filter mirrors college campus names
-  const filteredDepts = DEPARTMENTS   // all shown under Departments tab (already filtered by campus in list if needed)
+  const filteredDepts = departments   // all shown under Departments tab (already filtered by campus in list if needed)
 
   const collegeCounts = useMemo(() =>
     COLLEGE_TABS.reduce((acc, tab) => {
@@ -243,7 +249,7 @@ export default function CollegesDepartments() {
             {ALL_TABS.map((tab) => {
               const isActive = activeTab === tab
               const isDeptTab = tab === 'Departments'
-              const count = isDeptTab ? DEPARTMENTS.length : (collegeCounts[tab] ?? 0)
+              const count = isDeptTab ? departments.length : (collegeCounts[tab] ?? 0)
               return (
                 <button
                   key={tab}
@@ -308,7 +314,7 @@ export default function CollegesDepartments() {
           )}
           {isDepts && (
             <p style={{ marginTop: 14, fontSize: '0.82rem', color: 'var(--muted)', textAlign: 'right' }}>
-              {DEPARTMENTS.length} departments
+              {departments.length} departments
             </p>
           )}
 
