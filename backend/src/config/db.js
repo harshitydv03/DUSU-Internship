@@ -10,7 +10,8 @@ import { seedAdmin } from '../lib/auth.js'
 export const RESOURCES = [
   'notices', 'events', 'queries', 'team', 'scholarships', 'opportunities',
   'downloads', 'resources', 'milestones', 'faqs', 'gallery', 'contact',
-  'colleges', 'hostels', 'departments', 'medical',
+  'colleges', 'hostels', 'departments', 'medical', 'dusucells', 'officebearers',
+  'dusuconstitution',
 ]
 
 // Generic schema: stores any JSON document. No per-resource schema needed —

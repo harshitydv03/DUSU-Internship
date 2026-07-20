@@ -5,6 +5,9 @@ const COLLEGES = _require('../../../colleges.json')
 const HOSTELS = _require('../../../hostel.json')
 const DEPARTMENTS = _require('../../../departments.json')
 const MEDICAL = _require('../../../medical.json')
+const DUSUCELLS = _require('../../../dusucells.json')
+const OFFICEBEARERS = _require('../../../officebearers.json')
+const DUSUCONSTITUTION = _require('../../../frontend/dusuconstitution.json')
 
 
 
@@ -55,4 +58,7 @@ export const SEED = {
   hostels: HOSTELS,
   departments: DEPARTMENTS,
   medical: [MEDICAL],
+  dusucells: DUSUCELLS,
+  officebearers: [OFFICEBEARERS],
+  dusuconstitution: DUSUCONSTITUTION,
 }

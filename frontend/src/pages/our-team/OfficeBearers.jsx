@@ -3,6 +3,7 @@ import PageHeader from '../../components/common/PageHeader.jsx'
 import TeamCard from '../../components/our-team/TeamCard.jsx'
 import { OFFICE_BEARERS } from '../../utils/constants.js'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
+import apiClient from '../../utils/apiClient.js'
 
 const RESPONSIBILITIES = [
   { role: 'President', duties: 'Leads the union, chief spokesperson before the University and public authorities.' },
@@ -12,6 +13,8 @@ const RESPONSIBILITIES = [
 ]
 
 export default function OfficeBearers() {
+  const [officeBearers, setOfficeBearers] = useState(OFFICE_BEARERS)
+  const [selectedMember, setSelectedMember] = useState(null)
   const [slideIndex, setSlideIndex] = useState(2)
   const [isTransitioning, setIsTransitioning] = useState(true)
   const [isMobile, setIsMobile] = useState(false)
@@ -26,15 +29,31 @@ export default function OfficeBearers() {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  const slides = [
-    OFFICE_BEARERS[OFFICE_BEARERS.length - 2], // Clone of second to last slide (C)
-    OFFICE_BEARERS[OFFICE_BEARERS.length - 1], // Clone of last slide (D)
-    ...OFFICE_BEARERS,
-    OFFICE_BEARERS[0], // Clone of first slide (A)
-    OFFICE_BEARERS[1], // Clone of second slide (B)
-  ]
+  useEffect(() => {
+    apiClient.get('/officebearers')
+      .then((data) => {
+        if (data && data[0] && data[0].officeBearers) {
+          const formatted = data[0].officeBearers.map((ob) => ({
+            ...ob,
+            initials: ob.name.split(' ').map((n) => n[0]).join('').substring(0, 2).toUpperCase(),
+          }))
+          setOfficeBearers(formatted)
+        }
+      })
+      .catch((err) => {
+        console.error('Failed to fetch office bearers:', err)
+      })
+  }, [])
 
-  const totalRealSlides = OFFICE_BEARERS.length
+  const slides = officeBearers.length >= 2 ? [
+    officeBearers[officeBearers.length - 2], // Clone of second to last slide (C)
+    officeBearers[officeBearers.length - 1], // Clone of last slide (D)
+    ...officeBearers,
+    officeBearers[0], // Clone of first slide (A)
+    officeBearers[1], // Clone of second slide (B)
+  ] : []
+
+  const totalRealSlides = officeBearers.length
 
   const resetAutoplay = () => {
     if (autoplayRef.current) {
@@ -42,7 +61,7 @@ export default function OfficeBearers() {
     }
     autoplayRef.current = setInterval(() => {
       handleNext()
-    }, 7000) // Autoplay every 10 seconds
+    }, 3500) // Autoplay every 10 seconds
   }
 
   // Initial and reset autoplay trigger
@@ -149,8 +168,10 @@ export default function OfficeBearers() {
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
-                        transition: 'all 0.5s ease'
+                        transition: 'all 0.5s ease',
+                        cursor: 'pointer'
                       }}
+                      onClick={() => setSelectedMember(m)}
                     >
                       <div style={{
                         width: '100%',
@@ -286,6 +307,177 @@ export default function OfficeBearers() {
           </div>
         </div>
       </section>
+
+      {/* Member Details Modal */}
+      {selectedMember && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          background: 'rgba(15, 23, 42, 0.65)',
+          backdropFilter: 'blur(8px)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          zIndex: 10000,
+          padding: '16px'
+        }} onClick={() => setSelectedMember(null)}>
+          <div style={{
+            background: 'var(--surface)',
+            border: '1px solid var(--border)',
+            borderRadius: '24px',
+            maxWidth: '640px',
+            width: '100%',
+            maxHeight: '85vh',
+            overflowY: 'auto',
+            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)',
+            padding: '32px',
+            position: 'relative'
+          }} onClick={(e) => e.stopPropagation()}>
+            
+            {/* Close Button */}
+            <button 
+              onClick={() => setSelectedMember(null)}
+              style={{
+                position: 'absolute',
+                top: '20px',
+                right: '25px',
+                background: 'var(--primary-soft)',
+                border: 'none',
+                width: '36px',
+                height: '36px',
+                borderRadius: '50%',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontSize: '1.25rem',
+                cursor: 'pointer',
+                color: 'var(--primary)',
+                transition: 'all 0.2s ease'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.transform = 'rotate(90deg)';
+                e.currentTarget.style.background = 'var(--primary)';
+                e.currentTarget.style.color = '#fff';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.transform = 'none';
+                e.currentTarget.style.background = 'var(--primary-soft)';
+                e.currentTarget.style.color = 'var(--primary)';
+              }}
+            >
+              ×
+            </button>
+            
+            {/* Header info */}
+            <div style={{ display: 'flex', gap: '24px', alignItems: 'center', marginBottom: '24px', flexWrap: 'wrap' }}>
+              <div style={{
+                width: '120px',
+                height: '120px',
+                borderRadius: '24px',
+                overflow: 'hidden',
+                background: 'linear-gradient(135deg, var(--primary-soft), var(--border))',
+                border: '3px solid var(--primary)',
+                boxShadow: '0 8px 16px rgba(0,0,0,0.08)'
+              }}>
+                {selectedMember.image ? (
+                  <img src={selectedMember.image} alt={selectedMember.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                ) : (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', fontSize: '2.5rem', fontWeight: 800, color: 'var(--primary)' }}>
+                    {selectedMember.initials || 'OB'}
+                  </div>
+                )}
+              </div>
+              <div style={{ flex: '1', minWidth: '220px' }}>
+                <span style={{ 
+                  fontSize: '0.75rem', 
+                  textTransform: 'uppercase', 
+                  color: 'var(--primary)', 
+                  fontWeight: 800, 
+                  letterSpacing: '0.1em',
+                  background: 'var(--primary-soft)',
+                  padding: '4px 10px',
+                  borderRadius: '12px'
+                }}>
+                  {selectedMember.role}
+                </span>
+                <h2 style={{ margin: '8px 0 4px', fontSize: '1.75rem', fontWeight: 800, color: 'var(--heading)' }}>
+                  {selectedMember.name}
+                </h2>
+                <p style={{ margin: 0, color: 'var(--muted)', fontSize: '0.9rem', fontWeight: 500 }}>
+                  {selectedMember.college}
+                </p>
+              </div>
+            </div>
+            
+            {/* Biography */}
+            <div style={{ marginBottom: '28px' }}>
+              <h3 style={{ fontSize: '1.05rem', fontWeight: 700, margin: '0 0 10px', color: 'var(--heading)' }}>About & Leadership</h3>
+              <p style={{ 
+                margin: 0, 
+                lineHeight: 1.7, 
+                fontSize: '0.95rem', 
+                color: 'var(--text)', 
+                whiteSpace: 'pre-line',
+                background: 'var(--surface-soft, rgba(0,0,0,0.02))',
+                padding: '16px',
+                borderRadius: '16px',
+                border: '1.5px dashed var(--border)'
+              }}>
+                {selectedMember.bio || "No biography provided yet."}
+              </p>
+            </div>
+            
+            {/* Social Connect links */}
+            {selectedMember.socials && selectedMember.socials.length > 0 && (
+              <div style={{ borderTop: '1px solid var(--border)', paddingTop: '20px' }}>
+                <h4 style={{ fontSize: '0.85rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 700, letterSpacing: '0.05em', margin: '0 0 12px' }}>
+                  Connect with {selectedMember.name.split(' ')[0]}
+                </h4>
+                <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
+                  {selectedMember.socials.map((s) => (
+                    <a
+                      key={s.url}
+                      href={s.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{
+                        color: 'var(--text)',
+                        background: 'var(--surface)',
+                        border: '1px solid var(--border)',
+                        padding: '6px 14px',
+                        borderRadius: '20px',
+                        fontWeight: 600,
+                        fontSize: '0.85rem',
+                        textDecoration: 'none',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '6px',
+                        boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
+                        transition: 'all 0.2s ease'
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--primary)';
+                        e.currentTarget.style.color = 'var(--primary)';
+                        e.currentTarget.style.transform = 'translateY(-2px)';
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = 'var(--border)';
+                        e.currentTarget.style.color = 'var(--text)';
+                        e.currentTarget.style.transform = 'none';
+                      }}
+                    >
+                      {s.platform.charAt(0).toUpperCase() + s.platform.slice(1)}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
     </>
   )
 }
