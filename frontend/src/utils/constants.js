@@ -1,8 +1,3 @@
-import presidentImg from '../assets/president.jpeg'
-import vicepresidentImg from '../assets/vicepresident.jpeg'
-import secretaryImg from '../assets/secretary.jpeg'
-import jointsecImg from '../assets/jointsec.jpeg'
-
 // Central place for site-wide data. Replace the sample entries with real
 // content from the DUSU office / backend API as it becomes available.
 
@@ -171,7 +166,7 @@ export const OFFICE_BEARERS = [
     name: 'Aryan Maan',
     college: 'University of Delhi',
     initials: 'AM',
-    image: presidentImg,
+    image: '/images/president.jpeg',
     socials: [
       { platform: 'instagram', url: 'https://instagram.com/aryanmaan' },
       { platform: 'twitter', url: 'https://x.com/aryanmaan09' },
@@ -183,7 +178,7 @@ export const OFFICE_BEARERS = [
     name: 'Rahul Jhansla',
     college: 'University of Delhi',
     initials: 'RJ',
-    image: vicepresidentImg,
+    image: '/images/vicepresident.jpeg',
     socials: [
       { platform: 'instagram', url: 'https://instagram.com/rahuljhansla.delhiuniversity' },
       { platform: 'twitter', url: 'https://x.com/rahuljhanslaa' },
@@ -196,7 +191,7 @@ export const OFFICE_BEARERS = [
     name: 'Kunal Choudhary',
     college: 'University of Delhi',
     initials: 'KC',
-    image: secretaryImg,
+    image: '/images/secretary.jpeg',
     socials: [
       { platform: 'instagram', url: 'https://instagram.com/kunalchoudhary05' },
       { platform: 'twitter', url: 'https://x.com/kunalchoudhry05' },
@@ -208,7 +203,7 @@ export const OFFICE_BEARERS = [
     name: 'Deepika Jha',
     college: 'University of Delhi',
     initials: 'DJ',
-    image: jointsecImg,
+    image: '/images/jointsec.jpeg',
     socials: [
       { platform: 'instagram', url: 'https://instagram.com/deepika.jhaa' },
       { platform: 'threads', url: 'https://threads.net/@deepika.jhaa' }
