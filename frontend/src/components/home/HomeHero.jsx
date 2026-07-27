@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 export default function HomeHero() {
   return (
     <section className="hero">
-      <div className="container">
+      <div className="container" style={{ position: 'relative' }}>
         <span className="hero-badge">Est. 1949 · University of Delhi</span>
         <h1>
           The voice of every <em>Delhi University</em> student
@@ -30,9 +30,10 @@ export default function HomeHero() {
           <strong>5 lakh+</strong>
           <span>Students Represented</span>
         </div>
-        <div className="hero-stat">
+        <div className="hero-stat stat-with-img">
           <strong>75+</strong>
           <span>Years of Student Advocacy</span>
+          <img src="/images/aryaan-speaker.png" alt="DUSU Speaker" className="hero-speaker" />
         </div>
       </div>
     </section>

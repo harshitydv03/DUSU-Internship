@@ -418,6 +418,58 @@ img {
   z-index: 1;
 }
 
+.hero-speaker {
+  position: absolute;
+  right: -58%;
+  bottom: 0;
+  max-width: 500px;
+  height: auto;
+  max-height: 650px;
+  /* Let the speaker image be tall enough */
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stat-with-img {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .hero-stat {
+    text-align: left;
+    border-left: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    width: 50%;
+    padding: 16px 0px;
+    /* adjusted padding for mobile left align */
+  }
+
+  .hero-stat:last-child {
+    border-bottom: none;
+  }
+
+  .stat-with-img {
+    position: static;
+  }
+
+  .hero-speaker {
+    opacity: 1;
+    right: 0;
+    max-width: 60%;
+    max-height: 100%;
+    bottom: 0;
+    object-position: right bottom;
+  }
+}
+
 .hero-badge {
   display: inline-block;
   font-size: 0.78rem;
