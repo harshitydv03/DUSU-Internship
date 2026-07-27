@@ -1,122 +1,214 @@
 [
-    {
-        "name": "Literary Cell",
-        "about": "This cell Promotes creative writing, poetry, storytelling, and literary discussions. Organizes book reviews, writing competitions, and author interactions."
-    },
-    {
-        "name": "Fine Arts Cell",
-        "about": "This cell Encourages painting, sketching, crafts, and visual arts. Conducts exhibitions, workshops, and art competitions."
-    },
-    {
-        "name": "Environmental Cell (Green Warriors)",
-        "about": "This cell Works on environmental awareness and sustainability initiatives. Organizes plantation drives, cleanliness campaigns, and eco-projects. Recently they started a serene water bowl drive, walked across the SRCC campus, approaching the bylanes to Arts faculty and Daulat Ram College. Instagram Handle: @environmentcell.dusu"
-    },
-    {
-        "name": "Women Empowerment Cell (Swaryamsiddha)",
-        "about": "This cell Focuses on women’s leadership, safety, and empowerment. Conducts awareness programs, workshops, and mentorship activities. Addressing DU girl students’ issues & protecting their rights. Instagram Handle: @wec.cell.dusu"
-    },
-    {
-        "name": "Student Welfare Cell (Chhatrahit)",
-        "about": "This cell Addresses student concerns and welfare issues. Acts as a bridge between students and authorities."
-    },
-    {
-        "name": "Alumni Relations Cell (Alumni Connect)",
-        "about": "This cell Maintains connections with former students. Facilitates networking, mentorship, and alumni engagement programs."
-    },
-    {
-        "name": "International Students Cell (Global Connect)",
-        "about": "This cell Supports international students in academics and campus life. Promotes cultural exchange and inclusivity."
-    },
-    {
-        "name": "Community Outreach Cell (Sevasetu)",
-        "about": "This cell Encourages students to participate in social service activities. Works with communities through awareness and support programs."
-    },
-    {
-        "name": "Mental Health and Wellness Cell",
-        "about": "This cell Promotes mental well-being among students. Conducts counseling awareness sessions and stress-management activities."
-    },
-    {
-        "name": "Divyang Students Cell (Saksham)",
-        "about": "This cell Supports students with disabilities. Advocates accessibility, inclusion, and equal opportunities."
-    },
-    {
-        "name": "Debate and Public Speaking Cell (Manthan)",
-        "about": "Develops communication and critical-thinking skills. Organizes debates, MUNs, and speaking competitions."
-    },
-    {
-        "name": "Legal Aid Cell (Nyay Nidhi)",
-        "about": "Spreads awareness about legal rights and responsibilities. Conducts legal literacy and guidance sessions. RTI exposes illegal use of section 163 BNSS to stall ICC elections at DU. Instagram Handle: @legalcelldusu"
-    },
-    {
-        "name": "Ideological Event Cell (Vimarsh)",
-        "about": "Provides a platform for discussions on social, political, and national issues. Organizes seminars and intellectual dialogues."
-    },
-    {
-        "name": "Hostel Cell (Hostel Happenings)",
-        "about": "Addresses hostel-related issues and student concerns. Also promotes hostel-based events and activities."
-    },
-    {
-        "name": "PG Cell (PG Connect)",
-        "about": "Focuses on postgraduate students’ academic and welfare needs. Helps connect PG students across departments."
-    },
-    {
-        "name": "Fashion Club (Vogue Vani)",
-        "about": "Promotes fashion, styling, and creative expression. Organizes fashion shows and design-related events. Instagram Handle: @aura.dusu"
-    },
-    {
-        "name": "Language Exchange Club (Bhasha Sangam)",
-        "about": "Encourages learning and sharing different languages. Promotes linguistic diversity and cultural understanding."
-    },
-    {
-        "name": "Cultural Cell (Sanskriti)",
-        "about": "Celebrates India’s cultural heritage and diversity. Organizes festivals, cultural performances, and competitions. Instagram Handle: @culturalcell_dusu"
-    },
-    {
-        "name": "Academic Affairs Cell (Gyan Setu)",
-        "about": "Focuses on academic development and student learning. Conducts seminars, workshops, and academic support activities."
-    },
-    {
-        "name": "Placement Cell (Rozgar)",
-        "about": "Helps students explore career and employment opportunities. Conducts placement drives, career talks, and skill sessions. Instagram Handle: @placement.dusu"
-    },
-    {
-        "name": "Innovation and Incubation Cell (Tech Trek)",
-        "about": "Promotes innovation, technology, and problem-solving. Supports student projects and startup ideas."
-    },
-    {
-        "name": "EduAI Cell (Brain Wave)",
-        "about": "Explores the use of Artificial Intelligence in education. Organizes AI-related workshops, training, and awareness programs."
-    },
-    {
-        "name": "Media and Publications Cell (Abhivyakti)",
-        "about": "Handles content creation, reporting, and publicity activities. Promotes communication through articles, newsletters, and media coverage."
-    },
-    {
-        "name": "Sports Cell (Khelo Bharat)",
-        "about": "Promotes sports participation and fitness. Organizes tournaments, competitions, and sporting events. Instagram Handle: @sports.cell.dusu"
-    },
-    {
-        "name": "Research and Development Cell (Tarkshakti)",
-        "about": "Encourages research, analysis, and innovation. Supports students in academic and policy-oriented research projects."
-    },
-    {
-        "name": "Social Service Cell (Seva Squad)",
-        "about": "Engages students in volunteer and social welfare activities. Works on community development and humanitarian initiatives."
-    },
-    {
-        "name": "Startup and Entrepreneurship Cell (Startup Strike)",
-        "about": "Supports aspiring entrepreneurs and business innovators. Organizes startup events, mentorship, and networking opportunities."
-    },
-    {
-        "name": "Diversity and Inclusion Cell (Sangam)",
-        "about": "Promotes equality, inclusivity, and respect for diversity. Encourages a welcoming campus environment for all students."
-    },
-    {
-        "name": "Film and Photography Cell (Reel Raaz)",
-        "about": "Provides opportunities in filmmaking, photography, and visual storytelling. Organizes screenings, contests, and workshops."
-    },
-    {
-        "name": "Theatre and Drama Cell (Rangmanch)",
-        "about": "Promotes acting, stage performance, and dramatic arts. Conducts plays, street theatre performances, and acting workshops."
-    }
+  {
+    "name": "Academic Affairs Cell",
+    "tagline": "Gyan Setu",
+    "desc": "Focuses on academic development and student learning through seminars, workshops and educational support activities.",
+    "handle": "",
+    "icon": "BookOpen"
+  },
+  {
+    "name": "Alumni Relations Cell",
+    "tagline": "Alumni Connect",
+    "desc": "Maintains connections with former students, facilitating professional networking, mentorship and engagement programs.",
+    "handle": "",
+    "icon": "Users"
+  },
+  {
+    "name": "Community Outreach Cell",
+    "tagline": "Seva Setu",
+    "desc": "Encourages student participation in social service and community development initiatives through awareness and support programs.",
+    "handle": "",
+    "icon": "HeartHandshake"
+  },
+  {
+    "name": "Cultural Cell",
+    "tagline": "Sanskriti",
+    "desc": "Celebrates India's cultural heritage and diversity by organizing festivals, stage performances and arts competitions.",
+    "handle": "@culturalcell_dusu",
+    "icon": "Music"
+  },
+  {
+    "name": "Debate & Public Speaking Cell",
+    "tagline": "Manthan",
+    "desc": "Develops communication, critical thinking and parliamentary discourse through debates, Model UNs (MUNs) and public speaking competitions.",
+    "handle": "",
+    "icon": "MessagesSquare"
+  },
+  {
+    "name": "Diversity & Inclusion Cell",
+    "tagline": "Sangam",
+    "desc": "Promotes equality, inclusivity and mutual respect on campus, fostering an open, welcoming environment for all students.",
+    "handle": "",
+    "icon": "Handshake"
+  },
+  {
+    "name": "Divyang Students Cell",
+    "tagline": "Saksham",
+    "desc": "Supports students with disabilities, advocating for campus accessibility, equal opportunity and institutional inclusion.",
+    "handle": "",
+    "icon": "Accessibility"
+  },
+  {
+    "name": "EduAI Cell",
+    "tagline": "Brain Wave",
+    "desc": "Explores Artificial Intelligence in education by organizing technical workshops, AI training sessions and awareness campaigns.",
+    "handle": "",
+    "icon": "BrainCircuit"
+  },
+  {
+    "name": "Environment Cell",
+    "tagline": "Green Warriors",
+    "desc": "Drives campus environmental awareness and sustainability projects such as plantation drives and cleanliness campaigns.",
+    "highlight": "Recent Initiative: Conducted a \"Serene Water Bowl Drive\" spanning SRCC, Arts Faculty and Daulat Ram College.",
+    "handle": "@environmentcell.dusu",
+    "icon": "Leaf"
+  },
+  {
+    "name": "Fashion Club",
+    "tagline": "Vogue Vani",
+    "desc": "Promotes fashion, styling and creative design through campus fashion shows, showcases and design events.",
+    "handle": "@aura.dusu",
+    "icon": "Shirt"
+  },
+  {
+    "name": "Film & Photography Cell",
+    "tagline": "Reel Raaz",
+    "desc": "Provides visual storytelling platforms in filmmaking and photography via film screenings, photo contests and technical workshops.",
+    "handle": "",
+    "icon": "Camera"
+  },
+  {
+    "name": "Fine Arts Cell",
+    "tagline": "",
+    "desc": "Encourages painting, sketching, crafts and visual art mediums through art exhibitions, creative workshops and competitions.",
+    "handle": "",
+    "icon": "Palette"
+  },
+  {
+    "name": "Hostel Cell",
+    "tagline": "Hostel Happenings",
+    "desc": "Addresses hostel-related student grievances and logistics while promoting inter-hostel cultural and recreational activities.",
+    "handle": "",
+    "icon": "BedDouble"
+  },
+  {
+    "name": "Ideological Event Cell",
+    "tagline": "Vimarsh",
+    "desc": "Offers a platform for intellectual dialogue on social, political and national issues through seminars and panel discussions.",
+    "handle": "",
+    "icon": "Megaphone"
+  },
+  {
+    "name": "Innovation & Incubation Cell",
+    "tagline": "Tech Trek",
+    "desc": "Fosters student innovation, problem-solving and technology-driven projects to nurture early-stage startup ideas.",
+    "handle": "",
+    "icon": "Lightbulb"
+  },
+  {
+    "name": "International Students Cell",
+    "tagline": "Global Connect",
+    "desc": "Assists international students with academic and campus integration while organizing cross-cultural exchange programs.",
+    "handle": "",
+    "icon": "Globe"
+  },
+  {
+    "name": "Language Exchange Club",
+    "tagline": "Bhasha Sangam",
+    "desc": "Encourages multilingual learning and linguistic exchange to build broader cross-cultural understanding.",
+    "handle": "",
+    "icon": "Languages"
+  },
+  {
+    "name": "Legal Aid Cell",
+    "tagline": "Nyay Nidhi",
+    "desc": "Spreads awareness regarding legal rights and responsibilities through literacy and guidance sessions.",
+    "highlight": "Key Activity: Filed RTIs regarding election governance matters (e.g. Section 163 BNSS context).",
+    "handle": "@legalcelldusu",
+    "icon": "Scale"
+  },
+  {
+    "name": "Literary Cell",
+    "tagline": "",
+    "desc": "Promotes creative writing, poetry and literary discourse through book reviews, competitions and author interactions.",
+    "handle": "",
+    "icon": "BookMarked"
+  },
+  {
+    "name": "Media & Publications Cell",
+    "tagline": "Abhivyakti",
+    "desc": "Manages DUSU content creation, reporting and media publicity via articles, campus newsletters and press coverage.",
+    "handle": "",
+    "icon": "Newspaper"
+  },
+  {
+    "name": "Mental Health & Wellness Cell",
+    "tagline": "",
+    "desc": "Promotes psychological well-being among students through counselling awareness sessions, stress management and mental health drives.",
+    "handle": "",
+    "icon": "HeartPulse"
+  },
+  {
+    "name": "PG Cell",
+    "tagline": "PG Connect",
+    "desc": "Dedicated to postgraduate students' academic and welfare needs, fostering inter-departmental PG student networking.",
+    "handle": "",
+    "icon": "GraduationCap"
+  },
+  {
+    "name": "Placement Cell",
+    "tagline": "Rozgar",
+    "desc": "Facilitates employment opportunities and career progression through placement drives, corporate talks and skill workshops.",
+    "handle": "@placement.dusu",
+    "icon": "Briefcase"
+  },
+  {
+    "name": "Research & Development Cell",
+    "tagline": "Tarkshakti",
+    "desc": "Promotes academic rigour and policy research, supporting student-led research initiatives and analytical projects.",
+    "handle": "",
+    "icon": "Microscope"
+  },
+  {
+    "name": "Social Service Cell",
+    "tagline": "Seva Squad",
+    "desc": "Engages students in community volunteerism, social welfare drives and humanitarian relief efforts across Delhi-NCR.",
+    "handle": "",
+    "icon": "Heart"
+  },
+  {
+    "name": "Sports Cell",
+    "tagline": "Khelo Bharat",
+    "desc": "Promotes athletics, sportsmanship and physical fitness by organizing inter-college tournaments and sporting events.",
+    "handle": "@sports.cell.dusu",
+    "icon": "Trophy"
+  },
+  {
+    "name": "Startup & Entrepreneurship Cell",
+    "tagline": "Startup Strike",
+    "desc": "Supports student entrepreneurs through startup pitch sessions, mentorship networks and business innovation workshops.",
+    "handle": "",
+    "icon": "Rocket"
+  },
+  {
+    "name": "Student Welfare Cell",
+    "tagline": "Chhatrahit",
+    "desc": "Acts as the primary grievance bridge between students and university authorities for general student welfare issues.",
+    "handle": "",
+    "icon": "ShieldCheck"
+  },
+  {
+    "name": "Theatre & Drama Cell",
+    "tagline": "Rangmanch",
+    "desc": "Encourages theatrical performing arts through stage plays, street theatre (Nukkad Natak) and dramatic workshops.",
+    "handle": "",
+    "icon": "Drama"
+  },
+  {
+    "name": "Women Empowerment Cell",
+    "tagline": "Swayamsiddha",
+    "desc": "Advocates female student rights, safety and leadership development via empowerment workshops, self-defence sessions and mentorship.",
+    "handle": "@wec.cell.dusu",
+    "icon": "Flower2"
+  }
 ]

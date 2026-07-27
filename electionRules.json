@@ -1,0 +1,62 @@
+[
+  {
+    "category": "Academic & Age Eligibility",
+    "rule": "Undergraduate Students",
+    "detail": "Age between 17 and 22 years.",
+    "icon": "GraduationCap"
+  },
+  {
+    "category": "Academic & Age Eligibility",
+    "rule": "Postgraduate Students",
+    "detail": "Age cap of 24–25 years.",
+    "icon": "GraduationCap"
+  },
+  {
+    "category": "Academic & Age Eligibility",
+    "rule": "Research Scholars",
+    "detail": "Age cap of 28 years.",
+    "icon": "GraduationCap"
+  },
+  {
+    "category": "Academic & Age Eligibility",
+    "rule": "Attendance Requirement",
+    "detail": "Minimum 75% mandatory attendance in previous academic terms.",
+    "icon": "CalendarCheck"
+  },
+  {
+    "category": "Academic & Age Eligibility",
+    "rule": "Academic Record",
+    "detail": "No backlogs, compartments or failed subjects; must be a regular student without academic disciplinary actions.",
+    "icon": "ClipboardCheck"
+  },
+  {
+    "category": "Academic & Age Eligibility",
+    "rule": "Attempt Limit",
+    "detail": "A candidate can contest only once for a central office bearer post.",
+    "icon": "RotateCcw"
+  },
+  {
+    "category": "Expenditure & Anti-Defacement Rules",
+    "rule": "Spending Cap",
+    "detail": "Maximum campaign expenditure capped at ₹5,000 per candidate. Audited accounts must be submitted post-election.",
+    "icon": "IndianRupee"
+  },
+  {
+    "category": "Expenditure & Anti-Defacement Rules",
+    "rule": "Strict Anti-Defacement Policy",
+    "detail": "Complete ban on printed posters, spray painting, wall pasting and pamphlets on campus or metro property.",
+    "icon": "Ban"
+  },
+  {
+    "category": "Expenditure & Anti-Defacement Rules",
+    "rule": "Wall of Democracy",
+    "detail": "Campaign material restricted strictly to handmade posters displayed on designated university boards.",
+    "icon": "LayoutPanelTop"
+  },
+  {
+    "category": "Expenditure & Anti-Defacement Rules",
+    "rule": "Vehicle Restrictions",
+    "detail": "Prohibition of heavy vehicles, open jeeps, tractors and convoy parades on campus roads.",
+    "icon": "CarFront"
+  }
+]

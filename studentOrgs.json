@@ -1,0 +1,30 @@
+[
+  {
+    "name": "ABVP",
+    "fullName": "Akhil Bharatiya Vidyarthi Parishad",
+    "affiliation": "RSS / BJP aligned",
+    "focus": "Focuses on national development, campus security, Indian ethos, skill development and infrastructure expansion.",
+    "order": 1
+  },
+  {
+    "name": "NSUI",
+    "fullName": "National Students' Union of India",
+    "affiliation": "INC aligned",
+    "focus": "Focuses on student rights, social justice, fee-hike opposition, hostel equality and democratic inclusion.",
+    "order": 2
+  },
+  {
+    "name": "AISA / SFI",
+    "fullName": "All India Students' Association / Students' Federation of India",
+    "affiliation": "Left-wing student fronts (CPIML / CPIM aligned)",
+    "focus": "Focuses on public education preservation, affordable transportation (metro passes), social representation and anti-privatization.",
+    "order": 3
+  },
+  {
+    "name": "CYSS / Independent",
+    "fullName": "Chhatra Yuva Sangharsh Samiti / Regional groups",
+    "affiliation": "Regional and independent groups",
+    "focus": "Focuses on alternative governance, student welfare amenities, digital learning support and anti-defacement campaigns.",
+    "order": 4
+  }
+]

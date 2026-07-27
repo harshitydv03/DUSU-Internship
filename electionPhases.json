@@ -1,0 +1,51 @@
+[
+  {
+    "phase": 1,
+    "label": "Phase 1",
+    "title": "Official Notification & Appointment of Election Officers",
+    "desc": "The Vice-Chancellor appoints the Chief Election Officer (CEO), Chief Returning Officer (CRO) and Returning Officers. Official notification of the schedule, voter list publication and code of conduct takes place.",
+    "icon": "FileText"
+  },
+  {
+    "phase": 2,
+    "label": "Phase 2",
+    "title": "Nomination Filing & Financial Bond Submission",
+    "desc": "Candidates file nomination papers at the CEO Office (Conference Centre, North Campus). Submission includes affidavits of academic standing, attendance verification and surety bonds.",
+    "icon": "PenLine"
+  },
+  {
+    "phase": 3,
+    "label": "Phase 3",
+    "title": "Scrutiny & Provisional List Publication",
+    "desc": "The election committee scrutinizes nomination papers against Lyngdoh Committee criteria. Provisional lists of validly nominated candidates are published for each post.",
+    "icon": "Search"
+  },
+  {
+    "phase": 4,
+    "label": "Phase 4",
+    "title": "Nomination Withdrawal Window & Final Ballot List",
+    "desc": "Candidates are given a fixed time frame (usually until 12:00 PM on the designated day) to withdraw candidatures. Final candidate lists and ballot numbers are allotted thereafter.",
+    "icon": "ListChecks"
+  },
+  {
+    "phase": 5,
+    "label": "Phase 5",
+    "title": "Campaigning Window & Wall of Democracy",
+    "desc": "Strictly regulated campaigning occurs over 4–5 days. Physical canvassing is restricted to designated areas (the \"Wall of Democracy\"). Public rallies, printed poster pasting and vehicle parades are prohibited.",
+    "icon": "Megaphone"
+  },
+  {
+    "phase": 6,
+    "label": "Phase 6",
+    "title": "Polling Day (Dual Shift Voting)",
+    "desc": "Voting takes place across all member colleges in two shifts: morning classes (08:30 AM – 01:00 PM) and evening classes (03:00 PM – 07:30 PM). EVMs are sealed and transported to the central counting centre.",
+    "icon": "Vote"
+  },
+  {
+    "phase": 7,
+    "label": "Phase 7",
+    "title": "Counting of Votes & Official Result Declaration",
+    "desc": "Counting occurs at the central venue (e.g. Community Hall, Police Lines or the DU Conference Centre). Results are announced post-validation by the CEO, followed by oath-taking.",
+    "icon": "Award"
+  }
+]

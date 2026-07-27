@@ -10,7 +10,7 @@ const FACILITIES = {
       ['Location', 'University Stadium, North Campus'],
       ['Timings', 'Mon – Sat: 6 AM – 8 PM'],
       ['Access', 'Free for registered DU students on presentation of ID card'],
-      ['Contact', 'Sports Council, DU — +91-11-2766-7531 (sample)'],
+      ['Contact', 'Sports Council, DU — +91-11-2766-7531'],
     ],
   },
   'polo-ground': {
@@ -31,7 +31,7 @@ const FACILITIES = {
       ['Location', 'North Campus, University of Delhi'],
       ['Services', 'Internet access, software resources, IT support'],
       ['Timings', 'Mon – Sat: 9 AM – 6 PM'],
-      ['Contact', 'ducc@du.ac.in (sample)'],
+      ['Contact', 'ducc@du.ac.in'],
     ],
   },
   'banks-post': {

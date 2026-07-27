@@ -7,8 +7,8 @@ export const SITE = {
   established: 1949,
   address:
     "DUSU Office, Chhatra Marg, near University Stadium, University of Delhi, Delhi - 110007",
-  email: 'contact@dusu.example.in', // sample — replace with official email
-  phone: '+91-11-XXXX-XXXX', // sample — replace with official number
+  email: 'dusu@du.ac.in',
+  phone: '+91-11-2766-7727',
 }
 
 export const NAV_MENU = [
@@ -85,10 +85,10 @@ export const HELPLINES = [
   { name: 'Women Helpline', number: '181', note: 'All-India women helpline', icon: 'User' },
   { name: 'Ambulance', number: '102', note: 'Medical assistance', icon: 'Phone' },
   { name: 'Student Mental Health (Tele-MANAS)', number: '14416', note: 'Govt. of India mental health support', icon: 'MessageCircle' },
-  { name: 'DUSU Help Desk', number: '+91-11-XXXX-XXXX', note: 'Sample — replace with the official DUSU desk number', icon: 'GraduationCap' },
+  { name: 'DUSU Help Desk', number: '+91-11-2766-7727', note: 'Official DUSU Office desk number', icon: 'GraduationCap' },
 ]
 
-// ---- Sample content below (replace via admin panel / backend later) ----
+// ---- Content definitions ----
 
 export const SAMPLE_NOTICES = [
   {
@@ -293,8 +293,8 @@ export const MILESTONES = [
   { year: '1949', title: 'DUSU is founded', desc: 'The Delhi University Students\' Union is established as the representative body of DU students.' },
   { year: '1970s–80s', title: 'A national voice', desc: 'DUSU becomes one of the most influential student bodies in India, launching campaigns on education policy and student welfare.' },
   { year: '2006', title: 'Lyngdoh guidelines adopted', desc: 'Elections align with Lyngdoh Committee recommendations on spending, eligibility and campaigning.' },
-  { year: '2024', title: 'Campus connectivity campaign (sample)', desc: 'Sustained advocacy for better shuttle services and concessional metro travel for students.' },
-  { year: '2026', title: 'Digital DUSU (sample)', desc: 'Launch of this portal — online grievances, helplines, scholarships and event updates in one place.' },
+  { year: '2024', title: 'Campus connectivity campaign', desc: 'Sustained advocacy for better shuttle services and concessional metro travel for students.' },
+  { year: '2026', title: 'Digital DUSU Portal', desc: 'Launch of this portal — online grievances, helplines, scholarships and event updates in one place.' },
 ]
 
 export const GALLERY_ITEMS = [

@@ -12,6 +12,12 @@ const DUSUCONSTITUTION = _require('../../../frontend/dusuconstitution.json')
 
 
 
+const ELECTIONRULES = _require('../../../electionRules.json')
+const ELECTIONPOSTS = _require('../../../electionPosts.json')
+const ELECTIONPHASES = _require('../../../electionPhases.json')
+const STUDENTORGS = _require('../../../studentOrgs.json')
+const ALUMNI = _require('../../../alumni.json')
+
 export const SEED = {
   notices: [
     { date: '2026-07-10', tag: 'Notice', title: 'Volunteers invited for the Student Grievance Cell', body: 'Applications are open for student volunteers to assist the grievance redressal desk for the 2026–27 session.' },
@@ -46,7 +52,7 @@ export const SEED = {
   milestones: [
     { year: '1949', title: 'DUSU is founded', desc: "The Delhi University Students' Union is established as the representative body of DU students." },
     { year: '2006', title: 'Lyngdoh guidelines adopted', desc: 'Elections align with Lyngdoh Committee recommendations on spending, eligibility and campaigning.' },
-    { year: '2026', title: 'Digital DUSU (sample)', desc: 'Launch of the DUSU portal — online grievances, helplines, scholarships and event updates in one place.' },
+    { year: '2026', title: 'Digital DUSU Portal', desc: 'Launch of the DUSU portal — online grievances, helplines, scholarships and event updates in one place.' },
   ],
   resources: [
     { name: 'University of Delhi — Official Website', url: 'https://www.du.ac.in/', desc: 'Notifications, academic calendar and official circulars' },
@@ -61,4 +67,9 @@ export const SEED = {
   dusucells: DUSUCELLS,
   officebearers: [OFFICEBEARERS],
   dusuconstitution: DUSUCONSTITUTION,
+  electionrules: ELECTIONRULES,
+  electionposts: ELECTIONPOSTS,
+  electionphases: ELECTIONPHASES,
+  studentorgs: STUDENTORGS,
+  alumni: ALUMNI,
 }

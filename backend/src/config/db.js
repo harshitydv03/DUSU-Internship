@@ -11,7 +11,8 @@ export const RESOURCES = [
   'notices', 'events', 'queries', 'team', 'scholarships', 'opportunities',
   'downloads', 'resources', 'milestones', 'faqs', 'gallery', 'contact',
   'colleges', 'hostels', 'departments', 'medical', 'dusucells', 'officebearers',
-  'dusuconstitution', 'staffadvisors',
+  'dusuconstitution', 'staffadvisors', 'electionrules', 'electionposts',
+  'electionphases', 'studentorgs', 'alumni',
 ]
 
 // Generic schema: stores any JSON document. No per-resource schema needed —
@@ -33,13 +34,23 @@ export async function connectDB() {
   await mongoose.connect(uri)
   console.log(`MongoDB connected → ${uri}`)
 
-  // Seed any empty collection on first run.
+  // Seed empty collections or re-seed when seed dataset size changes / FORCE_RESEED is set.
+  const forceReseedTables = ['dusucells', 'electionrules', 'electionposts', 'electionphases', 'studentorgs', 'alumni']
+
   for (const table of RESOURCES) {
     const Model = getModel(table)
     const count = await Model.countDocuments()
-    if (count === 0 && SEED[table]) {
-      await Model.insertMany(SEED[table].map((doc) => ({ data: doc })))
-      console.log(`  seeded ${SEED[table].length} document(s) into '${table}'`)
+    const seedItems = SEED[table]
+    const forceReseed = process.env.FORCE_RESEED === 'true'
+
+    if (seedItems && Array.isArray(seedItems)) {
+      if (count === 0 || (forceReseedTables.includes(table) && count !== seedItems.length) || forceReseed) {
+        if (count > 0) {
+          await Model.deleteMany({})
+        }
+        await Model.insertMany(seedItems.map((doc) => ({ data: doc })))
+        console.log(`  seeded ${seedItems.length} document(s) into '${table}'`)
+      }
     }
   }
 
