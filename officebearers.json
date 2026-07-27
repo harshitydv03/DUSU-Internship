@@ -1,0 +1,197 @@
+{
+    "about": "The Delhi University Students’ Union (DUSU) is one of the largest democratically elected student representative bodies in India and the officially recognized representative body of students at the University of Delhi. Established on 9 April 1949 and inaugurated by India’s first Prime Minister, Pandit Jawaharlal Nehru, DUSU has evolved into one of the country’s most prestigious student organizations. It represents students from the University’s affiliated colleges, faculties, and departments, serving as a vital bridge between the student community and the University administration. Through democratic representation, DUSU works to safeguard student interests, address grievances, and contribute to the academic, cultural, social, and overall development of the University.\n\nThe Union is headed by four elected office bearers—President, Vice-President, Secretary, and Joint Secretary—who, along with elected Central Councillors, form the governing body of DUSU. Guided by the DUSU Constitution, the Lyngdoh Committee Recommendations, and directions issued by the University of Delhi and the Delhi High Court, the Union functions with a commitment to transparency, accountability, and democratic governance while ensuring that students remain active participants in the University’s decision-making process.\n\nDUSU is dedicated to promoting student welfare by addressing issues related to academics, examinations, scholarships, hostels, transportation, campus infrastructure, library services, health facilities, women’s safety, mental health, accessibility, and other student concerns. Beyond grievance redressal, it enriches campus life by organizing cultural festivals, sports events, seminars, awareness campaigns, leadership programmes, and community outreach initiatives. Working closely with college student unions, university authorities, and student societies, DUSU strives to foster an inclusive, vibrant, and student-centric campus environment.\n\nOver the decades, DUSU has emerged as a significant platform for nurturing leadership and democratic values, with many of its former office bearers going on to become Members of Parliament, Chief Ministers, Union Ministers, legislators, advocates, journalists, and distinguished public figures. Today, the 2025–2026 Executive Council comprises Aryan Maan (President), Rahul Jhansla (Vice-President), Kunal Choudhary (Secretary), and Deepika Jha (Joint Secretary). While DUSU continues to be a launchpad for future leaders, it also faces evolving challenges such as strengthening campus infrastructure, promoting student welfare, and ensuring responsible student representation. The continued implementation of the Lyngdoh Committee Recommendations and judicial oversight reinforces its commitment to democratic values, civic responsibility, and meaningful student participation in university governance.",
+    "officeBearers": [
+        {
+            "role": "President",
+            "name": "Aryan Maan",
+            "college": "Campus Law Centre (CLC), University of Delhi",
+            "image": "/images/president.jpeg",
+            "bio": "Aryan Maan, the President of the Delhi University Students' Union (DUSU) for the 2025–26 term, is a dynamic student leader and the youngest President in the history of the union, having earned a historic mandate of 28,841 votes. Representing the Akhil Bharatiya Vidyarthi Parishad (ABVP), he has successfully transitioned from completing an MA in Library Science to pursuing an LLB at the Campus Law Centre (CLC), all while maintaining a distinguished athletic career having represented India in football. His leadership vision is deeply integrated with campus safety and cultural enrichment, highlighted by his flagship 'Live Bhajan Clubbing' initiative, which was notably praised by the Prime Minister in Mann Ki Baat for promoting spiritual harmony among youth to 'North Campus Diwali Illumination Campaign' to enhance women's safety. Beyond these cultural milestones, he remains committed to practical student welfare through the 'Khelo DU' initiative for upgrading sports facilities, advocating for subsidized metro passes and free campus-wide Wi-Fi, and leading social responsibility projects like the 'Students for Seva' community school programs.",
+            "socials": [
+                {
+                    "platform": "instagram",
+                    "url": "https://instagram.com/aryanmaan"
+                },
+                {
+                    "platform": "twitter",
+                    "url": "https://x.com/aryanmaan09"
+                },
+                {
+                    "platform": "facebook",
+                    "url": "https://facebook.com/aryanmaan11"
+                }
+            ]
+        },
+        {
+            "role": "Vice President",
+            "name": "Rahul Jhansla",
+            "college": "Faculty of Law, University of Delhi",
+            "image": "/images/vicepresident.jpeg",
+            "bio": "Rahul Yadav Jhansla, popularly known as Rahul Jhansla, is the Vice President of the Delhi University Students' Union (DUSU) for the 2025–26 term, representing the National Students' Union of India (NSUI) after earning a historic mandate of 29,339 votes in the September 2025 elections. With an academic record that includes a B.A. in Buddhist Studies from Shaheed Bhagat Singh College (SBSC) and his current pursuit of an LL.B. (second year) at the Faculty of Law, he has learned to navigate administrative processes effectively while keeping student issues at the forefront. Motivated by a deep commitment to student-centric governance and amplifying ordinary students’ voices, his strategy focuses on direct engagement and grassroots mobilization through a manifesto demanding new hostels, menstrual leave, a safer campus for women, and mental health counselors for all students. Rahul maintains excellent coordination with other office bearers to launch impactful initiatives, including the DUSU APTI Cup—the first-ever DUSU-led inter-college tournament—advancing the Polo Ground redevelopment, and successfully removing the detention list for the Law Faculty, building on his previous success with the 'Safe DU for All' campaign. Viewing DUSU as a powerful platform for student empowerment and leadership, he aims to reduce external interference and encourage higher voter participation to build a more inclusive university environment. His central message to the student community is: 'That DUSU exists for you and by you and you should not hesitate to reach out with any concerns, stay united, together we can build a more equitable and vibrant campus.'",
+            "socials": [
+                {
+                    "platform": "instagram",
+                    "url": "https://instagram.com/rahuljhansla.delhiuniversity"
+                },
+                {
+                    "platform": "twitter",
+                    "url": "https://x.com/rahuljhanslayadav"
+                },
+                {
+                    "platform": "facebook",
+                    "url": "https://facebook.com/rahuljhanslaofficial"
+                },
+                {
+                    "platform": "website",
+                    "url": "https://rahuljhansla.in"
+                }
+            ]
+        },
+        {
+            "role": "Secretary",
+            "name": "Kunal Choudhary",
+            "college": "University of Delhi",
+            "image": "/images/secretary.jpeg",
+            "bio": "Kunal Choudhary is the Secretary of the Delhi University Students' Union (DUSU) for the 2025–26 term, representing the Akhil Bharatiya Vidyarthi Parishad (ABVP). He earned a significant mandate in the September 2025 elections by securing 23,779 votes, winning by a margin of over 14,000. Academically, he is pursuing a Master’s in Buddhist Studies at the University of Delhi, building on his record as a graduate of PGDAV College. His leadership journey includes serving as President of the PGDAV College Students' Union (CSU) in 2023 and working as a dedicated grassroots organizer and strategist for ABVP since 2019. Guided by the mantra “I talk solutions, not problems,” Choudhary’s tenure is focused on high-impact reforms, such as simplifying scholarship processes through digital platforms, enhancing placement cell efficiency for jobs and internships, and implementing free campus-wide Wi-Fi. He is a strong proponent of the “Khel, Kala, Kartavya” (sports, arts, duty) philosophy, aiming to establish cultural wings in every college to promote student talent and patriotism. Beyond his administrative role, he maintains a record of social service through “Students for Seva” initiatives, blood donation drives, and advocacy for women’s safety measures like campus helplines and panic buttons.",
+            "socials": [
+                {
+                    "platform": "instagram",
+                    "url": "https://instagram.com/kunalchoudhary05"
+                },
+                {
+                    "platform": "twitter",
+                    "url": "https://x.com/kunalchoudhry05"
+                },
+                {
+                    "platform": "facebook",
+                    "url": "https://facebook.com/kuunal.chaudhary.2025"
+                }
+            ]
+        },
+        {
+            "role": "Joint Secretary",
+            "name": "Deepika Jha",
+            "college": "University of Delhi",
+            "image": "/images/jointsec.jpeg",
+            "bio": "Deepika Jha is the Joint Secretary of the Delhi University Students' Union (DUSU) for the 2025–26 term, representing the Akhil Bharatiya Vidyarthi Parishad (ABVP). She earned a significant mandate in the September 2025 elections by securing 21,825 votes, winning by a margin of 4,445. Academically, she is a graduate of Lakshmibai College and is currently pursuing a Master’s in Buddhist Studies at the University of Delhi. Before her election to the central panel, she distinguished herself as an ABVP State Executive Member and a dedicated grassroots organizer since 2022. A proud “Bihar ki Beti” hailing from Madhubani, her leadership is deeply influenced by Buddhist philosophy—specifically the principles of karuna (compassion)—and a commitment to selfless service. Her tenure is focused on women’s safety and empowerment, including the establishment of anti-harassment cells, women’s common rooms, and the expansion of the “Ritumati” menstrual hygiene campaign. Additionally, she champions the cause of migrant student welfare, advocating for affordable hostels, mental health support, and subsidized transport. Her social service record includes leading health drives and teaching underprivileged children in Delhi slums through the “Basti ki Pathshala” initiative under the “Students for Seva” program.",
+            "socials": [
+                {
+                    "platform": "instagram",
+                    "url": "https://instagram.com/deepika.jhaa"
+                },
+                {
+                    "platform": "instagram",
+                    "url": "https://instagram.com/teamdeepikaajha"
+                },
+                {
+                    "platform": "threads",
+                    "url": "https://threads.net/@deepika.jhaa"
+                }
+            ]
+        }
+    ],
+    "initiativesAndEvents": [
+        {
+            "title": "Live Bhajan Clubbing",
+            "date": "10 February 2025",
+            "venue": "Ramjas College",
+            "collaborationWith": "Delhi Government",
+            "objective": "To integrate traditional devotional music into the modern student cultural experience, promoting cultural continuity and spiritual harmony among the youth.",
+            "highlights": "A ground-breaking integration of Indian heritage within modern youth culture, explicitly praised by the Prime Minister in Mann Ki Baat. Launched at Ramjas College in collaboration with the Delhi Government, this unique framework blended traditional devotional music into a high-energy student experience across 9 campuses to promote spiritual harmony and youth connection."
+        },
+        {
+            "title": "North Campus Diwali - Illumination Campaign",
+            "date": "Festive Season 2025",
+            "venue": "North Campus Wide",
+            "highlights": "A flagship campus safety and cultural beautification campaign led directly by President Aryan Maan. The project completely lit up the entirety of North Campus with high-intensity brightness, lighting up late-evening walkway networks, transit thoroughfares, and hostel zones to enhance women's safety measures."
+        },
+        {
+            "title": "Literature Fest: \"Nation First: Unity in Diversity\"",
+            "date": "12–14 February 2025",
+            "venue": "Rugby Stadium",
+            "collaborationWith": "Ministry of Education and UGC",
+            "academicPartner": "De Gruyter Brill",
+            "leaders": [
+                "Sakshi Sharma",
+                "Vanshika Jangra",
+                "Tutu Sonam",
+                "Kanishka Dhauni"
+            ],
+            "objective": "To serve as a confluence for intellectual discourse, promoting literary appreciation and the foundational values of national unity.",
+            "highlights": "This three-day festival acted as an intellectual powerhouse, featuring an array of panel discussions, poetry recitations, and debates. By hosting over 50 distinguished speakers and drawing participants from more than 90 colleges, the event successfully bridged the gap between academic theory and national consciousness, cementing its role as a premier intellectual platform for the university."
+        },
+        {
+            "title": "Dandiya Night",
+            "date": "27 September 2025",
+            "venue": "Rugby Sports Ground, North Campus",
+            "collaborationWith": "Delhi Tourism & Rashtriya Kala Manch",
+            "objective": "To honor India’s rich cultural heritage through mass-scale student engagement and festive celebration.",
+            "highlights": "Witnessing an impressive footfall of approximately 50,000 students, the event served as a major unifying force across the University of Delhi. The vibrant performances and the distinguished presence of Smt. Rekha Gupta, Hon’ble Chief Minister of Delhi, provided a high-profile platform that encouraged dialogue between state leadership and the student body, highlighting the union's ability to execute large-scale, culturally significant outreach programs."
+        },
+        {
+            "title": "Mental Health Walkathon",
+            "date": "14 October 2025",
+            "venue": "Arts Faculty, University of Delhi",
+            "collaborationWith": "iSpeak (Sub branch- Yuva Chetna Foundation)",
+            "objective": "To destigmatize mental health challenges and foster an institutional culture prioritizing emotional well-being and open dialogue.",
+            "highlights": "This initiative mobilized a diverse cohort of students, volunteers, and social welfare organizations to advocate for robust mental health support systems. By framing mental wellness as a critical component of academic life, the walkathon successfully moved the conversation from private struggle to public advocacy, reinforcing the union's commitment to student psychological health."
+        },
+        {
+            "title": "Khelo DU 2026 (Phase 1)",
+            "date": "13 February 2026",
+            "venue": "Chhatrasal Stadium",
+            "objective": "To revitalize sports culture and promote athletic excellence across the university ecosystem.",
+            "highlights": "Serving as a curtain-raiser for the university’s sporting calendar, this event focused on competitive disciplines such as Kabaddi and Athletics. It reinforced the union's institutional commitment to youth fitness, aiming to democratize access to professional sporting platforms and encourage a healthy, team-oriented competitive spirit among students."
+        },
+        {
+            "title": "DUSU Holi Milan Samaroh",
+            "date": "4 March 2026",
+            "venue": "Delhi University Campus",
+            "chiefGuest": "Shri Manoj Tiwari",
+            "collaborationWith": "Purvanchal Pariwar",
+            "objective": "To foster deep-seated communal harmony and student unity through traditional festivities.",
+            "highlights": "This landmark cultural gathering transcended college boundaries, drawing widespread student participation. The presence of Shri Manoj Tiwari served to heighten the significance of the event, transforming a traditional festival into a powerful exercise in student bonding and organizational solidarity."
+        },
+        {
+            "title": "9 Days of Navratri, 9 Women",
+            "date": "19–27 March 2026",
+            "objective": "To champion women’s leadership and increase gender representation within the landscape of student governance.",
+            "highlights": "This symbolic empowerment program saw one female student appointed as 'President for a Day' for each of the nine days of Navratri. This initiative effectively highlighted the contributions of women to campus life, encouraging broader participation in governance and serving as a poignant acknowledgment of women as the architects of a progressive student future."
+        },
+        {
+            "title": "Netrutva Yuva 2026",
+            "date": "29 March 2026",
+            "venue": "RUIA College",
+            "objective": "To nurture future leadership potential and inspire civic responsibility toward nation-building.",
+            "highlights": "The program provided a high-impact environment featuring motivational sessions and direct interactions with distinguished personalities. By bridging the gap between student aspirations and leadership practice, it empowered attendees to engage with policy-making and responsible administration, cultivating a generation of informed, proactive leaders."
+        },
+        {
+            "title": "International Jat Diwas",
+            "date": "13 April 2026",
+            "objective": "To commemorate the historical legacy, cultural identity, and social contributions of the Jat community.",
+            "highlights": "This commemorative festival integrated historical education with modern community engagement. Through a blend of cultural performances and intellectual discourse, the event fostered social harmony and pride, reflecting the vibrant diversity of the student body and the union’s role in facilitating inclusive cultural representation."
+        },
+        {
+            "title": "Khelo DU (Mega Event)",
+            "date": "24–30 April 2026",
+            "venue": "DU Sports Complex",
+            "scale": "10,000+ participants, 12 sports, ₹30 lakh prize pool",
+            "objective": "To establish a benchmark for university-level sports, fostering mass student participation and athletic excellence.",
+            "highlights": "As one of the largest sporting championships in the university's history, this week-long event showcased excellence across 12 disciplines. The substantial ₹30 lakh prize pool served to attract top-tier student athletes, while the union’s investment in professional-grade logistics and medical support ensured that the event met national standards for safety and fair play, cementing its legacy as a premier sporting milestone."
+        }
+    ],
+    "administrativeInitiatives": [
+        {
+            "title": "Establishment of DUSU Functional Cells",
+            "formationDate": "September 2025",
+            "description": "Approximately 30 specialized functional cells were established following the executive committee election. These cells operate as the decentralized backbone of the union, focusing on diverse domains—including grievance redressal, placement facilitation, and student welfare—thereby increasing the responsiveness and operational efficacy of the union’s outreach."
+        },
+        {
+            "title": "The Great DUSU Internship",
+            "commencementDate": "13 July 2026",
+            "stipend": "₹15,000",
+            "description": "This flagship professional development program offers over 100 students hands-on exposure to public policy, administration, research, and organizational management. With a stipend of ₹15,000, the initiative bridges the gap between academic theory and professional practice, providing students with the experience needed to navigate modern governance and policy environments."
+        }
+    ],
+    "mediaDriveLink": "https://drive.google.com/drive/folders/1_OmErwcG2VSd-qIQbmiBurAktZo4Ccgg"
+}

@@ -1,8 +1,36 @@
+import { useEffect, useState } from 'react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import EventCalendarView from '../../components/events-calendar/EventCalendarView.jsx'
 import { SAMPLE_EVENTS } from '../../utils/constants.js'
+import apiClient from '../../utils/apiClient.js'
+
+const withEventDefaults = (events) =>
+  events.map((event, index) => ({
+    gradient: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.gradient || 'linear-gradient(135deg,#7c1d2e,#b0553f)',
+    icon: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.icon || 'Calendar',
+    ...event,
+  }))
 
 export default function EventsCalendar() {
+  const [events, setEvents] = useState(SAMPLE_EVENTS)
+
+  useEffect(() => {
+    let active = true
+
+    apiClient
+      .get('/events')
+      .then((data) => {
+        if (active && data?.length) setEvents(withEventDefaults(data))
+      })
+      .catch(() => {
+        if (active) setEvents(SAMPLE_EVENTS)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
   return (
     <>
       <PageHeader

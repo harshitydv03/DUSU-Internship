@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import HomeHero from '../../components/home/HomeHero.jsx'
 import NoticeCard from '../../components/news-notices/NoticeCard.jsx'
 import Icon from '../../components/Icon.jsx'
 import { SAMPLE_NOTICES, SAMPLE_EVENTS } from '../../utils/constants.js'
+import apiClient from '../../utils/apiClient.js'
 
 const QUICK_LINKS = [
   { icon: 'Clipboard', title: 'Raise a Grievance', desc: 'File a complaint or query and get a trackable reference ID.', to: '/help/raise-query' },
@@ -16,7 +18,37 @@ const QUICK_LINKS = [
 const fmt = (iso) =>
   new Date(iso).toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric' })
 
+const withEventDefaults = (events) =>
+  events.map((event, index) => ({
+    gradient: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.gradient || 'linear-gradient(135deg,#7c1d2e,#b0553f)',
+    icon: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.icon || 'Calendar',
+    ...event,
+  }))
+
 export default function Home() {
+  const [notices, setNotices] = useState(SAMPLE_NOTICES)
+  const [events, setEvents] = useState(SAMPLE_EVENTS)
+
+  useEffect(() => {
+    let active = true
+
+    Promise.all([apiClient.get('/notices'), apiClient.get('/events')])
+      .then(([apiNotices, apiEvents]) => {
+        if (!active) return
+        if (apiNotices?.length) setNotices(apiNotices)
+        if (apiEvents?.length) setEvents(withEventDefaults(apiEvents))
+      })
+      .catch(() => {
+        if (!active) return
+        setNotices(SAMPLE_NOTICES)
+        setEvents(SAMPLE_EVENTS)
+      })
+
+    return () => {
+      active = false
+    }
+  }, [])
+
   return (
     <>
       <HomeHero />
@@ -49,7 +81,7 @@ export default function Home() {
             <div className="hand-drawn-divider w-48 mt-2"></div>
           </div>
           <div className="grid-2">
-            {SAMPLE_NOTICES.map((n) => (
+            {notices.map((n) => (
               <NoticeCard notice={n} key={n.id} />
             ))}
           </div>
@@ -66,10 +98,10 @@ export default function Home() {
           <div className="section-head">
             <span className="eyebrow">Campus life</span>
             <h2>Upcoming events</h2>
-            <div class="hand-drawn-divider w-48 mt-2"></div>
+            <div className="hand-drawn-divider w-48 mt-2"></div>
           </div>
           <div className="grid-4">
-            {SAMPLE_EVENTS.map((e) => (
+            {events.map((e) => (
               <article className="event-card" key={e.id}>
                 <div className="event-banner" style={{ background: e.gradient }}>
                   <svg width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>

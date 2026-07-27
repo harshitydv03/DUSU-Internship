@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { NAV_MENU } from '../../utils/constants.js'
 import Icon from '../Icon.jsx'
@@ -7,30 +7,45 @@ import duLogo from '../../assets/du-logo.png'
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
   const [openIndex, setOpenIndex] = useState(null)
+  const navbarRef = useRef(null)
 
   const closeAll = () => {
     setMobileOpen(false)
     setOpenIndex(null)
   }
 
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (navbarRef.current && !navbarRef.current.contains(event.target)) {
+        closeAll()
+      }
+    }
+    document.addEventListener('click', handleClickOutside)
+    return () => {
+      document.removeEventListener('click', handleClickOutside)
+    }
+  }, [])
+
   return (
     <>
       <div className="topbar">
         <div className="container">
-          <span>
-            <Icon name="ShieldAlert" size={14} /> Anti-Ragging Helpline: <a href="tel:18001805522">1800-180-5522</a> · Emergency:{' '}
-            <a href="tel:112">112</a>
+          <span className="topbar-left">
+            <Icon name="ShieldAlert" size={14} />
+            <span>Anti-Ragging Helpline: <a href="tel:18001805522">1800-180-5522</a></span>
+            <span className="topbar-divider">·</span>
+            <span>Emergency: <a href="tel:112">112</a></span>
           </span>
-          <span>
-            <Link to="/help/raise-query" style={{ color: '#fff', marginRight: 16 }}>
+          <span className="topbar-right">
+            <Link to="/help/raise-query" className="topbar-grievance">
               Raise a Grievance
             </Link>
-            <Link to="/admin">Admin</Link>
+            <Link to="/admin" className="topbar-admin">Admin</Link>
           </span>
         </div>
       </div>
 
-      <header className="navbar">
+      <header className="navbar" ref={navbarRef}>
         <div className="container navbar-inner">
           <Link to="/" className="brand" onClick={closeAll}>
             <img src={duLogo} alt="Delhi University logo" className="brand-crest" />

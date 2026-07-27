@@ -20,7 +20,6 @@ import DUSUCells from './pages/about-dusu/DUSUCells.jsx'
 // Administration (Our Team)
 import OurTeam from './pages/our-team/OurTeam.jsx'
 import OfficeBearers from './pages/our-team/OfficeBearers.jsx'
-import CollegeRepresentatives from './pages/our-team/CollegeRepresentatives.jsx'
 import StaffAdvisors from './pages/our-team/StaffAdvisors.jsx'
 
 // Campuses
@@ -95,7 +94,6 @@ export default function App() {
           {/* ── Administration ── */}
           <Route path="/team"                         element={<OurTeam />} />
           <Route path="/team/office-bearers"          element={<OfficeBearers />} />
-          <Route path="/team/college-representatives" element={<CollegeRepresentatives />} />
           <Route path="/team/staff-advisors"          element={<StaffAdvisors />} />
 
           {/* ── Campuses ── */}

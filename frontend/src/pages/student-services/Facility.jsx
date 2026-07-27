@@ -13,17 +13,6 @@ const FACILITIES = {
       ['Contact', 'Sports Council, DU — +91-11-2766-7531 (sample)'],
     ],
   },
-  wus: {
-    name: 'WUS Health Centre',
-    icon: '🏥',
-    desc: 'The Wellness & University Health Service (WUS) provides free outpatient care, dental, eye, and specialist consultations to all DU students and staff.',
-    details: [
-      ['Location', 'Near University Stadium, North Campus'],
-      ['OPD Hours', 'Mon – Sat: 8 AM – 8 PM'],
-      ['Emergency', '24×7 available'],
-      ['Contact', '+91-11-2766-7011 (sample)'],
-    ],
-  },
   'polo-ground': {
     name: 'Polo Ground',
     icon: '🏇',

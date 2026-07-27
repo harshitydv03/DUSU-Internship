@@ -13,63 +13,62 @@ export const SITE = {
 
 export const NAV_MENU = [
   {
+    label: 'About DUSU',
+    to: '/about',
+    children: [
+      { label: 'Mission & Vision', to: '/about/mission' },
+      { label: 'History & Initiatives', to: '/about/history' },
+      { label: 'Mandate / Constitution', to: '/about/structure' },
+      { label: "President's Message", to: '/about/presidents-message' },
+      { label: 'Handbook', to: '/about/handbook' },
+      { label: 'Elections', to: '/about/elections' },
+      { label: 'Gallery', to: '/gallery' },
+      { label: 'DUSU Cells', to: '/about/dusu-cells' },
+    ],
+  },
+  {
     label: 'Student Services',
     to: '/services',
     children: [
-      { label: 'Scholarships',              to: '/services/scholarships' },
-      { label: 'Opportunities',            to: '/services/opportunities' },
-      { label: 'Downloads & Forms',        to: '/services/downloads' },
-      { label: 'Hostel / PG Information',  to: '/services/hostel-pg' },
-      { label: 'Health Services (WUS)',    to: '/services/health' },
-      { label: 'Samarth DU Portal',        to: 'https://samarth.uod.ac.in/', external: true },
-      { label: 'Sports Complex',           to: '/services/facilities/sports-complex' },
-      { label: 'WUS Health Centre',        to: '/services/facilities/wus' },
-      { label: 'Polo Ground',             to: '/services/facilities/polo-ground' },
-      { label: 'DUCC',                    to: '/services/facilities/ducc' },
-      { label: 'Banks & Post Office',     to: '/services/facilities/banks-post' },
+      { label: 'Scholarships', to: '/services/scholarships' },
+      { label: 'Opportunities', to: '/services/opportunities' },
+      { label: 'Downloads & Forms', to: '/services/downloads' },
+      { label: 'Hostel / PG Information', to: '/services/hostel-pg' },
+      { label: 'Health Services', to: '/services/health' },
+      { label: 'Samarth DU Portal', to: 'https://slc.uod.ac.in/', external: true },
+      { label: 'Sports Complex', to: '/services/facilities/sports-complex' },
+      { label: 'Polo Ground', to: '/services/facilities/polo-ground' },
+      { label: 'DUCC', to: '/services/facilities/ducc' },
+      { label: 'Banks & Post Office', to: '/services/facilities/banks-post' },
     ],
   },
   {
     label: 'Student Help',
     to: '/help',
     children: [
-      { label: 'Help Centre',              to: '/help' },
+      { label: 'Help Centre', to: '/help' },
       { label: 'Raise Query / Grievance', to: '/help/raise-query' },
-      { label: 'Track My Query',          to: '/help/track-query' },
-      { label: 'FAQs & Knowledge Base',   to: '/help/faqs' },
-      { label: 'Helplines & Emergency',   to: '/help/helplines' },
-      { label: 'Anti-Ragging & Safety',   to: '/help/anti-ragging' },
-    ],
-  },
-  {
-    label: 'About DUSU',
-    to: '/about',
-    children: [
-      { label: 'Mission & Vision',          to: '/about/mission' },
-      { label: 'Mandate / Constitution',    to: '/about/structure' },
-      { label: "President's Message",       to: '/about/presidents-message' },
-      { label: 'Handbook',                  to: '/about/handbook' },
-      { label: 'Elections',                 to: '/about/elections' },
-      { label: 'Gallery',                   to: '/gallery' },
-      { label: 'DUSU Cells',               to: '/about/dusu-cells' },
+      { label: 'Track My Query', to: '/help/track-query' },
+      { label: 'FAQs & Knowledge Base', to: '/help/faqs' },
+      { label: 'Helplines & Emergency', to: '/help/helplines' },
+      { label: 'Anti-Ragging & Safety', to: '/help/anti-ragging' },
     ],
   },
   {
     label: 'Administration',
     to: '/team/office-bearers',
     children: [
-      { label: 'Office Bearers',            to: '/team/office-bearers' },
-      { label: 'College Representatives',   to: '/team/college-representatives' },
-      { label: 'Staff Advisors',            to: '/team/staff-advisors' },
+      { label: 'Office Bearers', to: '/team/office-bearers' },
+      { label: 'Staff Advisors', to: '/team/staff-advisors' },
     ],
   },
   {
     label: 'Campuses',
     to: '/campuses',
     children: [
-      { label: 'Colleges & Departments',    to: '/colleges' },
-      { label: 'Prerana Bhawan',            to: '/campuses/prerana-bhawan' },
-      { label: 'DUSU Office',              to: '/campuses/dusu-office' },
+      { label: 'Colleges & Departments', to: '/colleges' },
+      { label: 'Prerana Bhawan', to: '/campuses/prerana-bhawan' },
+      { label: 'DUSU Office', to: '/campuses/dusu-office' },
     ],
   },
   { label: 'Contact', to: '/contact' },
@@ -162,10 +161,54 @@ export const SAMPLE_EVENTS = [
 ]
 
 export const OFFICE_BEARERS = [
-  { role: 'President', name: 'To be updated', college: 'University of Delhi', initials: 'P' },
-  { role: 'Vice President', name: 'To be updated', college: 'University of Delhi', initials: 'VP' },
-  { role: 'Secretary', name: 'To be updated', college: 'University of Delhi', initials: 'S' },
-  { role: 'Joint Secretary', name: 'To be updated', college: 'University of Delhi', initials: 'JS' },
+  {
+    role: 'President',
+    name: 'Aryan Maan',
+    college: 'University of Delhi',
+    initials: 'AM',
+    image: '/images/president.jpeg',
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/aryanmaan' },
+      { platform: 'twitter', url: 'https://x.com/aryanmaan09' },
+      { platform: 'facebook', url: 'https://facebook.com/aryanmaan11' }
+    ]
+  },
+  {
+    role: 'Vice President',
+    name: 'Rahul Jhansla',
+    college: 'University of Delhi',
+    initials: 'RJ',
+    image: '/images/vicepresident.jpeg',
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/rahuljhansla.delhiuniversity' },
+      { platform: 'twitter', url: 'https://x.com/rahuljhanslaa' },
+      { platform: 'facebook', url: 'https://facebook.com/rahuljhanslaofficial' },
+      { platform: 'website', url: 'https://rahuljhansla.in' }
+    ]
+  },
+  {
+    role: 'Secretary',
+    name: 'Kunal Choudhary',
+    college: 'University of Delhi',
+    initials: 'KC',
+    image: '/images/secretary.jpeg',
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/kunalchoudhary05' },
+      { platform: 'twitter', url: 'https://x.com/kunalchoudhry05' },
+      { platform: 'facebook', url: 'https://facebook.com/kuunal.chaudhary.2025' }
+    ]
+  },
+  {
+    role: 'Joint Secretary',
+    name: 'Deepika Jha',
+    college: 'University of Delhi',
+    initials: 'DJ',
+    image: '/images/jointsec.jpeg',
+    socials: [
+      { platform: 'instagram', url: 'https://instagram.com/deepika.jhaa' },
+      { platform: 'threads', url: 'https://threads.net/@deepika.jhaa' }
+    ]
+  }
 ]
 
 export const FAQS = [
