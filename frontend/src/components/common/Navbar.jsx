@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { NAV_MENU } from '../../utils/constants.js'
 import Icon from '../Icon.jsx'
-import duLogo from '../../assets/du-logo.png'
+import duLogo from '../../assets/1280px-Delhi_University.svg.png'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
