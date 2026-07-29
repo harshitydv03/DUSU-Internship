@@ -1,5 +1,8 @@
-import { useState, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import { BookOpen, Wrench, Flame } from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
+import Icon from '../../components/Icon.jsx'
+import apiClient from '../../utils/apiClient.js'
 
 // Illustrative dummy/draft data taken directly from "Services and Initiatives" document
 const CHRONICLE_DATA = [
@@ -104,9 +107,32 @@ const ERAS = [
   { id: '2000-2024', label: '2000 – 2024', subtitle: 'Modern Reform & Scaling' }
 ]
 
+const DEFAULT_ALUMNI = [
+  { name: "Arun Jaitley", term: "1974–1975", post: "President", party: "ABVP", initials: "AJ", majorPosts: ["Union Minister of Finance", "Minister of Corporate Affairs", "Minister of Defence & Law", "Leader of the House, Rajya Sabha"], keyWorks: ["Led key anti-Emergency student activism during the JP Movement.", "Primary architect of the nationwide Goods & Services Tax (GST) rollout.", "Enacted the Insolvency & Bankruptcy Code (IBC)."] },
+  { name: "Rekha Gupta", term: "1996–1997", post: "President", party: "ABVP", initials: "RG", majorPosts: ["Chief Minister of Delhi", "Member of Legislative Assembly (Shalimar Bagh)", "General Secretary, BJP Delhi State"], keyWorks: ["Driven extensive civic and municipal infrastructure overhauls across Delhi.", "Spearheaded urban development initiatives and women's empowerment programs."] },
+  { name: "Ajay Maken", term: "1985–1986", post: "President", party: "NSUI", initials: "AM", majorPosts: ["Union Cabinet Minister for Housing & Urban Poverty Alleviation", "Union MoS (Independent Charge) for Youth Affairs & Sports", "Speaker, Delhi Legislative Assembly"], keyWorks: ["Introduced key urban housing reforms and slum rehabilitation schemes.", "Managed national sports administration and infrastructure modernization."] },
+  { name: "Vijay Goel", term: "1977–1978", post: "President", party: "ABVP", initials: "VG", majorPosts: ["Minister of State for Parliamentary Affairs", "Minister of Youth Affairs & Sports", "3-Term Member of Parliament (Lok Sabha & Rajya Sabha)"], keyWorks: ["Spearheaded youth mobilization campaigns and heritage conservation projects.", "Founded social initiatives including the \"Toy Bank\" for underprivileged children."] },
+  { name: "Alka Lamba", term: "1995–1996", post: "President", party: "NSUI", initials: "AL", majorPosts: ["President, All India Mahila Congress", "Member of Legislative Assembly (Chandni Chowk)", "National Spokesperson, INC"], keyWorks: ["Advocated extensively for youth rights and women's political representation.", "Led local community safety, education and sanitation programs in Delhi."] },
+  { name: "Vijender Gupta", term: "1984–1985", post: "Vice President", party: "ABVP", initials: "VG", majorPosts: ["Speaker, Delhi Legislative Assembly", "Leader of Opposition, Delhi Legislative Assembly", "President, Delhi State BJP"], keyWorks: ["Spearheaded public utility accountability campaigns in municipal governance.", "Maintained strong legislative oversight on municipal budgets and urban affairs."] },
+  { name: "Nupur Sharma", term: "2008–2009", post: "President", party: "ABVP", initials: "NS", majorPosts: ["National Spokesperson, BJP", "Executive Member, Bharatiya Janata Yuva Morcha (BJYM)"], keyWorks: ["Prominent voice in national political discourse and media debates.", "Organized student youth outreach and campaign programs across campuses."] },
+  { name: "Anil Jha Vats", term: "1997–1998", post: "President", party: "ABVP", initials: "AJ", majorPosts: ["Member of Legislative Assembly (Kirari)", "Deputy Leader of Opposition, Delhi Assembly"], keyWorks: ["Championed regularization and basic infrastructure for Outer Delhi unauthorized colonies.", "Led public advocacy for clean drinking water and road network access in suburban areas."] },
+  { name: "Aprajita Thakur", term: "2023–2024", post: "Secretary", party: "ABVP", initials: "AT", majorPosts: ["Secretary, Delhi University Students' Union (DUSU)", "Youth Leader & Student Representative"], keyWorks: ["Won the 2023 DUSU Secretary election representing ABVP.", "Advocated for student welfare, campus infrastructure, and women's safety & health initiatives across DU."] }
+]
+
 export default function HistoryMandate() {
   const [activeEra, setActiveEra] = useState('1949-1990')
   const [activeCore, setActiveCore] = useState('All') // 'All' | 'Service' | 'Initiative'
+  const [alumniList, setAlumniList] = useState([])
+
+  useEffect(() => {
+    apiClient.get('/alumni')
+      .then(data => {
+        if (data && data.length > 0) setAlumniList(data)
+      })
+      .catch(() => {})
+  }, [])
+
+  const alumni = alumniList.length > 0 ? alumniList : DEFAULT_ALUMNI
 
   // Filter items based on selected Era and Core Area
   const filteredItems = useMemo(() => {
@@ -129,7 +155,7 @@ export default function HistoryMandate() {
         <div className="container" style={{ maxWidth: 960 }}>
 
           {/* Era Tabs Row */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16, marginBottom: 40 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16, marginBottom: 36 }}>
             {ERAS.map((era) => {
               const isActive = activeEra === era.id
               return (
@@ -137,21 +163,22 @@ export default function HistoryMandate() {
                   key={era.id}
                   onClick={() => setActiveEra(era.id)}
                   style={{
-                    background: isActive ? 'var(--accent)' : 'var(--surface)',
-                    color: isActive ? '#fff' : 'var(--text)',
+                    background: isActive ? 'var(--surface)' : 'rgba(255,255,255,0.7)',
+                    color: 'var(--ink)',
                     border: '1px solid var(--border)',
+                    borderTop: isActive ? '4px solid var(--primary)' : '1px solid var(--border)',
                     borderRadius: 12,
-                    padding: '16px 20px',
+                    padding: '18px 22px',
                     textAlign: 'left',
                     cursor: 'pointer',
-                    boxShadow: isActive ? '0 8px 20px rgba(124, 29, 46, 0.15)' : 'none',
+                    boxShadow: isActive ? '0 6px 20px rgba(124, 29, 46, 0.08)' : '0 2px 6px rgba(0,0,0,0.02)',
                     transition: 'all 0.2s ease',
                   }}
                 >
-                  <span style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', opacity: isActive ? 0.8 : 0.6, letterSpacing: '0.05em', marginBottom: 4 }}>
+                  <span style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: isActive ? 'var(--primary)' : 'var(--muted)', letterSpacing: '0.08em', marginBottom: 4 }}>
                     {era.subtitle}
                   </span>
-                  <span style={{ fontSize: '1.15rem', fontWeight: 800 }}>
+                  <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--heading)' }}>
                     {era.label}
                   </span>
                 </button>
@@ -160,31 +187,35 @@ export default function HistoryMandate() {
           </div>
 
           {/* Core Toggle Row */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 35 }}>
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', padding: 4, borderRadius: 30, display: 'inline-flex', gap: 4 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 36 }}>
+            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', padding: 4, borderRadius: 30, display: 'inline-flex', gap: 4, boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
               {[
-                { id: 'All', label: '📖 Show All' },
-                { id: 'Service', label: '🛠️ Union Service & Welfare' },
-                { id: 'Initiative', label: '🔥 Campaigns & Movements' }
+                { id: 'All', label: 'Show All', IconComp: BookOpen },
+                { id: 'Service', label: 'Union Service & Welfare', IconComp: Wrench },
+                { id: 'Initiative', label: 'Campaigns & Movements', IconComp: Flame }
               ].map(tab => {
                 const isActive = activeCore === tab.id
+                const TabIcon = tab.IconComp
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveCore(tab.id)}
                     style={{
                       border: 'none',
-                      background: isActive ? 'var(--accent)' : 'transparent',
+                      background: isActive ? 'var(--primary)' : 'transparent',
                       color: isActive ? '#fff' : 'var(--text)',
                       borderRadius: 24,
                       padding: '8px 20px',
-                      fontSize: '0.82rem',
+                      fontSize: '0.84rem',
                       fontWeight: 600,
                       cursor: 'pointer',
-                      transition: 'all 0.15s'
+                      transition: 'all 0.15s',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6
                     }}
                   >
-                    {tab.label}
+                    <TabIcon size={14} /> {tab.label}
                   </button>
                 )
               })}
@@ -192,7 +223,7 @@ export default function HistoryMandate() {
           </div>
 
           {/* Timeline Stream */}
-          <div style={{ position: 'relative', paddingLeft: 32 }}>
+          <div style={{ position: 'relative', paddingLeft: 32, marginBottom: '5rem' }}>
             {/* Center line decoration */}
             <div style={{ position: 'absolute', top: 0, bottom: 0, left: 11, width: 2, background: 'var(--border)' }} />
 
@@ -204,16 +235,16 @@ export default function HistoryMandate() {
               filteredItems.map((item, idx) => {
                 const isService = item.core === 'Service'
                 return (
-                  <div key={idx} className="timeline-item" style={{ position: 'relative', marginBottom: 35 }}>
+                  <div key={idx} className="timeline-item" style={{ position: 'relative', marginBottom: 32 }}>
                     {/* Circle Node */}
                     <div style={{
                       position: 'absolute',
                       left: -28,
-                      top: 4,
+                      top: 6,
                       width: 14,
                       height: 14,
                       borderRadius: '50%',
-                      background: isService ? '#0077b6' : '#d62828',
+                      background: isService ? '#0077b6' : 'var(--primary)',
                       border: '3px solid var(--surface)',
                       boxShadow: '0 0 0 3px var(--border)',
                       zIndex: 3
@@ -224,31 +255,36 @@ export default function HistoryMandate() {
                       background: 'var(--surface)',
                       borderRadius: 12,
                       border: '1px solid var(--border)',
-                      padding: '20px 24px',
-                      boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+                      borderLeft: `4px solid ${isService ? '#0077b6' : 'var(--primary)'}`,
+                      padding: '22px 26px',
+                      boxShadow: '0 2px 12px rgba(0,0,0,0.03)'
                     }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 8 }}>
-                        <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent)' }}>
+                        <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary)' }}>
                           {item.year}
                         </span>
                         <span style={{
                           fontSize: '0.72rem',
                           fontWeight: 700,
                           textTransform: 'uppercase',
-                          padding: '3px 10px',
+                          padding: '4px 12px',
                           borderRadius: 20,
-                          background: isService ? 'rgba(0, 119, 182, 0.1)' : 'rgba(214, 40, 40, 0.1)',
-                          color: isService ? '#0077b6' : '#d62828'
+                          background: isService ? 'rgba(0, 119, 182, 0.08)' : 'rgba(124, 29, 46, 0.08)',
+                          color: isService ? '#0077b6' : 'var(--primary)',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 5
                         }}>
-                          {isService ? '🛠️ Service / Welfare' : '🔥 Initiative / Campaign'}
+                          {isService ? <Wrench size={12} /> : <Flame size={12} />}
+                          <span>{isService ? 'Service / Welfare' : 'Initiative / Campaign'}</span>
                         </span>
                       </div>
 
-                      <h3 style={{ margin: '0 0 10px 0', fontSize: '1.15rem', color: 'var(--heading)' }}>
+                      <h3 style={{ margin: '0 0 10px 0', fontSize: '1.15rem', color: 'var(--heading)', fontWeight: 750 }}>
                         {item.title}
                       </h3>
 
-                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text)', lineHeight: 1.6 }}>
+                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text)', lineHeight: 1.65 }}>
                         {item.desc}
                       </p>
                     </div>
@@ -258,8 +294,83 @@ export default function HistoryMandate() {
             )}
           </div>
 
+          {/* Prominent Alumni & Leadership Legacy */}
+          <div style={{ paddingTop: '2.5rem', borderTop: '1px solid var(--border)' }}>
+            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
+              <span className="badge" style={{ marginBottom: 8, display: 'inline-block' }}>Leadership Legacy</span>
+              <h2 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--heading)' }}>Prominent DUSU Alumni & Past Leaders</h2>
+              <p style={{ fontSize: '0.92rem', color: 'var(--muted)', marginTop: 6, maxWidth: 640, marginInline: 'auto' }}>
+                Former DUSU office bearers who emerged from campus democracy to serve in prominent national leadership roles.
+              </p>
+            </div>
+
+            <div style={{ display: 'grid', gap: 20, gridTemplateColumns: 'repeat(auto-fill, minmax(290px, 1fr))' }}>
+              {alumni.map((alum, idx) => (
+                <div key={idx} style={{
+                  background: 'var(--surface)',
+                  border: '1px solid var(--border)',
+                  borderTop: '3px solid var(--accent)',
+                  borderRadius: 14,
+                  padding: '1.5rem',
+                  boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
+                  display: 'flex',
+                  flexDirection: 'column'
+                }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                    <div style={{
+                      width: 46,
+                      height: 46,
+                      borderRadius: '50%',
+                      background: 'var(--primary-soft)',
+                      color: 'var(--primary)',
+                      fontWeight: 800,
+                      fontSize: '1rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      flexShrink: 0
+                    }}>
+                      {alum.initials || alum.name.split(' ').map(n=>n[0]).join('')}
+                    </div>
+                    <div>
+                      <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--heading)', fontWeight: 750 }}>{alum.name}</h3>
+                      <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 2 }}>
+                        {alum.post} ({alum.term}) {alum.party ? `• ${alum.party}` : ''}
+                      </div>
+                    </div>
+                  </div>
+
+                  {alum.majorPosts && alum.majorPosts.length > 0 && (
+                    <div style={{ marginBottom: 14 }}>
+                      <div style={{ fontSize: '0.74rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 6 }}>
+                        Key Positions
+                      </div>
+                      <ul style={{ margin: 0, paddingLeft: 18, fontSize: '0.84rem', color: 'var(--text)', lineHeight: 1.45 }}>
+                        {alum.majorPosts.map((mp, i) => (
+                          <li key={i}>{mp}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {alum.keyWorks && alum.keyWorks.length > 0 && (
+                    <div style={{ marginTop: 'auto', paddingTop: 12, borderTop: '1px solid var(--border)' }}>
+                      <div style={{ fontSize: '0.74rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 6 }}>
+                        Notable Contributions
+                      </div>
+                      <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.5 }}>
+                        {alum.keyWorks.join(' ')}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </section>
     </>
   )
 }
+

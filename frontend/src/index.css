@@ -1,22 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
 /* ============ DUSU design system ============ */
 :root {
   --primary: #7c1d2e;
   --primary-dark: #5a1421;
-  --primary-soft: #f7e9ec;
+  --primary-soft: #f1dfd8;
   --accent: #d9a53a;
-  --accent-soft: #fdf3dd;
-  --bg: #faf8f4;
-  --surface: #ffffff;
+  --accent-soft: #f3e5c4;
+  --bg: #F3E9D7;
+  --bg-faint: #F3E9D7;
+  --surface: #F9F2E6;
+  --surface-soft: #E8DCC8;
   --ink: #26201e;
-  --muted: #70655f;
-  --line: #e8e0d6;
+  --muted: #6b5f54;
+  --line: #DFD3BF;
+  --border: #DFD3BF;
   --success: #1d7c40;
   --danger: #b3261e;
   --radius: 12px;
-  --shadow: 0 2px 10px rgba(38, 32, 30, 0.07);
-  --shadow-lg: 0 12px 32px rgba(38, 32, 30, 0.14);
-  --font-display: 'Playfair Display', Georgia, serif;
-  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --shadow: 0 2px 10px rgba(38, 32, 30, 0.08);
+  --shadow-lg: 0 12px 32px rgba(38, 32, 30, 0.15);
+  --font-display: 'Merriweather', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
 }
 
 * {
@@ -25,13 +30,36 @@
   box-sizing: border-box;
 }
 
+html,
+body,
+#root,
+.app-shell,
+main,
+.page,
+.section,
+.section-alt {
+  background-color: var(--bg) !important;
+}
+
+.bg-white,
+.bg-background,
+[class*="bg-white"] {
+  background-color: var(--bg) !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-body {
+body,
+button,
+input,
+select,
+textarea {
   font-family: var(--font-body);
-  background: var(--bg);
+}
+
+body {
   color: var(--ink);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
@@ -49,7 +77,8 @@ main {
 
 h1,
 h2,
-h3 {
+h3,
+.font-heading {
   font-family: var(--font-display);
   line-height: 1.2;
 }
@@ -402,13 +431,12 @@ img {
   overflow: hidden;
 }
 
-/* subtle white gradient overlay (above the image, under the text) */
+/* subtle warm beige gradient overlay (above the image, under the text) */
 .hero::before {
   content: "";
   position: absolute;
   inset: 0;
-  /* roughly matches: absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent z-10 */
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.8) 35%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(90deg, rgba(243, 233, 215, 0.85) 0%, rgba(243, 233, 215, 0.94) 35%, rgba(243, 233, 215, 0) 100%);
   pointer-events: none;
   z-index: 0;
 }
@@ -416,6 +444,58 @@ img {
 .hero .container {
   position: relative;
   z-index: 1;
+}
+
+.hero-speaker {
+  position: absolute;
+  right: -58%;
+  bottom: 0;
+  max-width: 500px;
+  height: auto;
+  max-height: 650px;
+  /* Let the speaker image be tall enough */
+  object-fit: contain;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.stat-with-img {
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .hero-stats {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .hero-stat {
+    text-align: left;
+    border-left: none !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+    width: 50%;
+    padding: 16px 0px;
+    /* adjusted padding for mobile left align */
+  }
+
+  .hero-stat:last-child {
+    border-bottom: none;
+  }
+
+  .stat-with-img {
+    position: static;
+  }
+
+  .hero-speaker {
+    opacity: 1;
+    right: 0;
+    max-width: 60%;
+    max-height: 100%;
+    bottom: 0;
+    object-position: right bottom;
+  }
 }
 
 .hero-badge {

@@ -6,6 +6,7 @@ import apiClient from '../../utils/apiClient.js'
 // Simple helper mapper for cell icons based on name
 const getIconForCell = (name) => {
   const n = name.toLowerCase()
+  if (n.includes('literary') || n.includes('writing') || n.includes('book')) return 'BookOpen'
   if (n.includes('legal') || n.includes('nyay')) return 'Scale'
   if (n.includes('women') || n.includes('swaryamsiddha')) return 'Users'
   if (n.includes('environmental') || n.includes('green') || n.includes('eco')) return 'Leaf'
@@ -55,16 +56,37 @@ export default function DUSUCells() {
       })
   }, [])
 
-  // Use seeded cells or fallback to pre-seeded static cells if API is empty/loading
+  // Static fallback array mirroring full dusucells dataset
   const cellsList = cells.length > 0 ? cells : [
-    { name: 'Legal Aid Cell', about: 'Provides free legal guidance to students on academic, hostel, and grievance-related matters.' },
-    { name: 'Women\'s Cell', about: 'Addresses gender-based issues, harassment complaints, and promotes women\'s welfare on campus.' },
-    { name: 'Anti-Ragging Cell', about: 'Works in coordination with university authorities to prevent and address ragging incidents.' },
-    { name: 'Cultural Cell', about: 'Organises cultural festivals, debates, and inter-college competitions across DU.' },
-    { name: 'Sports Cell', about: 'Coordinates sports tournaments, inter-college meets, and liaises with the Sports Council.' },
-    { name: 'SC/ST/OBC Welfare Cell', about: 'Assists students from reserved categories with scholarships, reservations, and related grievances.' },
-    { name: 'Environment Cell', about: 'Drives sustainability initiatives — tree plantation drives, waste reduction campaigns, and eco-awareness.' },
-    { name: 'Media & Publications Cell', about: 'Manages DUSU communications, publications, and social media outreach.' },
+    { name: 'Literary Cell', about: 'Promotes creative writing, poetry, storytelling, and literary discussions. Organizes book reviews, writing competitions, and author interactions.' },
+    { name: 'Fine Arts Cell', about: 'Encourages painting, sketching, crafts, and visual arts. Conducts exhibitions, workshops, and art competitions.' },
+    { name: 'Environmental Cell (Green Warriors)', about: 'Works on environmental awareness and sustainability initiatives. Organizes plantation drives, cleanliness campaigns, and eco-projects.' },
+    { name: 'Women Empowerment Cell (Swaryamsiddha)', about: 'Focuses on women’s leadership, safety, and empowerment. Conducts awareness programs, workshops, and mentorship activities.' },
+    { name: 'Student Welfare Cell (Chhatrahit)', about: 'Addresses student concerns and welfare issues. Acts as a bridge between students and authorities.' },
+    { name: 'Alumni Relations Cell (Alumni Connect)', about: 'Maintains connections with former students. Facilitates networking, mentorship, and alumni engagement programs.' },
+    { name: 'International Students Cell (Global Connect)', about: 'Supports international students in academics and campus life. Promotes cultural exchange and inclusivity.' },
+    { name: 'Community Outreach Cell (Sevasetu)', about: 'Encourages students to participate in social service activities. Works with communities through awareness and support programs.' },
+    { name: 'Mental Health and Wellness Cell', about: 'Promotes mental well-being among students. Conducts counseling awareness sessions and stress-management activities.' },
+    { name: 'Divyang Students Cell (Saksham)', about: 'Supports students with disabilities. Advocates accessibility, inclusion, and equal opportunities.' },
+    { name: 'Debate and Public Speaking Cell (Manthan)', about: 'Develops communication and critical-thinking skills. Organizes debates, MUNs, and speaking competitions.' },
+    { name: 'Legal Aid Cell (Nyay Nidhi)', about: 'Spreads awareness about legal rights and responsibilities. Conducts legal literacy and guidance sessions.' },
+    { name: 'Ideological Event Cell (Vimarsh)', about: 'Provides a platform for discussions on social, political, and national issues. Organizes seminars and intellectual dialogues.' },
+    { name: 'Hostel Cell (Hostel Happenings)', about: 'Addresses hostel-related issues and student concerns. Also promotes hostel-based events and activities.' },
+    { name: 'PG Cell (PG Connect)', about: 'Focuses on postgraduate students’ academic and welfare needs. Helps connect PG students across departments.' },
+    { name: 'Fashion Club (Vogue Vani)', about: 'Promotes fashion, styling, and creative expression. Organizes fashion shows and design-related events.' },
+    { name: 'Language Exchange Club (Bhasha Sangam)', about: 'Encourages learning and sharing different languages. Promotes linguistic diversity and cultural understanding.' },
+    { name: 'Cultural Cell (Sanskriti)', about: 'Celebrates India’s cultural heritage and diversity. Organizes festivals, cultural performances, and competitions.' },
+    { name: 'Academic Affairs Cell (Gyan Setu)', about: 'Focuses on academic development and student learning. Conducts seminars, workshops, and academic support activities.' },
+    { name: 'Placement Cell (Rozgar)', about: 'Helps students explore career and employment opportunities. Conducts placement drives, career talks, and skill sessions.' },
+    { name: 'Innovation and Incubation Cell (Tech Trek)', about: 'Promotes innovation, technology, and problem-solving. Supports student projects and startup ideas.' },
+    { name: 'Media and Publications Cell (Abhivyakti)', about: 'Handles content creation, reporting, and publicity activities. Promotes communication through articles, newsletters, and media coverage.' },
+    { name: 'Sports Cell (Khelo Bharat)', about: 'Promotes sports participation and fitness. Organizes tournaments, competitions, and sporting events.' },
+    { name: 'Research and Development Cell (Tarkshakti)', about: 'Encourages research, analysis, and innovation. Supports students in academic and policy-oriented research projects.' },
+    { name: 'Social Service Cell (Seva Squad)', about: 'Engages students in volunteer and social welfare activities. Works on community development and humanitarian initiatives.' },
+    { name: 'Startup and Entrepreneurship Cell (Startup Strike)', about: 'Supports aspiring entrepreneurs and business innovators. Organizes startup events, mentorship, and networking opportunities.' },
+    { name: 'Diversity and Inclusion Cell (Sangam)', about: 'Promotes equality, inclusivity, and respect for diversity. Encourages a welcoming campus environment for all students.' },
+    { name: 'Film and Photography Cell (Reel Raaz)', about: 'Provides opportunities in filmmaking, photography, and visual storytelling. Organizes screenings, contests, and workshops.' },
+    { name: 'Theatre and Drama Cell (Rangmanch)', about: 'Promotes acting, stage performance, and dramatic arts. Conducts plays, street theatre performances, and acting workshops.' }
   ]
 
   return (

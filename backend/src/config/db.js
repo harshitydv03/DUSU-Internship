@@ -1,8 +1,17 @@
 // MongoDB via Mongoose. Swap to Atlas later by changing only MONGODB_URI in
 // your .env — no code changes needed.
 import mongoose from 'mongoose'
+import dns from 'dns'
 import { SEED } from './seed.js'
 import { seedAdmin } from '../lib/auth.js'
+
+// Configure reliable public DNS resolvers to resolve MongoDB Atlas SRV records
+// on Windows networks where local DNS SRV queries fail.
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1'])
+} catch (_err) {
+  // Ignore if setting custom DNS servers fails
+}
 
 // Every collection is a generic document store: plain JS object in, plain JS
 // object out. Add a name here (and optionally seed data in seed.js) to get a
@@ -11,7 +20,8 @@ export const RESOURCES = [
   'notices', 'events', 'queries', 'team', 'scholarships', 'opportunities',
   'downloads', 'resources', 'milestones', 'faqs', 'gallery', 'contact',
   'colleges', 'hostels', 'departments', 'medical', 'dusucells', 'officebearers',
-  'dusuconstitution', 'staffadvisors',
+  'dusuconstitution', 'staffadvisors', 'electionrules', 'electionposts',
+  'electionphases', 'studentorgs', 'alumni',
 ]
 
 // Generic schema: stores any JSON document. No per-resource schema needed —
@@ -33,13 +43,23 @@ export async function connectDB() {
   await mongoose.connect(uri)
   console.log(`MongoDB connected → ${uri}`)
 
-  // Seed any empty collection on first run.
+  // Seed empty collections or re-seed when seed dataset size changes / FORCE_RESEED is set.
+  const forceReseedTables = ['dusucells', 'electionrules', 'electionposts', 'electionphases', 'studentorgs', 'alumni']
+
   for (const table of RESOURCES) {
     const Model = getModel(table)
     const count = await Model.countDocuments()
-    if (count === 0 && SEED[table]) {
-      await Model.insertMany(SEED[table].map((doc) => ({ data: doc })))
-      console.log(`  seeded ${SEED[table].length} document(s) into '${table}'`)
+    const seedItems = SEED[table]
+    const forceReseed = process.env.FORCE_RESEED === 'true'
+
+    if (seedItems && Array.isArray(seedItems)) {
+      if (count === 0 || (forceReseedTables.includes(table) && count !== seedItems.length) || forceReseed) {
+        if (count > 0) {
+          await Model.deleteMany({})
+        }
+        await Model.insertMany(seedItems.map((doc) => ({ data: doc })))
+        console.log(`  seeded ${seedItems.length} document(s) into '${table}'`)
+      }
     }
   }
 

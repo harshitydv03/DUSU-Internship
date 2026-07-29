@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { AlertCircle } from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import apiClient from '../../utils/apiClient.js'
 import Icon from '../../components/Icon.jsx'
@@ -62,9 +63,9 @@ export default function StaffAdvisors() {
               padding: '2rem 2.4rem',
               boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
             }}>
-              <p style={{ color: 'var(--muted)', fontSize: '0.88rem', margin: 0 }}>
-                ⚠️ The list of Staff Advisors for the 2026–27 session will be updated here once
-                officially communicated.
+              <p style={{ color: 'var(--muted)', fontSize: '0.88rem', margin: 0, display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                <AlertCircle size={16} style={{ color: 'var(--accent)', flexShrink: 0 }} />
+                <span>The list of Staff Advisors for the 2026–27 session will be updated here once officially communicated.</span>
               </p>
             </div>
           ) : (

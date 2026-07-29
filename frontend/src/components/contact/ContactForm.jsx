@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { CheckCircle } from 'lucide-react'
 
 // Messages are acknowledged locally for now; wire to POST /api/contact when
 // the backend is ready.
@@ -15,9 +16,11 @@ export default function ContactForm() {
 
   if (sent) {
     return (
-      <div className="alert alert-success">
-        ✅ Thanks, {form.name.split(' ')[0] || 'friend'}! Your message has been recorded. The
-        DUSU office typically responds within 3–5 working days.
+      <div className="alert alert-success" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+        <CheckCircle size={18} style={{ color: 'var(--success)', flexShrink: 0 }} />
+        <span>
+          Thanks, {form.name.split(' ')[0] || 'friend'}! Your message has been recorded. The DUSU office typically responds within 3–5 working days.
+        </span>
       </div>
     )
   }

@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { Search, ChevronUp, ChevronDown } from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import AboutSection from '../../components/about-dusu/AboutSection.jsx'
 import apiClient from '../../utils/apiClient.js'
@@ -82,15 +83,16 @@ export default function StructureConstitution() {
         </p>
 
         {/* Search Bar */}
-        <div style={{ marginBottom: '22px' }}>
+        <div style={{ marginBottom: '22px', position: 'relative' }}>
+          <Search size={18} style={{ position: 'absolute', left: 16, top: 16, color: 'var(--muted)' }} />
           <input
             type="text"
-            placeholder="🔍 Search articles, chapters, or keywords (e.g. Patron, quorum, age, no-confidence)..."
+            placeholder="Search articles, chapters, or keywords (e.g. Patron, quorum, age, no-confidence)..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             style={{
               width: '100%',
-              padding: '14px 20px',
+              padding: '14px 20px 14px 44px',
               borderRadius: '14px',
               border: '1.5px solid var(--border)',
               background: 'var(--surface)',
@@ -136,8 +138,8 @@ export default function StructureConstitution() {
                   }}
                 >
                   <span style={{ fontWeight: 700, color: 'var(--primary)', letterSpacing: '0.05em' }}>{ch.chapter}</span>
-                  <span style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: 600 }}>
-                    {isExpanded ? '▲ Hide Sections' : `▼ View (${ch.articles.length} Articles)`}
+                  <span style={{ fontSize: '0.85rem', color: 'var(--muted)', fontWeight: 600, display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+                    {isExpanded ? <><ChevronUp size={14} /> Hide Sections</> : <><ChevronDown size={14} /> View ({ch.articles.length} Articles)</>}
                   </span>
                 </div>
                 

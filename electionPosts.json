@@ -1,0 +1,37 @@
+[
+  {
+    "post": "President",
+    "electorate": "All eligible DU students (Central DUSU)",
+    "votingMethod": "Electronic Voting Machine (EVM)",
+    "responsibilities": "Official head of DUSU; represents students in University Academic and Executive Council meetings; leads policy negotiations.",
+    "order": 1
+  },
+  {
+    "post": "Vice-President",
+    "electorate": "All eligible DU students (Central DUSU)",
+    "votingMethod": "Electronic Voting Machine (EVM)",
+    "responsibilities": "Assists the President; presides over union activities in the President's absence; oversees internal committee functions.",
+    "order": 2
+  },
+  {
+    "post": "Secretary",
+    "electorate": "All eligible DU students (Central DUSU)",
+    "votingMethod": "Electronic Voting Machine (EVM)",
+    "responsibilities": "Chief administrative officer of the Union; responsible for official correspondence, records and organizing union conventions.",
+    "order": 3
+  },
+  {
+    "post": "Joint Secretary",
+    "electorate": "All eligible DU students (Central DUSU)",
+    "votingMethod": "Electronic Voting Machine (EVM)",
+    "responsibilities": "Manages financial records, event organization, intra-campus communication and student grievance documentation.",
+    "order": 4
+  },
+  {
+    "post": "Central Council Representatives (CCRs)",
+    "electorate": "Students of respective affiliated colleges",
+    "votingMethod": "Paper Ballot / College EVM",
+    "responsibilities": "Each affiliated college elects 2 Central Councillors to represent the college body in the DUSU Central Council.",
+    "order": 5
+  }
+]

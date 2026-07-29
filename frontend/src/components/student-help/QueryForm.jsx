@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { CheckCircle } from 'lucide-react'
 import apiClient from '../../utils/apiClient.js'
 import { QUERY_CATEGORIES, QUERY_STORAGE_KEY } from '../../utils/constants.js'
 
@@ -35,11 +36,13 @@ export default function QueryForm() {
   if (submitted) {
     return (
       <div className="form-card">
-        <div className="alert alert-success">
-          ✅ Your query has been registered. Your reference ID is <strong>{submitted}</strong>.
-          Save it to check the status later.
+        <div className="alert alert-success" style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <CheckCircle size={18} style={{ color: 'var(--success)', flexShrink: 0 }} />
+          <span>
+            Your query has been registered. Your reference ID is <strong>{submitted}</strong>. Save it to check the status later.
+          </span>
         </div>
-        <Link to="/help/track-query" className="btn btn-primary">
+        <Link to="/help/track-query" className="btn btn-primary" style={{ marginTop: 14 }}>
           Track my query
         </Link>
       </div>

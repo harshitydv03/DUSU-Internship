@@ -13,10 +13,6 @@ export default function WorkMilestones() {
       <section className="section">
         <div className="container" style={{ maxWidth: 760 }}>
           <Timeline items={MILESTONES} />
-          <p style={{ fontSize: '0.9rem', color: 'var(--muted)' }}>
-            Entries marked (sample) are placeholders — the current panel's verified work report
-            will be published here.
-          </p>
         </div>
       </section>
     </>

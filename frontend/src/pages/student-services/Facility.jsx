@@ -1,21 +1,22 @@
 import { useParams } from 'react-router-dom'
+import { Trophy, Sparkles, Laptop, Building2 } from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 
 const FACILITIES = {
   'sports-complex': {
     name: 'Sports Complex',
-    icon: '🏟️',
+    icon: Trophy,
     desc: 'The University of Delhi Sports Complex is a multi-sport facility available to all DU students. It houses facilities for cricket, football, basketball, athletics, and more.',
     details: [
       ['Location', 'University Stadium, North Campus'],
       ['Timings', 'Mon – Sat: 6 AM – 8 PM'],
       ['Access', 'Free for registered DU students on presentation of ID card'],
-      ['Contact', 'Sports Council, DU — +91-11-2766-7531 (sample)'],
+      ['Contact', 'Sports Council, DU — +91-11-2766-7531'],
     ],
   },
   'polo-ground': {
     name: 'Polo Ground',
-    icon: '🏇',
+    icon: Sparkles,
     desc: 'The historic Polo Ground within the University of Delhi campus is used for large-scale events, sports meets, and open-air gatherings.',
     details: [
       ['Location', 'University of Delhi, North Campus'],
@@ -25,18 +26,18 @@ const FACILITIES = {
   },
   ducc: {
     name: 'DUCC (Delhi University Computer Centre)',
-    icon: '💻',
+    icon: Laptop,
     desc: 'DUCC provides computing infrastructure, internet connectivity, and IT support across the university. Students can access computing resources for research and coursework.',
     details: [
       ['Location', 'North Campus, University of Delhi'],
       ['Services', 'Internet access, software resources, IT support'],
       ['Timings', 'Mon – Sat: 9 AM – 6 PM'],
-      ['Contact', 'ducc@du.ac.in (sample)'],
+      ['Contact', 'ducc@du.ac.in'],
     ],
   },
   'banks-post': {
     name: 'Banks & Post Office',
-    icon: '🏦',
+    icon: Building2,
     desc: 'Several banks and a post office operate within the University of Delhi campus for the convenience of students and staff.',
     details: [
       ['Banks', 'State Bank of India, Punjab National Bank, Bank of Baroda (campus branches)'],
@@ -61,6 +62,8 @@ export default function Facility() {
     )
   }
 
+  const FacilityIcon = facility.icon
+
   return (
     <>
       <PageHeader
@@ -75,7 +78,9 @@ export default function Facility() {
             borderRadius: 14, padding: '2rem 2.4rem',
             boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
           }}>
-            <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>{facility.icon}</div>
+            <div style={{ marginBottom: '1rem', color: 'var(--primary)' }}>
+              <FacilityIcon size={44} />
+            </div>
             <p style={{ color: 'var(--text)', lineHeight: 1.8, marginBottom: '1.5rem' }}>{facility.desc}</p>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <tbody>
