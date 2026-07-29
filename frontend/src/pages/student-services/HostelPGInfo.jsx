@@ -1,4 +1,14 @@
 import { useState, useEffect, useMemo } from 'react'
+import {
+  Building,
+  MapPin,
+  Lightbulb,
+  ExternalLink,
+  ShieldCheck,
+  Lock,
+  FileText,
+  UserCheck
+} from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import apiClient from '../../utils/apiClient.js'
 
@@ -64,7 +74,7 @@ function HostelDetail({ selected }) {
   if (!selected) {
     return (
       <div style={{ color: 'var(--muted)', marginTop: '2rem', textAlign: 'center' }}>
-        <span style={{ fontSize: '3rem', display: 'block', marginBottom: '1rem' }}>🏢</span>
+        <Building size={48} style={{ color: 'var(--muted)', display: 'block', margin: '0 auto 1rem' }} />
         Select a hostel from the list to see its details and campus location.
       </div>
     )
@@ -100,8 +110,9 @@ function HostelDetail({ selected }) {
 
       {selected.address && (
         <div style={{ marginTop: 20 }}>
-          <h3 style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>
-            📍 Campus Map Location
+          <h3 style={{ fontSize: '0.82rem', fontWeight: 700, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+            <MapPin size={16} style={{ color: 'var(--primary)' }} />
+            <span>Campus Map Location</span>
           </h3>
           <div style={{ position: 'relative', width: '100%', height: '320px', borderRadius: 12, overflow: 'hidden', border: '1px solid var(--border)', background: '#eee' }}>
             <iframe
@@ -205,7 +216,7 @@ export default function HostelPGInfo() {
               }}>
                 <div style={{ flex: '1', minWidth: '280px' }}>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', fontWeight: 800, color: 'var(--accent, #7c1d2e)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
-                    💡 Private PG & Off-Campus Accommodation
+                    <Lightbulb size={14} /> Private PG & Off-Campus Accommodation
                   </span>
                   <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 750, color: 'var(--heading)', marginBottom: '4px' }}>
                     Looking for a Paying Guest (PG) near Campus?
@@ -239,7 +250,7 @@ export default function HostelPGInfo() {
                     e.currentTarget.style.opacity = '1';
                   }}
                 >
-                  🔗 Visit DU PG Portal
+                  <ExternalLink size={14} /> Visit DU PG Portal
                 </a>
               </div>
 
@@ -321,7 +332,7 @@ export default function HostelPGInfo() {
           {/* PG Safety Verification Guide */}
           <div style={{ marginTop: '3rem', padding: '2rem', border: '1px solid var(--border)', borderRadius: 12, background: 'var(--surface)', boxShadow: '0 4px 18px rgba(0,0,0,0.03)' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-              <span style={{ fontSize: '1.6rem' }}>🛡️</span>
+              <ShieldCheck size={28} style={{ color: 'var(--primary)' }} />
               <div>
                 <h3 style={{ fontSize: '1.15rem', margin: 0, fontWeight: 800, color: 'var(--heading)' }}>PG & Off-Campus Accommodation Checklist</h3>
                 <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--muted)' }}>Essential tips and safety guidelines recommended by DUSU for private rentals</p>
@@ -330,8 +341,8 @@ export default function HostelPGInfo() {
 
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', gap: '16px', marginBottom: '20px' }}>
               <div style={{ padding: '14px', borderRadius: '8px', background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border)' }}>
-                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>🔒</span> Security Checks
+                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <Lock size={16} style={{ color: 'var(--primary)' }} /> Security Checks
                 </h4>
                 <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text)', lineHeight: '1.45' }}>
                   Verify safety locks, CCTV cameras, active security guards, and neighborhood lighting.
@@ -339,8 +350,8 @@ export default function HostelPGInfo() {
               </div>
 
               <div style={{ padding: '14px', borderRadius: '8px', background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border)' }}>
-                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>📝</span> Agreement Checks
+                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <FileText size={16} style={{ color: 'var(--primary)' }} /> Agreement Checks
                 </h4>
                 <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text)', lineHeight: '1.45' }}>
                   Read terms on tenancy duration, refund policy of deposits, and payment details carefully.
@@ -348,8 +359,8 @@ export default function HostelPGInfo() {
               </div>
 
               <div style={{ padding: '14px', borderRadius: '8px', background: 'var(--bg, #f8f9fa)', border: '1px solid var(--border)' }}>
-                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'flex', alignItems: 'center', gap: '6px' }}>
-                  <span>👤</span> Landlord Verification
+                <h4 style={{ margin: '0 0 6px', fontSize: '0.88rem', fontWeight: 700, color: 'var(--heading)', display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
+                  <UserCheck size={16} style={{ color: 'var(--primary)' }} /> Landlord Verification
                 </h4>
                 <p style={{ margin: 0, fontSize: '0.8rem', color: 'var(--text)', lineHeight: '1.45' }}>
                   Choose properties recommended by DUSU cells or listed officially by the university.
@@ -378,7 +389,7 @@ export default function HostelPGInfo() {
                   textDecoration: 'none',
                 }}
               >
-                🔗 Visit DU PG Portal
+                <ExternalLink size={14} /> Visit DU PG Portal
               </a>
             </div>
           </div>

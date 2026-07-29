@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react'
+import { BookOpen, Wrench, Flame } from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import Icon from '../../components/Icon.jsx'
 import apiClient from '../../utils/apiClient.js'
@@ -154,7 +155,7 @@ export default function HistoryMandate() {
         <div className="container" style={{ maxWidth: 960 }}>
 
           {/* Era Tabs Row */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16, marginBottom: 40 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 16, marginBottom: 36 }}>
             {ERAS.map((era) => {
               const isActive = activeEra === era.id
               return (
@@ -162,21 +163,22 @@ export default function HistoryMandate() {
                   key={era.id}
                   onClick={() => setActiveEra(era.id)}
                   style={{
-                    background: isActive ? 'var(--accent)' : 'var(--surface)',
-                    color: isActive ? '#fff' : 'var(--text)',
+                    background: isActive ? 'var(--surface)' : 'rgba(255,255,255,0.7)',
+                    color: 'var(--ink)',
                     border: '1px solid var(--border)',
+                    borderTop: isActive ? '4px solid var(--primary)' : '1px solid var(--border)',
                     borderRadius: 12,
-                    padding: '16px 20px',
+                    padding: '18px 22px',
                     textAlign: 'left',
                     cursor: 'pointer',
-                    boxShadow: isActive ? '0 8px 20px rgba(124, 29, 46, 0.15)' : 'none',
+                    boxShadow: isActive ? '0 6px 20px rgba(124, 29, 46, 0.08)' : '0 2px 6px rgba(0,0,0,0.02)',
                     transition: 'all 0.2s ease',
                   }}
                 >
-                  <span style={{ display: 'block', fontSize: '0.78rem', fontWeight: 700, textTransform: 'uppercase', opacity: isActive ? 0.8 : 0.6, letterSpacing: '0.05em', marginBottom: 4 }}>
+                  <span style={{ display: 'block', fontSize: '0.75rem', fontWeight: 700, textTransform: 'uppercase', color: isActive ? 'var(--primary)' : 'var(--muted)', letterSpacing: '0.08em', marginBottom: 4 }}>
                     {era.subtitle}
                   </span>
-                  <span style={{ fontSize: '1.15rem', fontWeight: 800 }}>
+                  <span style={{ fontSize: '1.2rem', fontWeight: 800, color: 'var(--heading)' }}>
                     {era.label}
                   </span>
                 </button>
@@ -185,31 +187,35 @@ export default function HistoryMandate() {
           </div>
 
           {/* Core Toggle Row */}
-          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 35 }}>
-            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', padding: 4, borderRadius: 30, display: 'inline-flex', gap: 4 }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 36 }}>
+            <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', padding: 4, borderRadius: 30, display: 'inline-flex', gap: 4, boxShadow: '0 2px 8px rgba(0,0,0,0.03)' }}>
               {[
-                { id: 'All', label: '📖 Show All' },
-                { id: 'Service', label: '🛠️ Union Service & Welfare' },
-                { id: 'Initiative', label: '🔥 Campaigns & Movements' }
+                { id: 'All', label: 'Show All', IconComp: BookOpen },
+                { id: 'Service', label: 'Union Service & Welfare', IconComp: Wrench },
+                { id: 'Initiative', label: 'Campaigns & Movements', IconComp: Flame }
               ].map(tab => {
                 const isActive = activeCore === tab.id
+                const TabIcon = tab.IconComp
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveCore(tab.id)}
                     style={{
                       border: 'none',
-                      background: isActive ? 'var(--accent)' : 'transparent',
+                      background: isActive ? 'var(--primary)' : 'transparent',
                       color: isActive ? '#fff' : 'var(--text)',
                       borderRadius: 24,
                       padding: '8px 20px',
-                      fontSize: '0.82rem',
+                      fontSize: '0.84rem',
                       fontWeight: 600,
                       cursor: 'pointer',
-                      transition: 'all 0.15s'
+                      transition: 'all 0.15s',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6
                     }}
                   >
-                    {tab.label}
+                    <TabIcon size={14} /> {tab.label}
                   </button>
                 )
               })}
@@ -229,16 +235,16 @@ export default function HistoryMandate() {
               filteredItems.map((item, idx) => {
                 const isService = item.core === 'Service'
                 return (
-                  <div key={idx} className="timeline-item" style={{ position: 'relative', marginBottom: 35 }}>
+                  <div key={idx} className="timeline-item" style={{ position: 'relative', marginBottom: 32 }}>
                     {/* Circle Node */}
                     <div style={{
                       position: 'absolute',
                       left: -28,
-                      top: 4,
+                      top: 6,
                       width: 14,
                       height: 14,
                       borderRadius: '50%',
-                      background: isService ? '#0077b6' : '#d62828',
+                      background: isService ? '#0077b6' : 'var(--primary)',
                       border: '3px solid var(--surface)',
                       boxShadow: '0 0 0 3px var(--border)',
                       zIndex: 3
@@ -249,31 +255,36 @@ export default function HistoryMandate() {
                       background: 'var(--surface)',
                       borderRadius: 12,
                       border: '1px solid var(--border)',
-                      padding: '20px 24px',
-                      boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
+                      borderLeft: `4px solid ${isService ? '#0077b6' : 'var(--primary)'}`,
+                      padding: '22px 26px',
+                      boxShadow: '0 2px 12px rgba(0,0,0,0.03)'
                     }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', flexWrap: 'wrap', gap: 12, marginBottom: 8 }}>
-                        <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--accent)' }}>
+                        <span style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--primary)' }}>
                           {item.year}
                         </span>
                         <span style={{
                           fontSize: '0.72rem',
                           fontWeight: 700,
                           textTransform: 'uppercase',
-                          padding: '3px 10px',
+                          padding: '4px 12px',
                           borderRadius: 20,
-                          background: isService ? 'rgba(0, 119, 182, 0.1)' : 'rgba(214, 40, 40, 0.1)',
-                          color: isService ? '#0077b6' : '#d62828'
+                          background: isService ? 'rgba(0, 119, 182, 0.08)' : 'rgba(124, 29, 46, 0.08)',
+                          color: isService ? '#0077b6' : 'var(--primary)',
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          gap: 5
                         }}>
-                          {isService ? '🛠️ Service / Welfare' : '🔥 Initiative / Campaign'}
+                          {isService ? <Wrench size={12} /> : <Flame size={12} />}
+                          <span>{isService ? 'Service / Welfare' : 'Initiative / Campaign'}</span>
                         </span>
                       </div>
 
-                      <h3 style={{ margin: '0 0 10px 0', fontSize: '1.15rem', color: 'var(--heading)' }}>
+                      <h3 style={{ margin: '0 0 10px 0', fontSize: '1.15rem', color: 'var(--heading)', fontWeight: 750 }}>
                         {item.title}
                       </h3>
 
-                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text)', lineHeight: 1.6 }}>
+                      <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text)', lineHeight: 1.65 }}>
                         {item.desc}
                       </p>
                     </div>
@@ -284,11 +295,11 @@ export default function HistoryMandate() {
           </div>
 
           {/* Prominent Alumni & Leadership Legacy */}
-          <div style={{ paddingTop: '2rem', borderTop: '1px solid var(--border)' }}>
-            <div style={{ marginBottom: '1.8rem', textAlign: 'center' }}>
+          <div style={{ paddingTop: '2.5rem', borderTop: '1px solid var(--border)' }}>
+            <div style={{ marginBottom: '2rem', textAlign: 'center' }}>
               <span className="badge" style={{ marginBottom: 8, display: 'inline-block' }}>Leadership Legacy</span>
               <h2 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--heading)' }}>Prominent DUSU Alumni & Past Leaders</h2>
-              <p style={{ fontSize: '0.92rem', color: 'var(--muted)', marginTop: 6 }}>
+              <p style={{ fontSize: '0.92rem', color: 'var(--muted)', marginTop: 6, maxWidth: 640, marginInline: 'auto' }}>
                 Former DUSU office bearers who emerged from campus democracy to serve in prominent national leadership roles.
               </p>
             </div>
@@ -298,20 +309,21 @@ export default function HistoryMandate() {
                 <div key={idx} style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
+                  borderTop: '3px solid var(--accent)',
                   borderRadius: 14,
-                  padding: '1.4rem',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                  padding: '1.5rem',
+                  boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
                   display: 'flex',
                   flexDirection: 'column'
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 12 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                     <div style={{
-                      width: 44,
-                      height: 44,
+                      width: 46,
+                      height: 46,
                       borderRadius: '50%',
                       background: 'var(--primary-soft)',
                       color: 'var(--primary)',
-                      fontWeight: 700,
+                      fontWeight: 800,
                       fontSize: '1rem',
                       display: 'flex',
                       alignItems: 'center',
@@ -321,7 +333,7 @@ export default function HistoryMandate() {
                       {alum.initials || alum.name.split(' ').map(n=>n[0]).join('')}
                     </div>
                     <div>
-                      <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--heading)' }}>{alum.name}</h3>
+                      <h3 style={{ margin: 0, fontSize: '1.1rem', color: 'var(--heading)', fontWeight: 750 }}>{alum.name}</h3>
                       <div style={{ fontSize: '0.8rem', color: 'var(--muted)', marginTop: 2 }}>
                         {alum.post} ({alum.term}) {alum.party ? `• ${alum.party}` : ''}
                       </div>
@@ -329,11 +341,11 @@ export default function HistoryMandate() {
                   </div>
 
                   {alum.majorPosts && alum.majorPosts.length > 0 && (
-                    <div style={{ marginBottom: 12 }}>
-                      <div style={{ fontSize: '0.76rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 700, letterSpacing: '0.5px', marginBottom: 4 }}>
+                    <div style={{ marginBottom: 14 }}>
+                      <div style={{ fontSize: '0.74rem', textTransform: 'uppercase', color: 'var(--primary)', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 6 }}>
                         Key Positions
                       </div>
-                      <ul style={{ margin: 0, paddingLeft: 18, fontSize: '0.84rem', color: 'var(--text)', lineHeight: 1.4 }}>
+                      <ul style={{ margin: 0, paddingLeft: 18, fontSize: '0.84rem', color: 'var(--text)', lineHeight: 1.45 }}>
                         {alum.majorPosts.map((mp, i) => (
                           <li key={i}>{mp}</li>
                         ))}
@@ -342,8 +354,8 @@ export default function HistoryMandate() {
                   )}
 
                   {alum.keyWorks && alum.keyWorks.length > 0 && (
-                    <div style={{ marginTop: 'auto', paddingTop: 10, borderTop: '1px solid var(--border)' }}>
-                      <div style={{ fontSize: '0.76rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 700, letterSpacing: '0.5px', marginBottom: 4 }}>
+                    <div style={{ marginTop: 'auto', paddingTop: 12, borderTop: '1px solid var(--border)' }}>
+                      <div style={{ fontSize: '0.74rem', textTransform: 'uppercase', color: 'var(--muted)', fontWeight: 700, letterSpacing: '0.05em', marginBottom: 6 }}>
                         Notable Contributions
                       </div>
                       <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.5 }}>

@@ -1,8 +1,17 @@
 // MongoDB via Mongoose. Swap to Atlas later by changing only MONGODB_URI in
 // your .env — no code changes needed.
 import mongoose from 'mongoose'
+import dns from 'dns'
 import { SEED } from './seed.js'
 import { seedAdmin } from '../lib/auth.js'
+
+// Configure reliable public DNS resolvers to resolve MongoDB Atlas SRV records
+// on Windows networks where local DNS SRV queries fail.
+try {
+  dns.setServers(['8.8.8.8', '1.1.1.1'])
+} catch (_err) {
+  // Ignore if setting custom DNS servers fails
+}
 
 // Every collection is a generic document store: plain JS object in, plain JS
 // object out. Add a name here (and optionally seed data in seed.js) to get a

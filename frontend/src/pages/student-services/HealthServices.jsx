@@ -1,4 +1,20 @@
 import { useState, useEffect } from 'react'
+import {
+  Cross,
+  Clock,
+  MapPin,
+  Phone,
+  GraduationCap,
+  Briefcase,
+  Stethoscope,
+  Gift,
+  AlertTriangle,
+  BookOpen,
+  Activity,
+  Microscope,
+  Zap,
+  ExternalLink
+} from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import apiClient from '../../utils/apiClient.js'
 
@@ -53,17 +69,23 @@ export default function HealthServices() {
     )
   }
 
+  const tabIcons = {
+    student: GraduationCap,
+    staff: Briefcase,
+    specialists: Stethoscope
+  }
+
   return (
     <>
       <PageHeader
         crumb="Student Services"
         title="Health Services"
-        lede="The World World University Service (W.U.S.) Health Centre provides comprehensive primary healthcare to students and staff."
+        lede="The World University Service (W.U.S.) Health Centre provides comprehensive primary healthcare to students and staff."
       />
-      
-      <section className="section" style={{ background: 'var(--bg-faint, #fafafa)', paddingBottom: '4rem' }}>
+
+      <section className="section" style={{ background: 'var(--bg)', paddingBottom: '4rem' }}>
         <div className="container" style={{ maxWidth: 1000 }}>
-          
+
           {/* About WUS Main card */}
           <div style={{
             background: 'var(--surface, #fff)',
@@ -83,29 +105,33 @@ export default function HealthServices() {
               height: 4,
               background: 'linear-gradient(90deg, var(--accent) 0%, var(--accent-gold) 100%)'
             }} />
-            <span style={{ fontSize: '2.5rem', display: 'block', marginBottom: '1rem' }}>🏥</span>
             <h2 style={{ fontSize: '1.45rem', fontWeight: 850, color: 'var(--heading)', margin: '0 0 12px' }}>
               About World University Service (W.U.S.) Health Centre
             </h2>
-            <p style={{ lineHeight: 1.7, color: 'var(--text)', fontSize: '0.94rem', margin: '0 0 16px' }}>
+            <p style={{ lineHeight: 1.65, color: 'var(--text)', fontSize: '0.94rem', margin: '0 0 16px' }}>
               {data.about}
             </p>
             <div style={{
-              background: 'var(--bg, #fcfcfd)',
-              borderLeft: '4px solid var(--accent)',
-              padding: '12px 18px',
-              borderRadius: 4,
+              background: 'rgba(124, 29, 46, 0.04)',
+              border: '1px solid rgba(124, 29, 46, 0.12)',
+              borderLeft: '4px solid var(--accent, #7c1d2e)',
+              padding: '14px 18px',
+              borderRadius: 8,
               fontSize: '0.86rem',
               color: 'var(--text)',
-              lineHeight: 1.5
+              lineHeight: 1.6
             }}>
-              <strong>🕒 Nodal Center Operations:</strong> {data.nodalOperations}
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                <Clock size={16} style={{ color: 'var(--primary)' }} />
+                <strong>Nodal Center Operations:</strong>
+              </span> {data.nodalOperations}
             </div>
           </div>
 
           {/* Locations Directory Grid */}
-          <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--heading)', marginBottom: 20 }}>
-            📍 Health Centers Directory
+          <h2 style={{ fontSize: '1.25rem', fontWeight: 800, color: 'var(--heading)', marginBottom: 20, display: 'inline-flex', alignItems: 'center', gap: 10 }}>
+            <MapPin size={22} style={{ color: 'var(--primary)', flexShrink: 0 }} />
+            <span>Health Centers Directory</span>
           </h2>
           <div style={{
             display: 'grid',
@@ -129,17 +155,17 @@ export default function HealthServices() {
                   <h3 style={{ fontSize: '0.98rem', fontWeight: 750, color: 'var(--heading)', margin: '0 0 6px' }}>
                     {loc.name}
                   </h3>
-                  <p style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: '0 0 10px', lineHeight: 1.4 }}>
+                  <p style={{ fontSize: '0.8rem', color: 'var(--muted)', margin: '0 0 10px', lineHeight: 1.55 }}>
                     {loc.address}
                   </p>
                 </div>
                 <div style={{ borderTop: '1px solid var(--border)', paddingTop: 10, marginTop: 10 }}>
                   <div style={{ fontSize: '0.74rem', color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 6, marginBottom: 4 }}>
-                    <span>🕒</span> {loc.hours}
+                    <Clock size={14} style={{ color: 'var(--muted)' }} /> {loc.hours}
                   </div>
                   {loc.contact && (
                     <div style={{ fontSize: '0.74rem', color: 'var(--text)', display: 'flex', alignItems: 'center', gap: 6 }}>
-                      <span>📞</span> {loc.contact}
+                      <Phone size={14} style={{ color: 'var(--muted)' }} /> {loc.contact}
                     </div>
                   )}
                 </div>
@@ -156,11 +182,12 @@ export default function HealthServices() {
             overflowX: 'auto'
           }}>
             {[
-              { id: 'student', label: '🎓 For Students', icon: '🧑‍🎓' },
-              { id: 'staff', label: '💼 For University Staff', icon: '👔' },
-              { id: 'specialists', label: '🩺 Clinical & Specialty Directory', icon: '🔬' }
+              { id: 'student', label: 'For Students' },
+              { id: 'staff', label: 'For University Staff' },
+              { id: 'specialists', label: 'Clinical & Specialty Directory' }
             ].map((tab) => {
               const active = activeTab === tab.id
+              const TabIcon = tabIcons[tab.id]
               return (
                 <button
                   key={tab.id}
@@ -181,14 +208,14 @@ export default function HealthServices() {
                     transition: 'all 0.15s'
                   }}
                 >
-                  <span>{tab.icon}</span> {tab.label}
+                  <TabIcon size={18} /> {tab.label}
                 </button>
               )
             })}
           </div>
 
           {/* ACTIVE TAB CONTENT */}
-          
+
           {/* TAB 1: students */}
           {activeTab === 'student' && (
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -208,7 +235,7 @@ export default function HealthServices() {
                   <h4 style={{ margin: '0 0 4px', fontSize: '1rem', fontWeight: 800, color: 'var(--heading)' }}>
                     Affordable Student Membership Rates
                   </h4>
-                  <p style={{ margin: 0, fontSize: '0.84rem', color: 'var(--text)' }}>
+                  <p style={{ margin: 0, fontSize: '0.84rem', color: 'var(--text)', lineHeight: 1.55 }}>
                     Membership contribution is gathered annually and integrated directly into your college admissions fee.
                   </p>
                 </div>
@@ -226,12 +253,12 @@ export default function HealthServices() {
 
               {/* Benefits */}
               <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '1.8rem' }}>
-                <h3 style={{ margin: '0 0 16px', fontSize: '1.1rem', fontWeight: 800, color: 'var(--heading)', display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <span>🎁</span> Key Clinical Benefits
+                <h3 style={{ margin: '0 0 16px', fontSize: '1.1rem', fontWeight: 800, color: 'var(--heading)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  <Gift size={20} style={{ color: 'var(--primary)' }} /> Key Clinical Benefits
                 </h3>
                 <ul style={{ paddingLeft: 20, margin: 0, display: 'flex', flexDirection: 'column', gap: 12 }}>
                   {data.studentEnrollment.benefits.map((b, i) => (
-                    <li key={i} style={{ fontSize: '0.86rem', color: 'var(--text)', lineHeight: 1.5 }}>
+                    <li key={i} style={{ fontSize: '0.86rem', color: 'var(--text)', lineHeight: 1.6 }}>
                       {b}
                     </li>
                   ))}
@@ -244,9 +271,15 @@ export default function HealthServices() {
                   border: '1px solid var(--border)',
                   fontSize: '0.8rem',
                   color: 'var(--muted)',
-                  lineHeight: '1.45'
+                  lineHeight: '1.55',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: 8
                 }}>
-                  ⚠️ <strong>Non-Reimbursement Policy:</strong> Student cardholders are eligible for in-house treatments only. They are not entitled to claim medical reimbursement for medicines, diagnostic tests, or hospitalization purchased from external open-market pharmacies or private hospitals.
+                  <AlertTriangle size={16} style={{ color: 'var(--primary)', flexShrink: 0, marginTop: 2 }} />
+                  <div>
+                    <strong>Non-Reimbursement Policy:</strong> Student cardholders are eligible for in-house treatments only. They are not entitled to claim medical reimbursement for medicines, diagnostic tests, or hospitalization purchased from external open-market pharmacies or private hospitals.
+                  </div>
                 </div>
               </div>
 
@@ -310,10 +343,16 @@ export default function HealthServices() {
                   border: '1px solid var(--border)',
                   borderRadius: 8,
                   fontSize: '0.8rem',
-                  lineHeight: '1.45',
-                  color: 'var(--muted)'
+                  lineHeight: '1.55',
+                  color: 'var(--muted)',
+                  display: 'flex',
+                  alignItems: 'flex-start',
+                  gap: 8
                 }}>
-                  📖 <strong>Health Booklets:</strong> Every enrolled employee is issued a Treatment Card. In case a health booklet is misplaced, a duplicate one can be acquired from the respective branch for a fee of <strong>₹25</strong> upon submission of a formal police report.
+                  <BookOpen size={16} style={{ color: 'var(--primary)', flexShrink: 0, marginTop: 2 }} />
+                  <div>
+                    <strong>Health Booklets:</strong> Every enrolled employee is issued a Treatment Card. In case a health booklet is misplaced, a duplicate one can be acquired from the respective branch for a fee of <strong>₹25</strong> upon submission of a formal police report.
+                  </div>
                 </div>
               </div>
 
@@ -352,8 +391,8 @@ export default function HealthServices() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {/* Specialization List */}
               <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '1.8rem' }}>
-                <h3 style={{ margin: '0 0 16px', fontSize: '1.1rem', fontWeight: 800, color: 'var(--heading)' }}>
-                  🏥 Core Medical Specialty Areas
+                <h3 style={{ margin: '0 0 16px', fontSize: '1.1rem', fontWeight: 800, color: 'var(--heading)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  <Activity size={20} style={{ color: 'var(--primary)' }} /> Core Medical Specialty Areas
                 </h3>
                 <div style={{ display: 'grid', gap: 14 }}>
                   {data.specialties.map((spec, i) => (
@@ -376,8 +415,8 @@ export default function HealthServices() {
 
               {/* Lab Diagnostics */}
               <div style={{ background: 'var(--surface)', border: '1px solid var(--border)', borderRadius: 12, padding: '1.8rem' }}>
-                <h3 style={{ margin: '0 0 16px', fontSize: '1.1rem', fontWeight: 800, color: 'var(--heading)' }}>
-                  🔬 Diagnostics, Lab Imaging & Physiotherapy
+                <h3 style={{ margin: '0 0 16px', fontSize: '1.1rem', fontWeight: 800, color: 'var(--heading)', display: 'inline-flex', alignItems: 'center', gap: 8 }}>
+                  <Microscope size={20} style={{ color: 'var(--primary)' }} /> Diagnostics, Lab Imaging & Physiotherapy
                 </h3>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
                   {data.diagnostics.map((d, i) => (
@@ -388,7 +427,7 @@ export default function HealthServices() {
                       background: 'var(--surface)'
                     }}>
                       <div style={{ fontSize: '0.88rem', fontWeight: 800, color: 'var(--heading)', marginBottom: 6, display: 'flex', alignItems: 'center', gap: 6 }}>
-                        <span>⚡</span> {d.name}
+                        <Zap size={14} style={{ color: 'var(--accent)' }} /> {d.name}
                       </div>
                       <p style={{ margin: 0, fontSize: '0.78rem', color: 'var(--text)', lineHeight: 1.5 }}>
                         {d.desc}
@@ -417,7 +456,7 @@ export default function HealthServices() {
                 borderRadius: '30px'
               }}
             >
-              🔗 Visit Official WUS Health Centre Website
+              <ExternalLink size={16} /> Visit Official WUS Health Centre Website
             </a>
           </div>
 

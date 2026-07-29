@@ -1,3 +1,4 @@
+import { BookOpen, Download } from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 
 export default function Handbook() {
@@ -18,7 +19,7 @@ export default function Handbook() {
             boxShadow: '0 2px 16px rgba(0,0,0,0.07)',
             textAlign: 'center',
           }}>
-            <div style={{ fontSize: '3.5rem', marginBottom: '1rem' }}>📖</div>
+            <BookOpen size={48} style={{ color: 'var(--primary)', margin: '0 auto 1rem', display: 'block' }} />
             <h2 style={{ marginBottom: '0.5rem' }}>DUSU Student Handbook</h2>
             <p style={{ color: 'var(--muted)', marginBottom: '1.5rem' }}>
               The handbook covers student rights, DUSU procedures, election rules, grievance
@@ -34,7 +35,7 @@ export default function Handbook() {
                 textDecoration: 'none', opacity: 0.6, cursor: 'not-allowed',
               }}
             >
-              📥 Download PDF (Coming Soon)
+              <Download size={16} /> Download PDF (Coming Soon)
             </a>
           </div>
         </div>

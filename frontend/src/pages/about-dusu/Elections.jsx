@@ -55,7 +55,7 @@ export default function Elections() {
   }, [])
 
   const postList = posts.length > 0 ? posts : DEFAULT_POSTS
-  const phaseList = phases.length > 0 ? phases : DEFAULT_PHASES
+  const phaseList = (phases.length > 0 ? phases : DEFAULT_PHASES).slice().sort((a, b) => (a.phase || 0) - (b.phase || 0))
   const ruleList = rules.length > 0 ? rules : DEFAULT_RULES
   const orgList = orgs.length > 0 ? orgs : DEFAULT_ORGS
 
@@ -75,40 +75,38 @@ export default function Elections() {
         lede="One student, one vote — the annual democratic process choosing the Union's central leadership."
       />
 
-      <section className="section">
-        <div className="container">
+      <section className="section" style={{ background: 'var(--bg, #FAF7F2)', paddingBottom: '4rem' }}>
+        <div className="container" style={{ maxWidth: 1000 }}>
           
           {/* Section 1: Central Panel Posts */}
-          <div style={{ marginBottom: '3rem' }}>
-            <div style={{ marginBottom: '1.5rem' }}>
+          <div style={{ marginBottom: '3.5rem' }}>
+            <div style={{ marginBottom: '1.8rem' }}>
               <span className="badge" style={{ marginBottom: 8, display: 'inline-block' }}>Governance Structure</span>
-              <h2 style={{ fontSize: '1.75rem', margin: 0, color: 'var(--heading)' }}>Central Office Bearer Posts</h2>
+              <h2 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--heading)', fontWeight: 800 }}>Central Office Bearer Posts</h2>
             </div>
-            <div style={{ display: 'grid', gap: 18, gridTemplateColumns: 'repeat(auto-fill, minmax(320px, 1fr))' }}>
+            <div style={{ display: 'grid', gap: 20, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
               {postList.map((p) => (
                 <div key={p.post} style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
+                  borderTop: '3px solid var(--primary)',
                   borderRadius: 14,
-                  padding: '1.5rem',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+                  padding: '1.6rem',
+                  boxShadow: '0 2px 10px rgba(0,0,0,0.03)',
                   display: 'flex',
                   flexDirection: 'column',
                   justifyContent: 'space-between'
                 }}>
                   <div>
-                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
-                      <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--heading)' }}>{p.post}</h3>
-                      <span style={{ fontSize: '0.75rem', padding: '3px 8px', background: 'var(--primary-soft)', color: 'var(--primary)', borderRadius: 6, fontWeight: 600 }}>
-                        {p.votingMethod}
-                      </span>
+                    <div style={{ marginBottom: 12 }}>
+                      <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--heading)', fontWeight: 750 }}>{p.post}</h3>
                     </div>
-                    <p style={{ fontSize: '0.88rem', color: 'var(--muted)', margin: '0 0 14px', lineHeight: 1.6 }}>
+                    <p style={{ fontSize: '0.9rem', color: 'var(--text)', margin: '0 0 16px', lineHeight: 1.6 }}>
                       {p.responsibilities}
                     </p>
                   </div>
-                  <div style={{ paddingTop: 12, borderTop: '1px solid var(--border)', fontSize: '0.8rem', color: 'var(--text)', opacity: 0.8 }}>
-                    <strong>Electorate:</strong> {p.electorate}
+                  <div style={{ paddingTop: 14, borderTop: '1px solid var(--border)', fontSize: '0.82rem', color: 'var(--muted)', lineHeight: 1.4 }}>
+                    <strong style={{ color: 'var(--heading)' }}>Electorate:</strong> {p.electorate}
                   </div>
                 </div>
               ))}
@@ -117,24 +115,26 @@ export default function Elections() {
 
           {/* Section 2: Election Timeline & Phases */}
           <div style={{ marginBottom: '3.5rem' }}>
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: '1.8rem' }}>
               <span className="badge" style={{ marginBottom: 8, display: 'inline-block' }}>Election Schedule</span>
-              <h2 style={{ fontSize: '1.75rem', margin: 0, color: 'var(--heading)' }}>Election Process & Phases</h2>
+              <h2 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--heading)', fontWeight: 800 }}>Election Process & Phases</h2>
             </div>
             <div style={{ display: 'grid', gap: 16 }}>
               {phaseList.map((item) => (
                 <div key={item.phase} style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
+                  borderLeft: '4px solid var(--accent)',
                   borderRadius: 14,
-                  padding: '1.4rem 1.6rem',
+                  padding: '1.5rem 1.8rem',
                   display: 'flex',
-                  gap: 16,
-                  alignItems: 'flex-start'
+                  gap: 18,
+                  alignItems: 'flex-start',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
                 }}>
                   <div style={{
-                    width: 44,
-                    height: 44,
+                    width: 46,
+                    height: 46,
                     borderRadius: 12,
                     background: 'var(--primary-soft)',
                     color: 'var(--primary)',
@@ -142,18 +142,18 @@ export default function Elections() {
                     alignItems: 'center',
                     justifyContent: 'center',
                     flexShrink: 0,
-                    fontWeight: 700
+                    fontWeight: 800
                   }}>
                     <Icon name={item.icon || 'CheckCircle'} size={22} />
                   </div>
                   <div style={{ flex: 1 }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 4 }}>
-                      <span style={{ fontSize: '0.78rem', fontWeight: 700, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.5px' }}>
+                      <span style={{ fontSize: '0.76rem', fontWeight: 800, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
                         Phase {item.phase}
                       </span>
                     </div>
-                    <h3 style={{ margin: '0 0 6px', fontSize: '1.08rem', color: 'var(--heading)' }}>{item.title}</h3>
-                    <p style={{ margin: 0, fontSize: '0.9rem', color: 'var(--muted)', lineHeight: 1.6 }}>{item.desc}</p>
+                    <h3 style={{ margin: '0 0 6px', fontSize: '1.1rem', color: 'var(--heading)', fontWeight: 750 }}>{item.title}</h3>
+                    <p style={{ margin: 0, fontSize: '0.92rem', color: 'var(--text)', lineHeight: 1.6 }}>{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -162,32 +162,33 @@ export default function Elections() {
 
           {/* Section 3: Lyngdoh Code of Conduct & Rules */}
           <div style={{ marginBottom: '3.5rem' }}>
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: '1.8rem' }}>
               <span className="badge" style={{ marginBottom: 8, display: 'inline-block' }}>Lyngdoh Committee Guidelines</span>
-              <h2 style={{ fontSize: '1.75rem', margin: 0, color: 'var(--heading)' }}>Rules & Eligibility Criteria</h2>
+              <h2 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--heading)', fontWeight: 800 }}>Rules & Eligibility Criteria</h2>
             </div>
             
             {Object.entries(groupedRules).map(([category, items]) => (
-              <div key={category} style={{ marginBottom: '2rem' }}>
-                <h3 style={{ fontSize: '1.2rem', color: 'var(--heading)', marginBottom: '1rem', borderLeft: '4px solid var(--primary)', paddingLeft: 10 }}>
+              <div key={category} style={{ marginBottom: '2.2rem' }}>
+                <h3 style={{ fontSize: '1.22rem', color: 'var(--heading)', fontWeight: 750, marginBottom: '1.2rem', borderLeft: '4px solid var(--primary)', paddingLeft: 12 }}>
                   {category}
                 </h3>
-                <div style={{ display: 'grid', gap: 14, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
+                <div style={{ display: 'grid', gap: 16, gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))' }}>
                   {items.map((r, idx) => (
                     <div key={idx} style={{
                       background: 'var(--surface)',
                       border: '1px solid var(--border)',
                       borderRadius: 12,
-                      padding: '1.2rem 1.4rem',
+                      padding: '1.3rem 1.5rem',
                       display: 'flex',
-                      gap: 12
+                      gap: 14,
+                      boxShadow: '0 2px 8px rgba(0,0,0,0.02)'
                     }}>
                       <div style={{ color: 'var(--primary)', flexShrink: 0, marginTop: 2 }}>
                         <Icon name={r.icon || 'ShieldCheck'} size={20} />
                       </div>
                       <div>
-                        <h4 style={{ margin: '0 0 4px', fontSize: '0.98rem', color: 'var(--heading)' }}>{r.rule}</h4>
-                        <p style={{ margin: 0, fontSize: '0.86rem', color: 'var(--muted)', lineHeight: 1.5 }}>{r.detail}</p>
+                        <h4 style={{ margin: '0 0 4px', fontSize: '0.98rem', color: 'var(--heading)', fontWeight: 700 }}>{r.rule}</h4>
+                        <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text)', lineHeight: 1.55 }}>{r.detail}</p>
                       </div>
                     </div>
                   ))}
@@ -198,30 +199,29 @@ export default function Elections() {
 
           {/* Section 4: Student Organizations */}
           <div>
-            <div style={{ marginBottom: '1.5rem' }}>
+            <div style={{ marginBottom: '1.8rem' }}>
               <span className="badge" style={{ marginBottom: 8, display: 'inline-block' }}>Campus Representation</span>
-              <h2 style={{ fontSize: '1.75rem', margin: 0, color: 'var(--heading)' }}>Recognised Student Organisations</h2>
+              <h2 style={{ fontSize: '1.8rem', margin: 0, color: 'var(--heading)', fontWeight: 800 }}>Recognised Student Organisations</h2>
             </div>
-            <div style={{ display: 'grid', gap: 16, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
+            <div style={{ display: 'grid', gap: 18, gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))' }}>
               {orgList.map((org) => (
                 <div key={org.name} style={{
                   background: 'var(--surface)',
                   border: '1px solid var(--border)',
+                  borderTop: '3px solid var(--accent)',
                   borderRadius: 14,
-                  padding: '1.4rem',
+                  padding: '1.5rem',
                   display: 'flex',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  boxShadow: '0 2px 8px rgba(0,0,0,0.03)'
                 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 8 }}>
-                    <h3 style={{ margin: 0, fontSize: '1.15rem', color: 'var(--heading)' }}>{org.name}</h3>
-                    <span style={{ fontSize: '0.75rem', color: 'var(--muted)', background: 'var(--bg)', padding: '2px 8px', borderRadius: 4 }}>
-                      {org.affiliation}
-                    </span>
+                  <div style={{ marginBottom: 8 }}>
+                    <h3 style={{ margin: 0, fontSize: '1.2rem', color: 'var(--heading)', fontWeight: 800 }}>{org.name}</h3>
                   </div>
-                  <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--primary)', marginBottom: 8 }}>
+                  <div style={{ fontSize: '0.86rem', fontWeight: 700, color: 'var(--primary)', marginBottom: 10 }}>
                     {org.fullName}
                   </div>
-                  <p style={{ margin: 0, fontSize: '0.86rem', color: 'var(--muted)', lineHeight: 1.5 }}>
+                  <p style={{ margin: 0, fontSize: '0.88rem', color: 'var(--text)', lineHeight: 1.6 }}>
                     {org.focus}
                   </p>
                 </div>

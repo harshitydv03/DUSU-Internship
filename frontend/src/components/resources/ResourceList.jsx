@@ -1,3 +1,4 @@
+import { ExternalLink } from 'lucide-react'
 import Icon from '../Icon.jsx'
 
 export default function ResourceList({ resources }) {
@@ -10,7 +11,9 @@ export default function ResourceList({ resources }) {
           </div>
           <h3>{r.name}</h3>
           <p>{r.desc}</p>
-          <span className="card-link">Visit ↗</span>
+          <span className="card-link" style={{ display: 'inline-flex', alignItems: 'center', gap: 4 }}>
+            Visit <ExternalLink size={14} />
+          </span>
         </a>
       ))}
     </div>

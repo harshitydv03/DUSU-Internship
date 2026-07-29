@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { Menu, X, ChevronDown, ExternalLink } from 'lucide-react'
 import { NAV_MENU } from '../../utils/constants.js'
 import Icon from '../Icon.jsx'
 import duLogo from '../../assets/1280px-Delhi_University.svg.png'
@@ -59,7 +60,7 @@ export default function Navbar() {
             aria-label="Toggle navigation"
             onClick={() => setMobileOpen((v) => !v)}
           >
-            {mobileOpen ? '✕' : '☰'}
+            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
           <ul className={`nav-links${mobileOpen ? ' open' : ''}`}>
@@ -71,14 +72,14 @@ export default function Navbar() {
                       type="button"
                       onClick={() => setOpenIndex(openIndex === i ? null : i)}
                     >
-                      {item.label} <span className="caret">▼</span>
+                      {item.label} <ChevronDown size={14} className="caret" />
                     </button>
                     <ul className="dropdown">
                       {item.children.map((child) => (
                         <li key={child.to}>
                           {child.external ? (
-                            <a href={child.to} target="_blank" rel="noopener noreferrer" onClick={closeAll}>
-                              {child.label} ↗
+                            <a href={child.to} target="_blank" rel="noopener noreferrer" onClick={closeAll} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                              <span>{child.label}</span> <ExternalLink size={12} />
                             </a>
                           ) : (
                             <Link to={child.to} onClick={closeAll}>
