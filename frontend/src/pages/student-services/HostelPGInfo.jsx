@@ -3,7 +3,6 @@ import {
   Building,
   MapPin,
   Lightbulb,
-  ExternalLink,
   ShieldCheck,
   Lock,
   FileText,
@@ -222,36 +221,9 @@ export default function HostelPGInfo() {
                     Looking for a Paying Guest (PG) near Campus?
                   </h3>
                   <p style={{ margin: 0, fontSize: '0.85rem', color: 'var(--text)', lineHeight: '1.45' }}>
-                    Didn't receive a university hostel allotment? Check out verified PG resources and register on the official Delhi University Student Union PG Accommodation Portal.
+                    Didn't receive a university hostel allotment? Check out verified PG resources near campus — see the safety checklist below.
                   </p>
                 </div>
-                <a
-                  href=""
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    gap: '6px',
-                    padding: '9px 18px',
-                    background: 'var(--accent, #7c1d2e)',
-                    color: '#fff',
-                    borderRadius: '30px',
-                    fontWeight: 600,
-                    fontSize: '0.85rem',
-                    textDecoration: 'none',
-                    transition: 'all 0.15s',
-                    boxShadow: '0 2px 8px rgba(124,29,46,0.2)'
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.opacity = '0.9';
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.opacity = '1';
-                  }}
-                >
-                  <ExternalLink size={14} /> Visit DU PG Portal
-                </a>
               </div>
 
               {/* ── Filters row ── */}
@@ -368,29 +340,10 @@ export default function HostelPGInfo() {
               </div>
             </div>
 
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px', paddingTop: '14px', borderTop: '1px solid var(--border)' }}>
+            <div style={{ paddingTop: '14px', borderTop: '1px solid var(--border)' }}>
               <p style={{ margin: 0, fontSize: '0.82rem', color: 'var(--text)' }}>
                 For queries or assistance regarding campus-area rentals, contact the DUSU Student Helpdesk.
               </p>
-              <a
-                href="https://accommodation.uod.ac.in"
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: 'inline-flex',
-                  alignItems: 'center',
-                  gap: '6px',
-                  padding: '7px 15px',
-                  background: 'var(--accent)',
-                  color: '#fff',
-                  borderRadius: '30px',
-                  fontWeight: 600,
-                  fontSize: '0.78rem',
-                  textDecoration: 'none',
-                }}
-              >
-                <ExternalLink size={14} /> Visit DU PG Portal
-              </a>
             </div>
           </div>
 

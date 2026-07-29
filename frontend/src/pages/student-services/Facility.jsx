@@ -1,27 +1,33 @@
 import { useParams } from 'react-router-dom'
-import { Trophy, Sparkles, Laptop, Building2 } from 'lucide-react'
+import { Trophy, Sparkles, Laptop } from 'lucide-react'
 import PageHeader from '../../components/common/PageHeader.jsx'
 
 const FACILITIES = {
-  'sports-complex': {
-    name: 'Sports Complex',
-    icon: Trophy,
-    desc: 'The University of Delhi Sports Complex is a multi-sport facility available to all DU students. It houses facilities for cricket, football, basketball, athletics, and more.',
-    details: [
-      ['Location', 'University Stadium, North Campus'],
-      ['Timings', 'Mon – Sat: 6 AM – 8 PM'],
-      ['Access', 'Free for registered DU students on presentation of ID card'],
-      ['Contact', 'Sports Council, DU — +91-11-2766-7531'],
-    ],
-  },
-  'polo-ground': {
-    name: 'Polo Ground',
-    icon: Sparkles,
-    desc: 'The historic Polo Ground within the University of Delhi campus is used for large-scale events, sports meets, and open-air gatherings.',
-    details: [
-      ['Location', 'University of Delhi, North Campus'],
-      ['Use', 'Events, sports, and cultural activities'],
-      ['Booking', 'Through Dean of Students\' Office'],
+  sports: {
+    name: 'Sports Facilities',
+    // Multi-section facility: each section renders as its own card
+    sections: [
+      {
+        name: 'Sports Complex',
+        icon: Trophy,
+        desc: 'The University of Delhi Sports Complex is a multi-sport facility available to all DU students. It houses facilities for cricket, football, basketball, athletics, and more.',
+        details: [
+          ['Location', 'University Stadium, North Campus'],
+          ['Timings', 'Mon – Sat: 6 AM – 8 PM'],
+          ['Access', 'Free for registered DU students on presentation of ID card'],
+          ['Contact', 'Sports Council, DU — +91-11-2766-7531'],
+        ],
+      },
+      {
+        name: 'Polo Ground',
+        icon: Sparkles,
+        desc: 'The historic Polo Ground within the University of Delhi campus is used for large-scale events, sports meets, and open-air gatherings.',
+        details: [
+          ['Location', 'University of Delhi, North Campus'],
+          ['Use', 'Events, sports, and cultural activities'],
+          ['Booking', 'Through Dean of Students\' Office'],
+        ],
+      },
     ],
   },
   ducc: {
@@ -35,18 +41,11 @@ const FACILITIES = {
       ['Contact', 'ducc@du.ac.in'],
     ],
   },
-  'banks-post': {
-    name: 'Banks & Post Office',
-    icon: Building2,
-    desc: 'Several banks and a post office operate within the University of Delhi campus for the convenience of students and staff.',
-    details: [
-      ['Banks', 'State Bank of India, Punjab National Bank, Bank of Baroda (campus branches)'],
-      ['ATMs', 'Multiple ATMs across North and South Campus'],
-      ['Post Office', 'University Post Office, North Campus'],
-      ['Timings', 'Mon – Fri, bank hours apply'],
-    ],
-  },
 }
+
+// Old bookmarked links to the individual sports pages land on the combined section
+FACILITIES['sports-complex'] = FACILITIES.sports
+FACILITIES['polo-ground'] = FACILITIES.sports
 
 export default function Facility() {
   const { slug } = useParams()
@@ -62,7 +61,7 @@ export default function Facility() {
     )
   }
 
-  const FacilityIcon = facility.icon
+  const sections = facility.sections || [facility]
 
   return (
     <>
@@ -72,27 +71,33 @@ export default function Facility() {
         lede=""
       />
       <section className="section">
-        <div className="container" style={{ maxWidth: 760 }}>
-          <div style={{
-            background: 'var(--surface)', border: '1px solid var(--border)',
-            borderRadius: 14, padding: '2rem 2.4rem',
-            boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
-          }}>
-            <div style={{ marginBottom: '1rem', color: 'var(--primary)' }}>
-              <FacilityIcon size={44} />
-            </div>
-            <p style={{ color: 'var(--text)', lineHeight: 1.8, marginBottom: '1.5rem' }}>{facility.desc}</p>
-            <table style={{ width: '100%', borderCollapse: 'collapse' }}>
-              <tbody>
-                {facility.details.map(([label, value]) => (
-                  <tr key={label} style={{ borderBottom: '1px solid var(--border)' }}>
-                    <td style={{ padding: '9px 16px 9px 0', fontWeight: 700, fontSize: '0.88rem', color: 'var(--heading)', whiteSpace: 'nowrap', verticalAlign: 'top', width: 160 }}>{label}</td>
-                    <td style={{ padding: '9px 0', fontSize: '0.88rem', color: 'var(--text)', lineHeight: 1.6 }}>{value}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+        <div className="container" style={{ maxWidth: 760, display: 'flex', flexDirection: 'column', gap: 28 }}>
+          {sections.map((item) => {
+            const ItemIcon = item.icon
+            return (
+              <div key={item.name} style={{
+                background: 'var(--surface)', border: '1px solid var(--border)',
+                borderRadius: 14, padding: '2rem 2.4rem',
+                boxShadow: '0 2px 12px rgba(0,0,0,0.07)',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: '1rem', color: 'var(--primary)' }}>
+                  <ItemIcon size={40} />
+                  {facility.sections && <h2 style={{ margin: 0, fontSize: '1.35rem' }}>{item.name}</h2>}
+                </div>
+                <p style={{ color: 'var(--text)', lineHeight: 1.8, marginBottom: '1.5rem' }}>{item.desc}</p>
+                <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+                  <tbody>
+                    {item.details.map(([label, value]) => (
+                      <tr key={label} style={{ borderBottom: '1px solid var(--border)' }}>
+                        <td style={{ padding: '9px 16px 9px 0', fontWeight: 700, fontSize: '0.88rem', color: 'var(--heading)', whiteSpace: 'nowrap', verticalAlign: 'top', width: 160 }}>{label}</td>
+                        <td style={{ padding: '9px 0', fontSize: '0.88rem', color: 'var(--text)', lineHeight: 1.6 }}>{value}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            )
+          })}
         </div>
       </section>
     </>

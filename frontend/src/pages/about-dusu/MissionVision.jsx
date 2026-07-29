@@ -1,5 +1,4 @@
 import PageHeader from '../../components/common/PageHeader.jsx'
-import Icon from '../../components/Icon.jsx'
 
 export default function MissionVision() {
   return (
@@ -24,18 +23,15 @@ export default function MissionVision() {
             administrative processes, and meaningful opportunities for personal and professional growth.
           </p>
           <h2 style={{ marginTop: '2.5rem' }}>Core Values</h2>
-          <ul style={{ listStyleType: 'none', paddingLeft: 0, marginTop: '1.2rem', display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <ul style={{ paddingLeft: '1.2rem', marginTop: '1.2rem', display: 'flex', flexDirection: 'column', gap: 12 }}>
             {[
-              { text: 'Inclusivity — representing all 300,000+ students of DU', icon: 'Users' },
-              { text: 'Democracy — free, fair elections guided by Lyngdoh Committee norms', icon: 'Clipboard' },
-              { text: 'Accountability — transparent functioning and open grievance systems', icon: 'Shield' },
-              { text: 'Service — putting student welfare above all else', icon: 'Heart' },
-            ].map(({ text, icon }) => (
-              <li key={icon} style={{ display: 'flex', alignItems: 'center', gap: 12, fontSize: '1rem', color: 'var(--text)', lineHeight: 1.6 }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: 32, height: 32, borderRadius: '50%', background: 'var(--primary-soft)', color: 'var(--primary)', flexShrink: 0 }}>
-                  <Icon name={icon} size={16} />
-                </div>
-                <span>{text}</span>
+              'Inclusivity — representing all 300,000+ students of DU',
+              'Democracy — free, fair elections guided by Lyngdoh Committee norms',
+              'Accountability — transparent functioning and open grievance systems',
+              'Service — putting student welfare above all else',
+            ].map((text) => (
+              <li key={text} style={{ fontSize: '1rem', color: 'var(--text)', lineHeight: 1.6 }}>
+                {text}
               </li>
             ))}
           </ul>

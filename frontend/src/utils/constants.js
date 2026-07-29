@@ -36,10 +36,8 @@ export const NAV_MENU = [
       { label: 'Hostel / PG Information', to: '/services/hostel-pg' },
       { label: 'Health Services', to: '/services/health' },
       { label: 'Samarth DU Portal', to: 'https://slc.uod.ac.in/', external: true },
-      { label: 'Sports Complex', to: '/services/facilities/sports-complex' },
-      { label: 'Polo Ground', to: '/services/facilities/polo-ground' },
+      { label: 'Sports Facilities', to: '/services/facilities/sports' },
       { label: 'DUCC', to: '/services/facilities/ducc' },
-      { label: 'Banks & Post Office', to: '/services/facilities/banks-post' },
     ],
   },
   {
