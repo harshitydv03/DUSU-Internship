@@ -126,7 +126,7 @@ export const SAMPLE_EVENTS = [
     title: 'Freshers Orientation Drive',
     venue: 'Conference Centre, North Campus',
     desc: 'Campus tours, society stalls and help desks for the incoming batch.',
-    gradient: 'linear-gradient(135deg,#7c1d2e,#b0553f)',
+    gradient: 'linear-gradient(135deg,#662d91,#9455c8)',
     icon: 'Star',
   },
   {
@@ -144,7 +144,7 @@ export const SAMPLE_EVENTS = [
     title: 'Inter-College Debate Championship',
     venue: 'Arts Faculty Auditorium',
     desc: 'Teams from 40+ colleges compete for the DUSU rolling trophy.',
-    gradient: 'linear-gradient(135deg,#5a1421,#9a3d63)',
+    gradient: 'linear-gradient(135deg,#4b2069,#8f4fbe)',
     icon: 'Mic',
   },
   {
@@ -296,11 +296,11 @@ export const MILESTONES = [
 ]
 
 export const GALLERY_ITEMS = [
-  { caption: 'Freshers Orientation 2025', gradient: 'linear-gradient(135deg,#7c1d2e,#b0553f)', icon: 'Star' },
+  { caption: 'Freshers Orientation 2025', gradient: 'linear-gradient(135deg,#662d91,#9455c8)', icon: 'Star' },
   { caption: 'Blood Donation Camp', gradient: 'linear-gradient(135deg,#8f1f1f,#d9763a)', icon: 'Droplet' },
   { caption: 'Inter-College Sports Meet', gradient: 'linear-gradient(135deg,#1d5c7c,#3aa8d9)', icon: 'Trophy' },
   { caption: 'Tree Plantation Drive', gradient: 'linear-gradient(135deg,#1d7c40,#7cb95a)', icon: 'Leaf' },
-  { caption: 'Debate Championship Finals', gradient: 'linear-gradient(135deg,#5a1421,#9a3d63)', icon: 'Mic' },
+  { caption: 'Debate Championship Finals', gradient: 'linear-gradient(135deg,#4b2069,#8f4fbe)', icon: 'Mic' },
   { caption: 'Winter Book Donation', gradient: 'linear-gradient(135deg,#7c5a1d,#d9a53a)', icon: 'BookOpen' },
   { caption: 'Republic Day at North Campus', gradient: 'linear-gradient(135deg,#284b8f,#d97a3a)', icon: 'Flag' },
   { caption: 'Cultural Fest Night', gradient: 'linear-gradient(135deg,#4b1d7c,#a53ad9)', icon: 'Theater' },

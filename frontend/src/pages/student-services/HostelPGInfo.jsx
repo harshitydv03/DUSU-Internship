@@ -57,7 +57,7 @@ function AlphaList({ items, selectedId, onSelect }) {
             key={id}
             onClick={() => onSelect(item)}
             style={{ width: '100%', textAlign: 'left', background: isActive ? 'var(--accent)' : 'transparent', border: 'none', borderBottom: '1px solid var(--border)', cursor: 'pointer', padding: '10px 16px', fontSize: '0.88rem', fontWeight: isActive ? 600 : 400, color: isActive ? '#fff' : 'var(--text)', lineHeight: 1.4, transition: 'background 0.12s, color 0.12s', display: 'block' }}
-            onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.background = 'var(--accent-faint, rgba(124,29,46,0.09))' }}
+            onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.background = 'var(--accent-faint, rgba(102,45,145,0.09))' }}
             onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.background = 'transparent' }}
           >
             {item.name}
@@ -205,8 +205,8 @@ export default function HostelPGInfo() {
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 padding: '16px 24px',
-                background: 'linear-gradient(135deg, rgba(230,175,46,0.08) 0%, rgba(124,29,46,0.04) 100%)',
-                borderLeft: '4px solid var(--accent, #7c1d2e)',
+                background: 'linear-gradient(135deg, rgba(230,175,46,0.08) 0%, rgba(102,45,145,0.04) 100%)',
+                borderLeft: '4px solid var(--accent, #662d91)',
                 borderRadius: '8px',
                 marginBottom: '28px',
                 gap: '20px',
@@ -214,7 +214,7 @@ export default function HostelPGInfo() {
                 boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
               }}>
                 <div style={{ flex: '1', minWidth: '280px' }}>
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', fontWeight: 800, color: 'var(--accent, #7c1d2e)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
+                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', fontWeight: 800, color: 'var(--accent, #662d91)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
                     <Lightbulb size={14} /> Private PG & Off-Campus Accommodation
                   </span>
                   <h3 style={{ margin: 0, fontSize: '1.05rem', fontWeight: 750, color: 'var(--heading)', marginBottom: '4px' }}>
@@ -269,7 +269,7 @@ export default function HostelPGInfo() {
                           cursor: 'pointer',
                           fontWeight: 600,
                           fontSize: '0.82rem',
-                          background: isActive ? 'var(--accent-faint, rgba(124,29,46,0.08))' : 'var(--surface)',
+                          background: isActive ? 'var(--accent-faint, rgba(102,45,145,0.08))' : 'var(--surface)',
                           color: isActive ? 'var(--accent)' : 'var(--text)',
                           transition: 'border 0.15s, color 0.15s',
                         }}

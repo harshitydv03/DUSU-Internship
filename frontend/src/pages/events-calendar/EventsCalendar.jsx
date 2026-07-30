@@ -6,7 +6,7 @@ import apiClient from '../../utils/apiClient.js'
 
 const withEventDefaults = (events) =>
   events.map((event, index) => ({
-    gradient: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.gradient || 'linear-gradient(135deg,#7c1d2e,#b0553f)',
+    gradient: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.gradient || 'linear-gradient(135deg,#662d91,#9455c8)',
     icon: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.icon || 'Calendar',
     ...event,
   }))
