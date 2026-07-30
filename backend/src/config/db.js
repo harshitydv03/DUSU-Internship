@@ -21,7 +21,7 @@ export const RESOURCES = [
   'downloads', 'resources', 'milestones', 'faqs', 'gallery', 'contact',
   'colleges', 'hostels', 'departments', 'medical', 'dusucells', 'officebearers',
   'dusuconstitution', 'staffadvisors', 'electionrules', 'electionposts',
-  'electionphases', 'studentorgs', 'alumni',
+  'electionphases', 'studentorgs', 'alumni', 'fests', 'freshersguide',
 ]
 
 // Generic schema: stores any JSON document. No per-resource schema needed —

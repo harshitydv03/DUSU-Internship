@@ -21,6 +21,7 @@ import DUSUCells from './pages/about-dusu/DUSUCells.jsx'
 import OurTeam from './pages/our-team/OurTeam.jsx'
 import OfficeBearers from './pages/our-team/OfficeBearers.jsx'
 import StaffAdvisors from './pages/our-team/StaffAdvisors.jsx'
+import AlumniInPublicLife from './pages/our-team/AlumniInPublicLife.jsx'
 
 // Campuses
 import PreranaBhawan from './pages/campuses/PreranaBhawan.jsx'
@@ -33,6 +34,7 @@ import TrackMyQuery from './pages/student-help/TrackMyQuery.jsx'
 import FAQKnowledgeBase from './pages/student-help/FAQKnowledgeBase.jsx'
 import HelplinesEmergency from './pages/student-help/HelplinesEmergency.jsx'
 import AntiRaggingSafetySOS from './pages/student-help/AntiRaggingSafetySOS.jsx'
+import FreshersGuide from './pages/student-help/FreshersGuide.jsx'
 
 // Student Services
 import StudentServices from './pages/student-services/StudentServices.jsx'
@@ -45,6 +47,7 @@ import Facility from './pages/student-services/Facility.jsx'
 
 // Standalone sections
 import EventsCalendar from './pages/events-calendar/EventsCalendar.jsx'
+import FestCalendar from './pages/events-calendar/FestCalendar.jsx'
 import Gallery from './pages/gallery/Gallery.jsx'
 import NewsNotices from './pages/news-notices/NewsNotices.jsx'
 import WorkMilestones from './pages/work-milestones/WorkMilestones.jsx'
@@ -95,6 +98,7 @@ export default function App() {
           <Route path="/team"                         element={<OurTeam />} />
           <Route path="/team/office-bearers"          element={<OfficeBearers />} />
           <Route path="/team/staff-advisors"          element={<StaffAdvisors />} />
+          <Route path="/team/alumni"                  element={<AlumniInPublicLife />} />
 
           {/* ── Campuses ── */}
           <Route path="/colleges"                    element={<CollegesDepartments />} />
@@ -108,6 +112,7 @@ export default function App() {
           <Route path="/help/faqs"          element={<FAQKnowledgeBase />} />
           <Route path="/help/helplines"     element={<HelplinesEmergency />} />
           <Route path="/help/anti-ragging"  element={<AntiRaggingSafetySOS />} />
+          <Route path="/help/freshers"      element={<FreshersGuide />} />
 
           {/* ── Student Services ── */}
           <Route path="/services"                        element={<StudentServices />} />
@@ -120,6 +125,7 @@ export default function App() {
 
           {/* ── Standalone ── */}
           <Route path="/events"      element={<EventsCalendar />} />
+          <Route path="/fests"       element={<FestCalendar />} />
           <Route path="/gallery"     element={<Gallery />} />
           <Route path="/news"        element={<NewsNotices />} />
           <Route path="/milestones"  element={<WorkMilestones />} />

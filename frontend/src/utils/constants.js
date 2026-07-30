@@ -23,6 +23,7 @@ export const NAV_MENU = [
       { label: 'Handbook', to: '/about/handbook' },
       { label: 'Elections', to: '/about/elections' },
       { label: 'Gallery', to: '/gallery' },
+      { label: 'DU Fest Calendar', to: '/fests' },
       { label: 'DUSU Cells', to: '/about/dusu-cells' },
     ],
   },
@@ -45,6 +46,7 @@ export const NAV_MENU = [
     to: '/help',
     children: [
       { label: 'Help Centre', to: '/help' },
+      { label: "Freshers' Guide", to: '/help/freshers' },
       { label: 'Raise Query / Grievance', to: '/help/raise-query' },
       { label: 'Track My Query', to: '/help/track-query' },
       { label: 'FAQs & Knowledge Base', to: '/help/faqs' },
@@ -58,6 +60,7 @@ export const NAV_MENU = [
     children: [
       { label: 'Office Bearers', to: '/team/office-bearers' },
       { label: 'Staff Advisors', to: '/team/staff-advisors' },
+      { label: 'Alumni in Public Life', to: '/team/alumni' },
     ],
   },
   {

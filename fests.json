@@ -1,0 +1,146 @@
+[
+  {
+    "name": "Tarang",
+    "college": "Lady Shri Ram College for Women",
+    "campus": "South",
+    "typicalMonth": "January – February",
+    "desc": "LSR's annual cultural festival, which traditionally opens the Delhi University fest season. Known for its wide range of competitions and a food festival that draws visitors from across the NCR.",
+    "highlights": ["Write Out Loud", "Battle of Bands", "Food festival"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Reverie",
+    "college": "Gargi College",
+    "campus": "South",
+    "typicalMonth": "January – February",
+    "desc": "A three-day festival that has in some years kicked off the fest season ahead of LSR, combining theatre, magic shows, dance, stand-up comedy and inter-college competitions.",
+    "highlights": ["Theatre", "Stand-up comedy", "Star night"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Mecca",
+    "college": "Hindu College",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "One of Delhi University's oldest cultural festivals, featuring music, dance recitals, fashion shows and large star nights.",
+    "highlights": ["Panache (fashion show)", "Western Dance Competition", "Nukkad Natak", "Hindi Debate"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Tempest",
+    "college": "Miranda House",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "Miranda House's annual festival, distinguished by its focus on women's empowerment and self-expression alongside music, culture and theatre.",
+    "highlights": ["Izhar (stage play)", "Battle of Bands", "Tarangini (group folk dance)", "Indian Cinema Quiz"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Nexus",
+    "college": "Sri Venkateswara College",
+    "campus": "South",
+    "typicalMonth": "February – March",
+    "desc": "Among the best-organised festivals in South Campus, known for its one-act theatre and band competitions.",
+    "highlights": ["One Act Theatre", "Battle of the Bands"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Confluence",
+    "college": "Hansraj College",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "Popular primarily as a music festival spanning many genres, with performances by well-known artists and DJs.",
+    "highlights": ["DJ Wars", "Star night", "Multi-genre music"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Crossroads",
+    "college": "Shri Ram College of Commerce",
+    "campus": "North",
+    "typicalMonth": "March (traditionally the first week)",
+    "desc": "One of the largest festivals in Delhi University, backed by major corporate sponsorship and known for its large-scale pro-nites.",
+    "highlights": ["Pro-nites", "Inter-college competitions", "Corporate-backed scale"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Mosaic",
+    "college": "Ramjas College",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "A three-day annual festival with a wide spread of inter-college competitions, known for its fashion show, musicals and street play events.",
+    "highlights": ["Fashion show", "Street play", "Musicals"],
+    "source": "https://duexpress.in/top-10-college-fests-in-delhi-university-you-cant-afford-to-miss/"
+  },
+  {
+    "name": "Renaissance",
+    "college": "Kirori Mal College",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "Kirori Mal College's annual festival, which draws large crowds each year.",
+    "highlights": ["Cultural competitions", "Star night"],
+    "source": "https://so.city/delhi/article/go-crazy-at-these-du-fests-that-are-high-on-everyones-radar-this-season"
+  },
+  {
+    "name": "Shruti",
+    "college": "Indraprastha College for Women",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "The annual cultural festival of IP College for Women, one of the oldest women's colleges in the University.",
+    "highlights": ["Cultural competitions", "Music and dance"],
+    "source": "https://so.city/delhi/article/go-crazy-at-these-du-fests-that-are-high-on-everyones-radar-this-season"
+  },
+  {
+    "name": "Manjari",
+    "college": "Daulat Ram College",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "Daulat Ram College's annual cultural festival, featuring inter-college societies competitions.",
+    "highlights": ["Cultural competitions", "Society showcases"],
+    "source": "https://so.city/delhi/article/go-crazy-at-these-du-fests-that-are-high-on-everyones-radar-this-season"
+  },
+  {
+    "name": "Lashkara",
+    "college": "SGTB Khalsa College",
+    "campus": "North",
+    "typicalMonth": "February – March",
+    "desc": "SGTB Khalsa College's annual festival, known for its bhangra and Punjabi cultural events.",
+    "highlights": ["Bhangra", "Cultural performances"],
+    "source": "https://so.city/delhi/article/go-crazy-at-these-du-fests-that-are-high-on-everyones-radar-this-season"
+  },
+  {
+    "name": "Montage",
+    "college": "Jesus and Mary College",
+    "campus": "South",
+    "typicalMonth": "February – March",
+    "desc": "The annual cultural festival of Jesus and Mary College in South Campus.",
+    "highlights": ["Cultural competitions", "Star night"],
+    "source": "https://so.city/delhi/article/go-crazy-at-these-du-fests-that-are-high-on-everyones-radar-this-season"
+  },
+  {
+    "name": "Ullas",
+    "college": "Kamala Nehru College",
+    "campus": "South",
+    "typicalMonth": "February – March",
+    "desc": "Kamala Nehru College's annual cultural festival.",
+    "highlights": ["Cultural competitions", "Music and dance"],
+    "source": "https://so.city/delhi/article/go-crazy-at-these-du-fests-that-are-high-on-everyones-radar-this-season"
+  },
+  {
+    "name": "Kalrav",
+    "college": "Deen Dayal Upadhyaya College",
+    "campus": "West",
+    "typicalMonth": "February – March",
+    "desc": "A more recent addition to the Delhi University fest circuit.",
+    "highlights": ["Cultural competitions"],
+    "source": "https://uniliv.in/blog/top-du-fest-delhi/"
+  },
+  {
+    "name": "Tide",
+    "college": "Atma Ram Sanatan Dharma College",
+    "campus": "South",
+    "typicalMonth": "February – March",
+    "desc": "A more recent addition to the Delhi University fest circuit.",
+    "highlights": ["Cultural competitions"],
+    "source": "https://uniliv.in/blog/top-du-fest-delhi/"
+  }
+]

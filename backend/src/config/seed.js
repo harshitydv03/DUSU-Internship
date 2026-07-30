@@ -8,6 +8,8 @@ const MEDICAL = _require('../../../medical.json')
 const DUSUCELLS = _require('../../../dusucells.json')
 const OFFICEBEARERS = _require('../../../officebearers.json')
 const DUSUCONSTITUTION = _require('../../../frontend/dusuconstitution.json')
+const FESTS = _require('../../../fests.json')
+const FRESHERSGUIDE = _require('../../../freshersguide.json')
 
 
 
@@ -72,4 +74,6 @@ export const SEED = {
   electionphases: ELECTIONPHASES,
   studentorgs: STUDENTORGS,
   alumni: ALUMNI,
+  fests: FESTS,
+  freshersguide: FRESHERSGUIDE,
 }

@@ -1,0 +1,176 @@
+[
+  {
+    "order": 1,
+    "section": "Your first week on campus",
+    "icon": "ClipboardList",
+    "intro": "The paperwork everyone forgets until they need it. Get these done early and the rest of the year is much easier.",
+    "items": [
+      {
+        "title": "Keep a document folder ready",
+        "detail": "You will be asked for the same papers again and again — Class X and XII mark sheets, character certificate, transfer or migration certificate, passport-size photographs, and any category certificate (SC/ST/PwD, OBC-NCL), income certificate or ECA/Sports certificate that applies to you.",
+        "note": "Carry several photocopies and spare photographs. The college ID card, library card and bus pass forms all ask for them.",
+        "link": "",
+        "linkLabel": ""
+      },
+      {
+        "title": "Get your college ID card and library card",
+        "detail": "Both are issued by your own college office, not by the University centrally. The ID card is what you show for concessions, library access, exams and entry to most campus facilities.",
+        "note": "Timelines differ between colleges — ask your college office in your first week rather than waiting.",
+        "link": "",
+        "linkLabel": ""
+      },
+      {
+        "title": "Find your college on the DU map",
+        "detail": "Delhi University is spread across North Campus, South Campus and a large number of off-campus colleges. Knowing which campus you belong to decides your commute, your hostel options and which fests are nearby.",
+        "note": "",
+        "link": "/colleges",
+        "linkLabel": "Browse colleges & departments"
+      }
+    ]
+  },
+  {
+    "order": 2,
+    "section": "Getting around Delhi",
+    "icon": "Bus",
+    "intro": "Transport is the single biggest running cost for most DU students. Here is what actually exists right now.",
+    "items": [
+      {
+        "title": "U-Special buses",
+        "detail": "The University Special bus service was relaunched in 2025 with 25 buses covering 67 Delhi University colleges and other institutions. It connects North Campus, South Campus and off-campus colleges, including routes towards Outer Delhi and Yamunapar, with halts at major metro stations. The electric buses have air conditioning, CCTV and a panic button.",
+        "note": "Routes are revised from time to time. Check with the DUSU office or your college notice board for the current route list.",
+        "link": "/contact",
+        "linkLabel": "Ask the DUSU office"
+      },
+      {
+        "title": "DTC student bus pass",
+        "detail": "A monthly student pass for DTC buses has been available at around ₹100 and is accepted on AC buses, with unlimited rides. The usual process is to collect the form from your nearest bus depot, get it attested by your college, then submit it at the depot with your college ID and photographs.",
+        "note": "Pass rates and the application process change — DTC has been moving issuance to digital and app-based systems, so confirm at the depot before you queue.",
+        "link": "",
+        "linkLabel": ""
+      },
+      {
+        "title": "Delhi Metro — what you actually get",
+        "detail": "There is currently no general student concession on the Delhi Metro. The closest thing is a Smart Card, which costs about ₹150 (a refundable ₹50 security deposit plus ₹100 of travel value) and can be bought at any station's Customer Care Centre. It gives 10% off every journey, with a further 10% off during off-peak hours.",
+        "note": "A student metro concession is a long-standing DUSU demand and has been assured by the Delhi government, but it is not in force yet. Treat any claim otherwise with caution.",
+        "link": "",
+        "linkLabel": ""
+      },
+      {
+        "title": "If you are a student with a disability",
+        "detail": "The University's Equal Opportunity Cell has run a scheme issuing free metro cards preloaded with ₹1,000 to differently-abled students, recharged free of cost, along with a pick-and-drop bus service for eligible students.",
+        "note": "Eligibility conditions apply — confirm current terms with the Equal Opportunity Cell.",
+        "link": "/about/dusu-cells",
+        "linkLabel": "See DUSU cells"
+      }
+    ]
+  },
+  {
+    "order": 3,
+    "section": "Paying for your degree",
+    "icon": "Wallet",
+    "intro": "Do not drop out quietly over fees. Several schemes exist and DUSU help desks assist with the paperwork.",
+    "items": [
+      {
+        "title": "Scholarships and fee waivers",
+        "detail": "The DU Financial Support Scheme, the Central Sector Scheme, Post-Matric scholarships for SC/ST/OBC students and Delhi Government merit-cum-means assistance all cover DU students. Deadlines usually fall early in the session.",
+        "note": "",
+        "link": "/services/scholarships",
+        "linkLabel": "See all scholarships"
+      },
+      {
+        "title": "Forms and applications",
+        "detail": "Fee-concession applications, affidavits and other templates are collected in one place so you are not hunting for formats at the last minute.",
+        "note": "",
+        "link": "/services/downloads",
+        "linkLabel": "Downloads & forms"
+      }
+    ]
+  },
+  {
+    "order": 4,
+    "section": "Somewhere to live",
+    "icon": "Home",
+    "intro": "Hostel seats are limited and allotted by individual colleges, so have a backup plan.",
+    "items": [
+      {
+        "title": "College hostels",
+        "detail": "Hostels are allotted by individual colleges and departments rather than centrally, usually on a merit-cum-means basis. Apply through your college as soon as admission is confirmed.",
+        "note": "",
+        "link": "/services/hostel-pg",
+        "linkLabel": "Hostel & PG information"
+      },
+      {
+        "title": "Paying guest accommodation",
+        "detail": "Most students who do not get a hostel seat live in PG accommodation around Kamla Nagar, Mukherjee Nagar, Hudson Lane and the South Campus neighbourhoods. Check locks, lighting, the tenancy terms and the refund policy on your deposit before paying anything.",
+        "note": "",
+        "link": "/services/hostel-pg",
+        "linkLabel": "PG safety checklist"
+      }
+    ]
+  },
+  {
+    "order": 5,
+    "section": "Staying safe and well",
+    "icon": "ShieldCheck",
+    "intro": "Save these numbers in your phone on day one. You may never need them; if you do, you will need them fast.",
+    "items": [
+      {
+        "title": "Ragging is a punishable offence",
+        "detail": "Delhi University has zero tolerance for ragging. The UGC Anti-Ragging Helpline 1800-180-5522 runs 24×7 and complaints can be made anonymously. In an emergency, dial 112.",
+        "note": "",
+        "link": "/help/anti-ragging",
+        "linkLabel": "Anti-ragging & SOS"
+      },
+      {
+        "title": "Health services",
+        "detail": "The University runs medical facilities for students, and DUSU can help you reach them if you are unsure where to go.",
+        "note": "",
+        "link": "/services/health",
+        "linkLabel": "Health services"
+      },
+      {
+        "title": "If you are struggling mentally",
+        "detail": "Tele-MANAS, the Government of India's mental health helpline, is free and available 24×7 on 14416. DUSU's Mental Health & Wellness Cell can also connect you with college counsellors.",
+        "note": "",
+        "link": "/help/helplines",
+        "linkLabel": "All helplines"
+      },
+      {
+        "title": "Something gone wrong? File it",
+        "detail": "Problems with admission, examinations, results, hostels or your college administration can be raised with DUSU. You get a reference ID and can track the status of your complaint.",
+        "note": "",
+        "link": "/help/raise-query",
+        "linkLabel": "Raise a grievance"
+      }
+    ]
+  },
+  {
+    "order": 6,
+    "section": "Actually enjoying DU",
+    "icon": "Sparkles",
+    "intro": "The degree is only part of it. Delhi University's society and fest culture is what most alumni remember.",
+    "items": [
+      {
+        "title": "Join a society early",
+        "detail": "Debating, dramatics, dance, music, fine arts, film, quizzing, NSS and NCC societies recruit in the first weeks of the session. Auditions are competitive but first-years are exactly who they are looking for.",
+        "note": "Audition dates are announced by individual college societies — watch your college notice boards and society social media.",
+        "link": "/about/dusu-cells",
+        "linkLabel": "Explore DUSU cells"
+      },
+      {
+        "title": "The fest season",
+        "detail": "From January to March, colleges across both campuses hold their annual cultural festivals. Entry is usually free or low-cost for DU students with a valid ID card.",
+        "note": "",
+        "link": "/fests",
+        "linkLabel": "See the fest calendar"
+      },
+      {
+        "title": "Volunteer with DUSU",
+        "detail": "DUSU takes student volunteers for the grievance cell, event crews, the web team and the campus ambassador programme — useful experience and a real contribution to campus life.",
+        "note": "",
+        "link": "/services/opportunities",
+        "linkLabel": "Opportunities"
+      }
+    ]
+  }
+]
