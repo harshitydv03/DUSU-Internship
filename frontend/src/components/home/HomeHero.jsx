@@ -13,7 +13,7 @@ export default function HomeHero() {
           Delhi University Students&apos; Union stands with you through campus life.
         </p>
         <div className="hero-actions">
-          <Link to="/help/raise-query" className="btn btn-gold">
+          <Link to="/help/raise-query" className="btn btn-primary">
             Raise a Grievance
           </Link>
           <Link to="/services" className="btn btn-outline-light text-primary">
