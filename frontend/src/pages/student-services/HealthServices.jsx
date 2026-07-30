@@ -112,9 +112,9 @@ export default function HealthServices() {
               {data.about}
             </p>
             <div style={{
-              background: 'rgba(102, 45, 145, 0.04)',
-              border: '1px solid rgba(102, 45, 145, 0.12)',
-              borderLeft: '4px solid var(--accent, #662d91)',
+              background: 'rgba(153, 0, 204, 0.04)',
+              border: '1px solid rgba(153, 0, 204, 0.12)',
+              borderLeft: '4px solid var(--accent, #9900cc)',
               padding: '14px 18px',
               borderRadius: 8,
               fontSize: '0.86rem',
@@ -221,7 +221,7 @@ export default function HealthServices() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
               {/* Contribution summary */}
               <div style={{
-                background: 'linear-gradient(135deg, rgba(102, 45, 145, 0.04) 0%, rgba(230, 175, 46, 0.04) 100%)',
+                background: 'linear-gradient(135deg, rgba(153, 0, 204, 0.04) 0%, rgba(230, 175, 46, 0.04) 100%)',
                 border: '1px solid var(--border)',
                 borderRadius: 12,
                 padding: '1.5rem',
@@ -300,7 +300,7 @@ export default function HealthServices() {
                         width: 24,
                         height: 24,
                         borderRadius: '50%',
-                        background: 'var(--accent-faint, rgba(102,45,145,0.08))',
+                        background: 'var(--accent-faint, rgba(153,0,204,0.08))',
                         color: 'var(--accent)',
                         display: 'flex',
                         alignItems: 'center',

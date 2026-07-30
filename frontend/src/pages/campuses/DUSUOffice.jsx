@@ -83,7 +83,7 @@ export default function DUSUOffice() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                background: '#e5e3df'
+                background: '#f0f0f2'
               }}>
                 <img
                   src={mapsImg}

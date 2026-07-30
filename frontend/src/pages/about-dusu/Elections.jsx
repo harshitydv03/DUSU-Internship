@@ -75,7 +75,7 @@ export default function Elections() {
         lede="One student, one vote — the annual democratic process choosing the Union's central leadership."
       />
 
-      <section className="section" style={{ background: 'var(--bg, #FAF7F2)', paddingBottom: '4rem' }}>
+      <section className="section" style={{ background: 'var(--bg, #ffffff)', paddingBottom: '4rem' }}>
         <div className="container" style={{ maxWidth: 1000 }}>
           
           {/* Section 1: Central Panel Posts */}

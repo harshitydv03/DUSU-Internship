@@ -163,7 +163,7 @@ function AlphaList({ items, selectedId, onSelect }) {
             key={id}
             onClick={() => onSelect(item)}
             style={{ width: '100%', textAlign: 'left', background: isActive ? 'var(--accent)' : 'transparent', border: 'none', borderBottom: '1px solid var(--border)', cursor: 'pointer', padding: '10px 16px', fontSize: '0.88rem', fontWeight: isActive ? 600 : 400, color: isActive ? '#fff' : 'var(--text)', lineHeight: 1.4, transition: 'background 0.12s, color 0.12s', display: 'block' }}
-            onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.background = 'var(--accent-faint, rgba(102,45,145,0.09))' }}
+            onMouseEnter={(e) => { if (!isActive) e.currentTarget.style.background = 'var(--accent-faint, rgba(153,0,204,0.09))' }}
             onMouseLeave={(e) => { if (!isActive) e.currentTarget.style.background = 'transparent' }}
           >
             {item.name}

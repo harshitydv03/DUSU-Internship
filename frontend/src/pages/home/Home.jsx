@@ -20,7 +20,7 @@ const fmt = (iso) =>
 
 const withEventDefaults = (events) =>
   events.map((event, index) => ({
-    gradient: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.gradient || 'linear-gradient(135deg,#662d91,#9455c8)',
+    gradient: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.gradient || 'linear-gradient(135deg,#9900cc,#c14ae8)',
     icon: SAMPLE_EVENTS[index % SAMPLE_EVENTS.length]?.icon || 'Calendar',
     ...event,
   }))

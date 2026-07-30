@@ -171,7 +171,7 @@ export default function HistoryMandate() {
                     padding: '18px 22px',
                     textAlign: 'left',
                     cursor: 'pointer',
-                    boxShadow: isActive ? '0 6px 20px rgba(102, 45, 145, 0.08)' : '0 2px 6px rgba(0,0,0,0.02)',
+                    boxShadow: isActive ? '0 6px 20px rgba(153, 0, 204, 0.08)' : '0 2px 6px rgba(0,0,0,0.02)',
                     transition: 'all 0.2s ease',
                   }}
                 >
@@ -269,7 +269,7 @@ export default function HistoryMandate() {
                           textTransform: 'uppercase',
                           padding: '4px 12px',
                           borderRadius: 20,
-                          background: isService ? 'rgba(0, 119, 182, 0.08)' : 'rgba(102, 45, 145, 0.08)',
+                          background: isService ? 'rgba(0, 119, 182, 0.08)' : 'rgba(153, 0, 204, 0.08)',
                           color: isService ? '#0077b6' : 'var(--primary)',
                           display: 'inline-flex',
                           alignItems: 'center',
