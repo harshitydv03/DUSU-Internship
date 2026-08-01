@@ -390,7 +390,7 @@ export default function OfficeBearers() {
                   </div>
                 )}
               </div>
-              <div style={{ flex: '1', minWidth: '220px' }}>
+              <div style={{ flex: '1', minWidth: 'min(220px, 100%)' }}>
                 <span style={{ 
                   fontSize: '0.75rem', 
                   textTransform: 'uppercase', 

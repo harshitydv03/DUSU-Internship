@@ -32,7 +32,7 @@ export default function QueryTracker() {
   return (
     <div className="form-card">
       <form onSubmit={search} style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-        <div className="form-field" style={{ flex: 1, minWidth: 220 }}>
+        <div className="form-field" style={{ flex: 1, minWidth: 'min(220px, 100%)' }}>
           <label htmlFor="refId">Reference ID</label>
           <input
             id="refId"

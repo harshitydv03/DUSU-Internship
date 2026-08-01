@@ -14,7 +14,9 @@ export default function RaiseQueryGrievance() {
         <div className="container" style={{ maxWidth: 780 }}>
           <QueryForm />
           <p style={{ marginTop: 18, fontSize: '0.88rem', color: 'var(--muted)' }}>
-            <span style={{ display: 'inline-flex', gap: 8, alignItems: 'center' }}><Icon name="AlertTriangle" /> For emergencies — ragging, harassment or threats to safety — do not wait for the form. Call <a href="tel:18001805522">1800-180-5522</a> (anti-ragging) or <a href="tel:112">112</a> immediately.</span>
+            {/* inline (not inline-flex) so the sentence wraps on narrow screens */}
+            <Icon name="AlertTriangle" size={18} style={{ display: 'inline', verticalAlign: '-4px', marginRight: 6, flexShrink: 0 }} />
+            For emergencies — ragging, harassment or threats to safety — do not wait for the form. Call <a href="tel:18001805522">1800-180-5522</a> (anti-ragging) or <a href="tel:112">112</a> immediately.
           </p>
         </div>
       </section>

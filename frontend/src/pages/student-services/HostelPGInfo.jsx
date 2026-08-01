@@ -213,7 +213,7 @@ export default function HostelPGInfo() {
                 flexWrap: 'wrap',
                 boxShadow: '0 2px 10px rgba(0,0,0,0.03)'
               }}>
-                <div style={{ flex: '1', minWidth: '280px' }}>
+                <div style={{ flex: '1', minWidth: 'min(280px, 100%)' }}>
                   <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px', fontSize: '0.72rem', fontWeight: 800, color: 'var(--accent, #9900cc)', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: '4px' }}>
                     <Lightbulb size={14} /> Private PG & Off-Campus Accommodation
                   </span>
@@ -282,10 +282,11 @@ export default function HostelPGInfo() {
               </div>
 
               {/* ── Split Panel Layout ── */}
-              <div style={{ display: 'flex', gap: 0, alignItems: 'stretch', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', minHeight: 520, background: 'var(--surface)', boxShadow: '0 2px 16px rgba(0,0,0,0.07)' }}>
+              {/* Widths/padding live in CSS so the panel can stack on narrow screens */}
+              <div className="hostel-split" style={{ display: 'flex', gap: 0, alignItems: 'stretch', border: '1px solid var(--border)', borderRadius: 12, overflow: 'hidden', minHeight: 520, background: 'var(--surface)', boxShadow: '0 2px 16px rgba(0,0,0,0.07)' }}>
 
                 {/* List Sidebar */}
-                <div style={{ width: 310, flexShrink: 0, borderRight: '1px solid var(--border)', overflowY: 'auto', maxHeight: 620 }}>
+                <div className="hostel-list" style={{ borderRight: '1px solid var(--border)', overflowY: 'auto' }}>
                   <AlphaList
                     items={filtered}
                     selectedId={selected?.slug}
@@ -294,7 +295,7 @@ export default function HostelPGInfo() {
                 </div>
 
                 {/* Right details context */}
-                <div style={{ flex: 1, padding: '2rem 2.2rem', overflowY: 'auto', maxHeight: 620 }}>
+                <div className="hostel-detail" style={{ flex: 1, overflowY: 'auto' }}>
                   <HostelDetail selected={selected} />
                 </div>
               </div>

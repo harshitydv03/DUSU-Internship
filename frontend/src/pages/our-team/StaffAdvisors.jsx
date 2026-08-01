@@ -117,7 +117,7 @@ export default function StaffAdvisors() {
                     </div>
 
                     {/* Right Content Column */}
-                    <div style={{ flex: 1, minWidth: 280 }}>
+                    <div style={{ flex: 1, minWidth: 'min(280px, 100%)' }}>
                       <div style={{ marginBottom: 16 }}>
                         <h2 style={{ margin: '0 0 4px', fontSize: '1.6rem', color: 'var(--heading)', fontWeight: 800 }}>
                           {advisor.name}

@@ -416,6 +416,12 @@ img {
   font-size: 1.6rem;
   cursor: pointer;
   color: var(--primary);
+  /* 44px box so the only mobile nav control is a comfortable touch target.
+     Hidden on desktop, so this has no effect above the 960px breakpoint. */
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  place-items: center;
 }
 
 /* ============ Hero ============ */
@@ -1388,7 +1394,7 @@ tr:last-child td {
   }
 
   .nav-toggle {
-    display: block;
+    display: grid;
   }
 
   .nav-links {
@@ -2139,4 +2145,60 @@ tr:last-child td {
 .cms-person-head strong {
   font-family: var(--font-display);
   font-size: 1rem;
+}
+
+/* ---- Hostel / PG split panel ---- */
+.hostel-list {
+  width: 310px;
+  flex-shrink: 0;
+  max-height: 620px;
+}
+
+.hostel-detail {
+  padding: 2rem 2.2rem;
+  max-height: 620px;
+}
+
+/* Below this the two columns cannot both fit — stack them so the list and the
+   detail pane stay usable rather than overflowing the viewport. */
+@media (max-width: 720px) {
+  .hostel-split {
+    flex-direction: column;
+    min-height: 0 !important;
+  }
+
+  .hostel-list {
+    width: 100%;
+    max-height: 300px;
+    border-right: none !important;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .hostel-detail {
+    padding: 1.25rem 1.15rem;
+    max-height: none;
+  }
+}
+
+/* ============ Mobile touch-target and form corrections ============ */
+/* Scoped to narrow screens only — desktop sizing above 620px is unchanged. */
+@media (max-width: 620px) {
+  /* iOS Safari zooms the page when a focused control is under 16px */
+  .form-field input,
+  .form-field select,
+  .form-field textarea,
+  .chatbot-input input {
+    font-size: 16px;
+  }
+
+  /* Filters and small pill buttons need a comfortable tap height */
+  .fest-chip,
+  .cms-btn,
+  .cms-nav-item {
+    min-height: 40px;
+  }
+
+  .fest-chip {
+    padding-block: 9px;
+  }
 }
