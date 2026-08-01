@@ -1,9 +1,23 @@
 import { Link } from 'react-router-dom'
 import PageHeader from '../../components/common/PageHeader.jsx'
 import TeamCard from '../../components/our-team/TeamCard.jsx'
+import useContent from '../../utils/useContent.js'
 import { OFFICE_BEARERS } from '../../utils/constants.js'
 
+// CMS records carry role/name/college only, so derive the initials the card
+// falls back to when no photo is set.
+const initialsFor = (name = '') =>
+  name
+    .split(/\s+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((w) => w[0]?.toUpperCase())
+    .join('')
+
 export default function OurTeam() {
+  const { items } = useContent('team', OFFICE_BEARERS)
+  const members = items.map((m) => ({ ...m, initials: m.initials || initialsFor(m.name) }))
+
   return (
     <>
       <PageHeader
@@ -19,8 +33,8 @@ export default function OurTeam() {
             <p>Names will be updated after the results of the current election cycle.</p>
           </div>
           <div className="grid-4">
-            {OFFICE_BEARERS.map((m) => (
-              <TeamCard member={m} key={m.role} />
+            {members.map((m) => (
+              <TeamCard member={m} key={m.id || m.role} />
             ))}
           </div>
           <div style={{ marginTop: 28 }}>

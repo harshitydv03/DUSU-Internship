@@ -1,7 +1,10 @@
 import PageHeader from '../../components/common/PageHeader.jsx'
+import useContent from '../../utils/useContent.js'
 import { SCHOLARSHIPS } from '../../utils/constants.js'
 
 export default function Scholarships() {
+  const { items: scholarships } = useContent('scholarships', SCHOLARSHIPS)
+
   return (
     <>
       <PageHeader
@@ -22,15 +25,19 @@ export default function Scholarships() {
                 </tr>
               </thead>
               <tbody>
-                {SCHOLARSHIPS.map((s) => (
-                  <tr key={s.name}>
+                {scholarships.map((s) => (
+                  <tr key={s.id || s.name}>
                     <td style={{ fontWeight: 600 }}>{s.name}</td>
                     <td>{s.provider}</td>
                     <td>{s.benefit}</td>
                     <td>
-                      <a href={s.link} target="_blank" rel="noreferrer">
-                        Portal ↗
-                      </a>
+                      {s.link ? (
+                        <a href={s.link} target="_blank" rel="noreferrer">
+                          Portal ↗
+                        </a>
+                      ) : (
+                        <span style={{ color: 'var(--muted)' }}>—</span>
+                      )}
                     </td>
                   </tr>
                 ))}

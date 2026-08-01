@@ -40,6 +40,52 @@ app.post('/api/queries/:id/replies', requireAuth, async (req, res) => {
   }
 })
 
+// ── Lightweight validation for CMS-managed content ─────────────────────────
+// Only fields the public pages actually depend on are required; formats are
+// checked whenever a value is supplied. Kept as plain predicates on purpose —
+// no schema layer, no validation dependency.
+const isBlank = (v) => v === undefined || v === null || String(v).trim() === ''
+const isUrl = (v) => /^https?:\/\/\S+$/i.test(String(v).trim())
+const isIsoDate = (v) => /^\d{4}-\d{2}-\d{2}$/.test(String(v).trim()) && !Number.isNaN(Date.parse(v))
+const isYear = (v) => /^\d{4}$/.test(String(v).trim())
+
+const CMS_RULES = {
+  notices: { required: ['title', 'date'], date: ['date'] },
+  events: { required: ['title', 'date'], date: ['date'] },
+  team: { required: ['role', 'name'] },
+  scholarships: { required: ['name'], url: ['link'] },
+  downloads: { required: ['name'], url: ['url'] },
+  resources: { required: ['name', 'url'], url: ['url'] },
+  milestones: { required: ['year', 'title'], year: ['year'] },
+  faqs: { required: ['q', 'a'] },
+  gallery: { required: ['caption'], url: ['imageUrl'] },
+}
+
+// Builds a `validate` hook for one resource. On PUT (`partial`) an omitted
+// field is left untouched, but explicitly blanking a required one is rejected.
+function cmsValidator(rules) {
+  return (body, { partial }) => {
+    if (!body || typeof body !== 'object' || Array.isArray(body)) {
+      return 'Request body must be an object'
+    }
+    const errors = []
+    for (const f of rules.required || []) {
+      const missing = partial ? f in body && isBlank(body[f]) : isBlank(body[f])
+      if (missing) errors.push(`"${f}" is required`)
+    }
+    for (const f of rules.url || []) {
+      if (!isBlank(body[f]) && !isUrl(body[f])) errors.push(`"${f}" must be a valid http(s) URL`)
+    }
+    for (const f of rules.date || []) {
+      if (!isBlank(body[f]) && !isIsoDate(body[f])) errors.push(`"${f}" must be a date in YYYY-MM-DD format`)
+    }
+    for (const f of rules.year || []) {
+      if (!isBlank(body[f]) && !isYear(body[f])) errors.push(`"${f}" must be a 4-digit year`)
+    }
+    return errors.length ? errors.join('; ') : null
+  }
+}
+
 // Grievances get a server-generated reference ID and initial status.
 const CUSTOM = {
   queries: {
@@ -49,6 +95,10 @@ const CUSTOM = {
       status: 'Submitted',
     }),
   },
+}
+
+for (const [name, rules] of Object.entries(CMS_RULES)) {
+  CUSTOM[name] = { ...CUSTOM[name], validate: cmsValidator(rules) }
 }
 
 // Students must be able to file queries and contact messages without login.

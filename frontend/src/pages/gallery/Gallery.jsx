@@ -1,8 +1,11 @@
 import PageHeader from '../../components/common/PageHeader.jsx'
 import GalleryGrid from '../../components/gallery/GalleryGrid.jsx'
+import useContent from '../../utils/useContent.js'
 import { GALLERY_ITEMS } from '../../utils/constants.js'
 
 export default function Gallery() {
+  const { items: galleryItems } = useContent('gallery', GALLERY_ITEMS)
+
   return (
     <>
       <PageHeader
@@ -12,7 +15,7 @@ export default function Gallery() {
       />
       <section className="section">
         <div className="container">
-          <GalleryGrid items={GALLERY_ITEMS} />
+          <GalleryGrid items={galleryItems} />
         </div>
       </section>
     </>

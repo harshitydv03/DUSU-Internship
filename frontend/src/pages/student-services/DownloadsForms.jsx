@@ -1,7 +1,10 @@
 import PageHeader from '../../components/common/PageHeader.jsx'
+import useContent from '../../utils/useContent.js'
 import { DOWNLOAD_FORMS } from '../../utils/constants.js'
 
 export default function DownloadsForms() {
+  const { items: forms } = useContent('downloads', DOWNLOAD_FORMS)
+
   return (
     <>
       <PageHeader
@@ -22,20 +25,28 @@ export default function DownloadsForms() {
                 </tr>
               </thead>
               <tbody>
-                {DOWNLOAD_FORMS.map((f) => (
-                  <tr key={f.name}>
+                {forms.map((f) => (
+                  <tr key={f.id || f.name}>
                     <td style={{ fontWeight: 600 }}>{f.name}</td>
-                    <td><span className="badge">{f.type}</span></td>
+                    <td>{f.type && <span className="badge">{f.type}</span>}</td>
                     <td>{f.note}</td>
-                    <td><span style={{ color: 'var(--muted)' }}>Coming soon</span></td>
+                    <td>
+                      {f.url ? (
+                        <a href={f.url} target="_blank" rel="noreferrer">
+                          Download ↗
+                        </a>
+                      ) : (
+                        <span style={{ color: 'var(--muted)' }}>Coming soon</span>
+                      )}
+                    </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
           <p style={{ marginTop: 18, fontSize: '0.9rem', color: 'var(--muted)' }}>
-            Files will be attached here once the DUSU office uploads verified versions through the
-            admin panel.
+            Documents are linked from their official source. Items marked &ldquo;Coming soon&rdquo;
+            have not had a file link added yet.
           </p>
         </div>
       </section>
