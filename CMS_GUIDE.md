@@ -32,7 +32,7 @@ readable message when a write is invalid.
 | --- | --- | --- |
 | notices | title, date | date `YYYY-MM-DD` |
 | events | title, date | date `YYYY-MM-DD` |
-| team | role, name | — |
+| team | role, name | image must be a URL or `/path`; each social link needs a known platform and a URL |
 | scholarships | name | link must be a URL |
 | downloads | name | url must be a URL |
 | resources | name, url | url must be a URL |
@@ -102,6 +102,23 @@ in `.env.local` at the repo root — see `backend/.env.example` for the shape.
 
 1. Stop the backend and reload a public page such as `/services/downloads`.
 2. The page still renders its bundled sample content rather than an empty page.
+
+## Team member fields
+
+Team records carry `role`, `name`, `college`, `image`, `initials` and `socials`.
+
+- **Photo** takes a hosted image URL, or a path to a file already in
+  `frontend/public` — e.g. `/images/president.jpeg`. A thumbnail preview appears
+  in the editor once the value resolves.
+- **Initials** are shown when no photo is set. Left blank, they are derived from
+  the name, so there is normally no reason to fill this in.
+- **Social links** are repeatable rows of platform + URL, stored as
+  `[{ platform, url }]`. Supported platforms are `instagram`, `twitter` (shown as
+  X), `facebook`, `threads` and `website` — these are the icons the team card can
+  render. A half-filled row is rejected; empty rows are dropped on save.
+
+Note that `/team/office-bearers` reads a separate `officebearers` resource and is
+not managed by this page.
 
 ## Limitations
 

@@ -66,6 +66,26 @@ export const CONTENT_TYPES = [
       { name: 'name', label: 'Name', type: 'text', required: true },
       { name: 'role', label: 'Role', type: 'text', required: true },
       { name: 'college', label: 'College', type: 'text', full: true },
+      {
+        name: 'image',
+        label: 'Photo',
+        type: 'imagePath',
+        full: true,
+        hint: 'A hosted image URL, or a path to a file in frontend/public — e.g. /images/president.jpeg.',
+      },
+      {
+        name: 'initials',
+        label: 'Initials',
+        type: 'text',
+        hint: 'Shown when no photo is set. Left blank, it is derived from the name.',
+      },
+      {
+        name: 'socials',
+        label: 'Social links',
+        type: 'socials',
+        full: true,
+        hint: 'Optional. Shown as icons on the team card.',
+      },
     ],
   },
   {
@@ -182,15 +202,28 @@ export const CONTENT_TYPES = [
 
 export const getContentType = (key) => CONTENT_TYPES.find((t) => t.key === key)
 
+// Platforms TeamCard knows how to render an icon for.
+export const SOCIAL_PLATFORMS = ['instagram', 'twitter', 'facebook', 'threads', 'website']
+
 // Blank record shaped from the type's field list.
 export const emptyRecord = (type) =>
-  Object.fromEntries(type.fields.map((f) => [f.name, '']))
+  Object.fromEntries(type.fields.map((f) => [f.name, f.type === 'socials' ? [] : '']))
 
 // Strip server-managed keys — never send id/createdAt back in a payload.
 export function toPayload(type, values) {
   const payload = {}
   for (const field of type.fields) {
     const raw = values[field.name]
+
+    if (field.type === 'socials') {
+      // Keep only rows that have both a platform and a link
+      const rows = (Array.isArray(raw) ? raw : [])
+        .map((s) => ({ platform: String(s.platform || '').trim(), url: String(s.url || '').trim() }))
+        .filter((s) => s.platform && s.url)
+      if (rows.length) payload[field.name] = rows
+      continue
+    }
+
     const value = typeof raw === 'string' ? raw.trim() : raw
     // Omit empty optional fields rather than storing empty strings
     if (value === '' || value === undefined || value === null) continue
@@ -201,17 +234,36 @@ export function toPayload(type, values) {
 
 const URL_RE = /^https?:\/\/\S+$/i
 const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
+// A hosted image, or a file served from frontend/public (e.g. /images/x.jpeg)
+const URL_OR_PATH_RE = /^(https?:\/\/\S+|\/\S*)$/i
 
 // Client-side mirror of the backend rules, so users get instant feedback.
 export function validateRecord(type, values) {
   const errors = {}
   for (const field of type.fields) {
+    if (field.type === 'socials') {
+      const rows = Array.isArray(values[field.name]) ? values[field.name] : []
+      // A row is only a problem once the user has started filling it in
+      const bad = rows.findIndex(
+        (s) =>
+          (s.platform || s.url) &&
+          (!s.platform || !s.url || !URL_RE.test(String(s.url).trim())),
+      )
+      if (bad !== -1) {
+        errors[field.name] = `Link ${bad + 1}: pick a platform and enter a full https:// URL`
+      }
+      continue
+    }
+
     const value = String(values[field.name] ?? '').trim()
     if (field.required && !value) {
       errors[field.name] = `${field.label} is required`
       continue
     }
     if (!value) continue
+    if (field.type === 'imagePath' && !URL_OR_PATH_RE.test(value)) {
+      errors[field.name] = 'Enter a full URL, or a path beginning with /'
+    }
     if (field.type === 'url' && !URL_RE.test(value)) {
       errors[field.name] = 'Enter a full URL starting with http:// or https://'
     }

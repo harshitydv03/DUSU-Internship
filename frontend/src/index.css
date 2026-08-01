@@ -2049,3 +2049,49 @@ tr:last-child td {
     width: auto;
   }
 }
+
+/* ---- CMS: photo + repeatable social links ---- */
+.cms-image-field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cms-image-preview {
+  width: 84px;
+  height: 84px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  background: var(--surface-soft);
+}
+
+.cms-socials {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.cms-social-row {
+  display: grid;
+  grid-template-columns: 140px 1fr auto;
+  gap: 8px;
+  width: 100%;
+  align-items: center;
+}
+
+.cms-social-row select,
+.cms-social-row input {
+  width: 100%;
+}
+
+@media (max-width: 520px) {
+  .cms-social-row {
+    grid-template-columns: 1fr auto;
+  }
+
+  .cms-social-row select {
+    grid-column: 1 / -1;
+  }
+}

@@ -5,10 +5,61 @@ import Icon from '../../components/Icon.jsx'
 import apiClient, { clearSession, isUnauthorized } from '../../utils/apiClient.js'
 import {
   CONTENT_TYPES,
+  SOCIAL_PLATFORMS,
   emptyRecord,
   toPayload,
   validateRecord,
 } from './contentSchema.js'
+
+// Repeatable platform + URL rows, stored as [{ platform, url }] to match the
+// shape TeamCard already renders.
+function SocialsEditor({ rows, onChange }) {
+  const update = (index, patch) =>
+    onChange(rows.map((row, i) => (i === index ? { ...row, ...patch } : row)))
+
+  return (
+    <div className="cms-socials">
+      {rows.map((row, i) => (
+        <div className="cms-social-row" key={i}>
+          <select
+            aria-label={`Platform for link ${i + 1}`}
+            value={row.platform || ''}
+            onChange={(e) => update(i, { platform: e.target.value })}
+          >
+            <option value="">— platform —</option>
+            {SOCIAL_PLATFORMS.map((p) => (
+              <option key={p} value={p}>
+                {p === 'twitter' ? 'X (Twitter)' : p[0].toUpperCase() + p.slice(1)}
+              </option>
+            ))}
+          </select>
+          <input
+            type="text"
+            aria-label={`URL for link ${i + 1}`}
+            placeholder="https://…"
+            value={row.url || ''}
+            onChange={(e) => update(i, { url: e.target.value })}
+          />
+          <button
+            type="button"
+            className="cms-btn danger"
+            onClick={() => onChange(rows.filter((_, idx) => idx !== i))}
+            aria-label={`Remove link ${i + 1}`}
+          >
+            <Icon name="X" size={14} />
+          </button>
+        </div>
+      ))}
+      <button
+        type="button"
+        className="cms-btn"
+        onClick={() => onChange([...rows, { platform: '', url: '' }])}
+      >
+        <Icon name="Plus" size={14} /> Add link
+      </button>
+    </div>
+  )
+}
 
 export default function ContentManagement() {
   const navigate = useNavigate()
@@ -75,7 +126,10 @@ export default function ContentManagement() {
   const openEdit = (record) => {
     const next = emptyRecord(type)
     for (const key of Object.keys(next)) {
-      if (record[key] !== undefined && record[key] !== null) next[key] = String(record[key])
+      const value = record[key]
+      if (value === undefined || value === null) continue
+      // Repeatable fields stay arrays; everything else is edited as text
+      next[key] = Array.isArray(value) ? value.map((row) => ({ ...row })) : String(value)
     }
     setValues(next)
     setFieldErrors({})
@@ -282,7 +336,35 @@ export default function ContentManagement() {
                       {field.required && <span className="cms-req"> *</span>}
                     </label>
 
-                    {field.type === 'textarea' ? (
+                    {field.type === 'socials' ? (
+                      <SocialsEditor
+                        rows={Array.isArray(values[field.name]) ? values[field.name] : []}
+                        onChange={(rows) => setValues({ ...values, [field.name]: rows })}
+                      />
+                    ) : field.type === 'imagePath' ? (
+                      <div className="cms-image-field">
+                        <input
+                          id={`f-${field.name}`}
+                          type="text"
+                          placeholder="https://…  or  /images/photo.jpeg"
+                          value={values[field.name] ?? ''}
+                          onChange={(e) => setValues({ ...values, [field.name]: e.target.value })}
+                        />
+                        {values[field.name] ? (
+                          <img
+                            src={values[field.name]}
+                            alt=""
+                            className="cms-image-preview"
+                            onError={(e) => {
+                              e.currentTarget.style.display = 'none'
+                            }}
+                            onLoad={(e) => {
+                              e.currentTarget.style.display = 'block'
+                            }}
+                          />
+                        ) : null}
+                      </div>
+                    ) : field.type === 'textarea' ? (
                       <textarea
                         id={`f-${field.name}`}
                         rows={4}

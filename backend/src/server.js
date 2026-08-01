@@ -48,11 +48,15 @@ const isBlank = (v) => v === undefined || v === null || String(v).trim() === ''
 const isUrl = (v) => /^https?:\/\/\S+$/i.test(String(v).trim())
 const isIsoDate = (v) => /^\d{4}-\d{2}-\d{2}$/.test(String(v).trim()) && !Number.isNaN(Date.parse(v))
 const isYear = (v) => /^\d{4}$/.test(String(v).trim())
+// A hosted image, or a file served from the frontend's public folder
+const isUrlOrPath = (v) => isUrl(v) || /^\/\S*$/.test(String(v).trim())
+
+const SOCIAL_PLATFORMS = ['instagram', 'twitter', 'facebook', 'threads', 'website']
 
 const CMS_RULES = {
   notices: { required: ['title', 'date'], date: ['date'] },
   events: { required: ['title', 'date'], date: ['date'] },
-  team: { required: ['role', 'name'] },
+  team: { required: ['role', 'name'], urlOrPath: ['image'], socials: ['socials'] },
   scholarships: { required: ['name'], url: ['link'] },
   downloads: { required: ['name'], url: ['url'] },
   resources: { required: ['name', 'url'], url: ['url'] },
@@ -81,6 +85,29 @@ function cmsValidator(rules) {
     }
     for (const f of rules.year || []) {
       if (!isBlank(body[f]) && !isYear(body[f])) errors.push(`"${f}" must be a 4-digit year`)
+    }
+    for (const f of rules.urlOrPath || []) {
+      if (!isBlank(body[f]) && !isUrlOrPath(body[f])) {
+        errors.push(`"${f}" must be a URL or a path starting with /`)
+      }
+    }
+    for (const f of rules.socials || []) {
+      if (body[f] === undefined) continue
+      if (!Array.isArray(body[f])) {
+        errors.push(`"${f}" must be a list`)
+        continue
+      }
+      body[f].forEach((row, i) => {
+        const label = `${f}[${i}]`
+        if (!row || typeof row !== 'object' || Array.isArray(row)) {
+          errors.push(`${label} must be an object`)
+          return
+        }
+        if (!SOCIAL_PLATFORMS.includes(String(row.platform || '').trim())) {
+          errors.push(`${label}.platform must be one of: ${SOCIAL_PLATFORMS.join(', ')}`)
+        }
+        if (!isUrl(row.url)) errors.push(`${label}.url must be a valid http(s) URL`)
+      })
     }
     return errors.length ? errors.join('; ') : null
   }
