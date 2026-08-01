@@ -6,6 +6,7 @@ import apiClient, { clearSession, isUnauthorized } from '../../utils/apiClient.j
 import {
   CONTENT_TYPES,
   SOCIAL_PLATFORMS,
+  emptyPerson,
   emptyRecord,
   toPayload,
   validateRecord,
@@ -61,6 +62,131 @@ function SocialsEditor({ rows, onChange }) {
   )
 }
 
+// One input for any field type. Shared by the drawer and the nested people
+// editor so both stay in step as field types are added.
+function FieldInput({ field, id, value, onChange }) {
+  if (field.type === 'socials') {
+    return <SocialsEditor rows={Array.isArray(value) ? value : []} onChange={onChange} />
+  }
+
+  if (field.type === 'people') {
+    return (
+      <PeopleEditor field={field} people={Array.isArray(value) ? value : []} onChange={onChange} />
+    )
+  }
+
+  if (field.type === 'imagePath') {
+    return (
+      <div className="cms-image-field">
+        <input
+          id={id}
+          type="text"
+          placeholder="https://…  or  /images/photo.jpeg"
+          value={value ?? ''}
+          onChange={(e) => onChange(e.target.value)}
+        />
+        {value ? (
+          <img
+            src={value}
+            alt=""
+            className="cms-image-preview"
+            onError={(e) => {
+              e.currentTarget.style.display = 'none'
+            }}
+            onLoad={(e) => {
+              e.currentTarget.style.display = 'block'
+            }}
+          />
+        ) : null}
+      </div>
+    )
+  }
+
+  if (field.type === 'textarea') {
+    return (
+      <textarea
+        id={id}
+        rows={field.rows || 4}
+        value={value ?? ''}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    )
+  }
+
+  if (field.type === 'select') {
+    return (
+      <select id={id} value={value ?? ''} onChange={(e) => onChange(e.target.value)}>
+        <option value="">— none —</option>
+        {field.options.map((o) => (
+          <option key={o} value={o}>
+            {o}
+          </option>
+        ))}
+      </select>
+    )
+  }
+
+  return (
+    <input
+      id={id}
+      type={field.type === 'date' ? 'date' : 'text'}
+      inputMode={field.type === 'url' ? 'url' : undefined}
+      placeholder={field.type === 'url' ? 'https://…' : undefined}
+      value={value ?? ''}
+      onChange={(e) => onChange(e.target.value)}
+    />
+  )
+}
+
+// Repeatable person cards, each with its own nested social links.
+function PeopleEditor({ field, people, onChange }) {
+  const update = (index, patch) =>
+    onChange(people.map((p, i) => (i === index ? { ...p, ...patch } : p)))
+
+  return (
+    <div className="cms-people">
+      {people.map((person, i) => (
+        <div className="cms-person" key={i}>
+          <div className="cms-person-head">
+            <strong>{person.role || person.name || `Person ${i + 1}`}</strong>
+            <button
+              type="button"
+              className="cms-btn danger"
+              onClick={() => onChange(people.filter((_, idx) => idx !== i))}
+            >
+              <Icon name="Trash2" size={14} /> Remove
+            </button>
+          </div>
+          <div className="form-grid">
+            {field.itemFields.map((sub) => (
+              <div className={sub.full ? 'form-field full' : 'form-field'} key={sub.name}>
+                <label htmlFor={`p${i}-${sub.name}`}>
+                  {sub.label}
+                  {sub.required && <span className="cms-req"> *</span>}
+                </label>
+                <FieldInput
+                  field={sub}
+                  id={`p${i}-${sub.name}`}
+                  value={person[sub.name]}
+                  onChange={(v) => update(i, { [sub.name]: v })}
+                />
+                {sub.hint && <p className="cms-hint">{sub.hint}</p>}
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+      <button
+        type="button"
+        className="cms-btn"
+        onClick={() => onChange([...people, emptyPerson(field)])}
+      >
+        <Icon name="Plus" size={14} /> Add person
+      </button>
+    </div>
+  )
+}
+
 export default function ContentManagement() {
   const navigate = useNavigate()
   const [activeKey, setActiveKey] = useState(CONTENT_TYPES[0].key)
@@ -111,6 +237,23 @@ export default function ContentManagement() {
     load(activeKey)
   }, [activeKey, load])
 
+  // Singleton sections edit one document inline, so seed the form from it.
+  useEffect(() => {
+    if (!type.singleton || loading) return
+    const doc = records[0]
+    const next = emptyRecord(type)
+    for (const key of Object.keys(next)) {
+      const value = doc?.[key]
+      if (value === undefined || value === null) continue
+      next[key] = Array.isArray(value)
+        ? value.map((row) => (typeof row === 'object' && row ? { ...row } : row))
+        : String(value)
+    }
+    setValues(next)
+    setFieldErrors({})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [records, loading, activeKey])
+
   // Clear the success banner when moving between sections
   useEffect(() => {
     setSuccess('')
@@ -139,6 +282,35 @@ export default function ContentManagement() {
   const closeDrawer = () => {
     setEditing(null)
     setFieldErrors({})
+  }
+
+  // Singleton: PUT onto the existing document, or POST the first one.
+  // Only the fields in the schema are sent, so keys this page does not manage
+  // are preserved by the store's merge-update.
+  const saveSingleton = async (e) => {
+    e.preventDefault()
+    const errors = validateRecord(type, values)
+    setFieldErrors(errors)
+    if (Object.keys(errors).length > 0) return
+
+    const payload = toPayload(type, values)
+    const existing = records[0]
+    setSaving(true)
+    setError('')
+    try {
+      if (existing?.id) {
+        await apiClient.put(`/${type.key}/${existing.id}`, payload)
+      } else {
+        await apiClient.post(`/${type.key}`, payload)
+      }
+      setSuccess('Changes saved.')
+      await load(type.key)
+    } catch (err) {
+      if (isUnauthorized(err)) return handleAuthFailure()
+      setError(describe(err, 'Could not save. Please try again.'))
+    } finally {
+      setSaving(false)
+    }
   }
 
   const save = async (e) => {
@@ -209,9 +381,11 @@ export default function ContentManagement() {
               Add, edit and remove the content shown on the public site.
             </p>
           </div>
-          <button className="btn btn-primary" onClick={openCreate}>
-            <Icon name="Plus" size={16} /> Add new
-          </button>
+          {!type.singleton && (
+            <button className="btn btn-primary" onClick={openCreate}>
+              <Icon name="Plus" size={16} /> Add new
+            </button>
+          )}
         </div>
 
         <div className="cms-layout">
@@ -252,6 +426,35 @@ export default function ContentManagement() {
 
             {loading ? (
               <div className="cms-state">Loading {type.label.toLowerCase()}…</div>
+            ) : type.singleton ? (
+              <form className="cms-singleton" onSubmit={saveSingleton}>
+                <div className="form-grid">
+                  {type.fields.map((field) => (
+                    <div
+                      className={field.full ? 'form-field full' : 'form-field'}
+                      key={field.name}
+                    >
+                      <label htmlFor={`f-${field.name}`}>{field.label}</label>
+                      <FieldInput
+                        field={field}
+                        id={`f-${field.name}`}
+                        value={values[field.name]}
+                        onChange={(v) => setValues({ ...values, [field.name]: v })}
+                      />
+                      {fieldErrors[field.name] ? (
+                        <p className="cms-field-error">{fieldErrors[field.name]}</p>
+                      ) : field.hint ? (
+                        <p className="cms-hint">{field.hint}</p>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+                <div className="cms-singleton-actions">
+                  <button type="submit" className="btn btn-primary" disabled={saving}>
+                    {saving ? 'Saving…' : 'Save changes'}
+                  </button>
+                </div>
+              </form>
             ) : records.length === 0 && !error ? (
               <div className="cms-state">
                 <p style={{ marginBottom: 14 }}>Nothing here yet.</p>
@@ -336,64 +539,12 @@ export default function ContentManagement() {
                       {field.required && <span className="cms-req"> *</span>}
                     </label>
 
-                    {field.type === 'socials' ? (
-                      <SocialsEditor
-                        rows={Array.isArray(values[field.name]) ? values[field.name] : []}
-                        onChange={(rows) => setValues({ ...values, [field.name]: rows })}
-                      />
-                    ) : field.type === 'imagePath' ? (
-                      <div className="cms-image-field">
-                        <input
-                          id={`f-${field.name}`}
-                          type="text"
-                          placeholder="https://…  or  /images/photo.jpeg"
-                          value={values[field.name] ?? ''}
-                          onChange={(e) => setValues({ ...values, [field.name]: e.target.value })}
-                        />
-                        {values[field.name] ? (
-                          <img
-                            src={values[field.name]}
-                            alt=""
-                            className="cms-image-preview"
-                            onError={(e) => {
-                              e.currentTarget.style.display = 'none'
-                            }}
-                            onLoad={(e) => {
-                              e.currentTarget.style.display = 'block'
-                            }}
-                          />
-                        ) : null}
-                      </div>
-                    ) : field.type === 'textarea' ? (
-                      <textarea
-                        id={`f-${field.name}`}
-                        rows={4}
-                        value={values[field.name] ?? ''}
-                        onChange={(e) => setValues({ ...values, [field.name]: e.target.value })}
-                      />
-                    ) : field.type === 'select' ? (
-                      <select
-                        id={`f-${field.name}`}
-                        value={values[field.name] ?? ''}
-                        onChange={(e) => setValues({ ...values, [field.name]: e.target.value })}
-                      >
-                        <option value="">— none —</option>
-                        {field.options.map((o) => (
-                          <option key={o} value={o}>
-                            {o}
-                          </option>
-                        ))}
-                      </select>
-                    ) : (
-                      <input
-                        id={`f-${field.name}`}
-                        type={field.type === 'date' ? 'date' : 'text'}
-                        inputMode={field.type === 'url' ? 'url' : undefined}
-                        placeholder={field.type === 'url' ? 'https://…' : undefined}
-                        value={values[field.name] ?? ''}
-                        onChange={(e) => setValues({ ...values, [field.name]: e.target.value })}
-                      />
-                    )}
+                    <FieldInput
+                      field={field}
+                      id={`f-${field.name}`}
+                      value={values[field.name]}
+                      onChange={(v) => setValues({ ...values, [field.name]: v })}
+                    />
 
                     {fieldErrors[field.name] ? (
                       <p className="cms-field-error">{fieldErrors[field.name]}</p>

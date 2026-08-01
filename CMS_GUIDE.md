@@ -11,6 +11,7 @@ architecture, no new dependencies.
 | News & Notices | `notices` | `/news` |
 | Events Calendar | `events` | `/events` |
 | Team Members | `team` | `/team` |
+| Office Bearers | `officebearers` | `/team/office-bearers` and `/about` |
 | Scholarships | `scholarships` | `/services/scholarships` |
 | Downloads & Forms | `downloads` | `/services/downloads` |
 | Resources | `resources` | `/resources` |
@@ -117,8 +118,25 @@ Team records carry `role`, `name`, `college`, `image`, `initials` and `socials`.
   X), `facebook`, `threads` and `website` — these are the icons the team card can
   render. A half-filled row is rejected; empty rows are dropped on save.
 
-Note that `/team/office-bearers` reads a separate `officebearers` resource and is
-not managed by this page.
+## Office Bearers (single document)
+
+Unlike every other section, `officebearers` is **one composite document**, not a
+list. It is edited inline — there is no “Add new” and no delete, because removing
+it would take the About DUSU text and the whole elected panel with it.
+
+The page edits two keys:
+
+- **About DUSU text** → rendered on `/about`
+- **Elected office bearers** → the carousel on `/team/office-bearers`. Each person
+  has role, name, college, photo, bio and social links.
+
+The document also holds `initiativesAndEvents`, `administrativeInitiatives` and
+`mediaDriveLink`. Nothing in the frontend renders these today, so the editor does
+not touch them — a save sends only the two keys above and the store merges, which
+leaves the rest intact. If you later add a page for them, add them to the schema
+rather than editing the JSON by hand.
+
+`Team Members` (`team`) is a separate, ordinary list used by `/team`.
 
 ## Limitations
 

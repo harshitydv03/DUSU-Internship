@@ -89,6 +89,40 @@ export const CONTENT_TYPES = [
     ],
   },
   {
+    // Not a list: this collection holds one composite document. Editing it
+    // sends only the keys below, so unrendered keys (initiativesAndEvents,
+    // administrativeInitiatives, mediaDriveLink) are preserved by the merge.
+    key: 'officebearers',
+    label: 'Office Bearers',
+    icon: 'Award',
+    publicPath: '/team/office-bearers',
+    singleton: true,
+    fields: [
+      {
+        name: 'about',
+        label: 'About DUSU text',
+        type: 'textarea',
+        rows: 10,
+        full: true,
+        hint: 'Shown on the About DUSU page. Leave a blank line between paragraphs.',
+      },
+      {
+        name: 'officeBearers',
+        label: 'Elected office bearers',
+        type: 'people',
+        full: true,
+        itemFields: [
+          { name: 'role', label: 'Role', type: 'text', required: true },
+          { name: 'name', label: 'Name', type: 'text', required: true },
+          { name: 'college', label: 'College', type: 'text', full: true },
+          { name: 'image', label: 'Photo', type: 'imagePath', full: true },
+          { name: 'bio', label: 'Bio', type: 'textarea', rows: 5, full: true },
+          { name: 'socials', label: 'Social links', type: 'socials', full: true },
+        ],
+      },
+    ],
+  },
+  {
     key: 'scholarships',
     label: 'Scholarships',
     icon: 'GraduationCap',
@@ -205,9 +239,21 @@ export const getContentType = (key) => CONTENT_TYPES.find((t) => t.key === key)
 // Platforms TeamCard knows how to render an icon for.
 export const SOCIAL_PLATFORMS = ['instagram', 'twitter', 'facebook', 'threads', 'website']
 
+const isListField = (f) => f.type === 'socials' || f.type === 'people'
+
 // Blank record shaped from the type's field list.
 export const emptyRecord = (type) =>
-  Object.fromEntries(type.fields.map((f) => [f.name, f.type === 'socials' ? [] : '']))
+  Object.fromEntries(type.fields.map((f) => [f.name, isListField(f) ? [] : '']))
+
+// A blank nested person, shaped from the parent field's itemFields.
+export const emptyPerson = (field) =>
+  Object.fromEntries(field.itemFields.map((f) => [f.name, isListField(f) ? [] : '']))
+
+// Keep only social rows that have both halves filled in.
+const cleanSocials = (raw) =>
+  (Array.isArray(raw) ? raw : [])
+    .map((s) => ({ platform: String(s.platform || '').trim(), url: String(s.url || '').trim() }))
+    .filter((s) => s.platform && s.url)
 
 // Strip server-managed keys — never send id/createdAt back in a payload.
 export function toPayload(type, values) {
@@ -216,11 +262,30 @@ export function toPayload(type, values) {
     const raw = values[field.name]
 
     if (field.type === 'socials') {
-      // Keep only rows that have both a platform and a link
-      const rows = (Array.isArray(raw) ? raw : [])
-        .map((s) => ({ platform: String(s.platform || '').trim(), url: String(s.url || '').trim() }))
-        .filter((s) => s.platform && s.url)
+      const rows = cleanSocials(raw)
       if (rows.length) payload[field.name] = rows
+      continue
+    }
+
+    if (field.type === 'people') {
+      // Drop entirely blank people; trim the rest and clean their socials
+      const people = (Array.isArray(raw) ? raw : [])
+        .map((person) => {
+          const out = {}
+          for (const sub of field.itemFields) {
+            if (sub.type === 'socials') {
+              const rows = cleanSocials(person[sub.name])
+              if (rows.length) out[sub.name] = rows
+              continue
+            }
+            const v = String(person[sub.name] ?? '').trim()
+            if (v) out[sub.name] = v
+          }
+          return out
+        })
+        .filter((person) => Object.keys(person).length > 0)
+      // Always send the array — an empty one is a legitimate "remove all"
+      payload[field.name] = people
       continue
     }
 
@@ -238,20 +303,49 @@ const DATE_RE = /^\d{4}-\d{2}-\d{2}$/
 const URL_OR_PATH_RE = /^(https?:\/\/\S+|\/\S*)$/i
 
 // Client-side mirror of the backend rules, so users get instant feedback.
+// A social row is only a problem once the user has started filling it in.
+function socialsProblem(raw) {
+  const rows = Array.isArray(raw) ? raw : []
+  const bad = rows.findIndex(
+    (s) => (s.platform || s.url) && (!s.platform || !s.url || !URL_RE.test(String(s.url).trim())),
+  )
+  return bad === -1 ? null : `Link ${bad + 1}: pick a platform and enter a full https:// URL`
+}
+
 export function validateRecord(type, values) {
   const errors = {}
   for (const field of type.fields) {
     if (field.type === 'socials') {
-      const rows = Array.isArray(values[field.name]) ? values[field.name] : []
-      // A row is only a problem once the user has started filling it in
-      const bad = rows.findIndex(
-        (s) =>
-          (s.platform || s.url) &&
-          (!s.platform || !s.url || !URL_RE.test(String(s.url).trim())),
-      )
-      if (bad !== -1) {
-        errors[field.name] = `Link ${bad + 1}: pick a platform and enter a full https:// URL`
-      }
+      const problem = socialsProblem(values[field.name])
+      if (problem) errors[field.name] = problem
+      continue
+    }
+
+    if (field.type === 'people') {
+      const people = Array.isArray(values[field.name]) ? values[field.name] : []
+      const messages = []
+      people.forEach((person, i) => {
+        const started = field.itemFields.some((sub) =>
+          sub.type === 'socials'
+            ? (person[sub.name] || []).length > 0
+            : String(person[sub.name] ?? '').trim(),
+        )
+        if (!started) return // a blank card is dropped on save, not an error
+        for (const sub of field.itemFields) {
+          if (sub.type === 'socials') {
+            const problem = socialsProblem(person[sub.name])
+            if (problem) messages.push(`Person ${i + 1} — ${problem}`)
+            continue
+          }
+          const value = String(person[sub.name] ?? '').trim()
+          if (sub.required && !value) {
+            messages.push(`Person ${i + 1} — ${sub.label} is required`)
+          } else if (value && sub.type === 'imagePath' && !URL_OR_PATH_RE.test(value)) {
+            messages.push(`Person ${i + 1} — photo must be a URL or a path beginning with /`)
+          }
+        }
+      })
+      if (messages.length) errors[field.name] = messages.join('; ')
       continue
     }
 

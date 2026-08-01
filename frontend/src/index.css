@@ -2095,3 +2095,48 @@ tr:last-child td {
     grid-column: 1 / -1;
   }
 }
+
+/* ---- CMS: singleton document editor ---- */
+.cms-singleton {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+  padding: 22px 24px;
+}
+
+.cms-singleton-actions {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 18px;
+  margin-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.cms-people {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+
+.cms-person {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--primary);
+  border-radius: 10px;
+  background: var(--bg-faint);
+  padding: 16px 18px;
+}
+
+.cms-person-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.cms-person-head strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+}

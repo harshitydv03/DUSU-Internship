@@ -57,12 +57,35 @@ const CMS_RULES = {
   notices: { required: ['title', 'date'], date: ['date'] },
   events: { required: ['title', 'date'], date: ['date'] },
   team: { required: ['role', 'name'], urlOrPath: ['image'], socials: ['socials'] },
+  // Single composite document: `about` plus the elected panel. Other keys on
+  // this document are not managed by the CMS and are left untouched.
+  officebearers: { people: ['officeBearers'] },
   scholarships: { required: ['name'], url: ['link'] },
   downloads: { required: ['name'], url: ['url'] },
   resources: { required: ['name', 'url'], url: ['url'] },
   milestones: { required: ['year', 'title'], year: ['year'] },
   faqs: { required: ['q', 'a'] },
   gallery: { required: ['caption'], url: ['imageUrl'] },
+}
+
+// Shared by the flat `socials` rule and the nested one inside `people`.
+function checkSocials(value, label, errors) {
+  if (value === undefined) return
+  if (!Array.isArray(value)) {
+    errors.push(`"${label}" must be a list`)
+    return
+  }
+  value.forEach((row, i) => {
+    const at = `${label}[${i}]`
+    if (!row || typeof row !== 'object' || Array.isArray(row)) {
+      errors.push(`${at} must be an object`)
+      return
+    }
+    if (!SOCIAL_PLATFORMS.includes(String(row.platform || '').trim())) {
+      errors.push(`${at}.platform must be one of: ${SOCIAL_PLATFORMS.join(', ')}`)
+    }
+    if (!isUrl(row.url)) errors.push(`${at}.url must be a valid http(s) URL`)
+  })
 }
 
 // Builds a `validate` hook for one resource. On PUT (`partial`) an omitted
@@ -92,21 +115,26 @@ function cmsValidator(rules) {
       }
     }
     for (const f of rules.socials || []) {
+      checkSocials(body[f], f, errors)
+    }
+    for (const f of rules.people || []) {
       if (body[f] === undefined) continue
       if (!Array.isArray(body[f])) {
         errors.push(`"${f}" must be a list`)
         continue
       }
-      body[f].forEach((row, i) => {
+      body[f].forEach((person, i) => {
         const label = `${f}[${i}]`
-        if (!row || typeof row !== 'object' || Array.isArray(row)) {
+        if (!person || typeof person !== 'object' || Array.isArray(person)) {
           errors.push(`${label} must be an object`)
           return
         }
-        if (!SOCIAL_PLATFORMS.includes(String(row.platform || '').trim())) {
-          errors.push(`${label}.platform must be one of: ${SOCIAL_PLATFORMS.join(', ')}`)
+        if (isBlank(person.role)) errors.push(`${label}.role is required`)
+        if (isBlank(person.name)) errors.push(`${label}.name is required`)
+        if (!isBlank(person.image) && !isUrlOrPath(person.image)) {
+          errors.push(`${label}.image must be a URL or a path starting with /`)
         }
-        if (!isUrl(row.url)) errors.push(`${label}.url must be a valid http(s) URL`)
+        checkSocials(person.socials, `${label}.socials`, errors)
       })
     }
     return errors.length ? errors.join('; ') : null
